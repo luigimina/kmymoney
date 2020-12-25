@@ -28,10 +28,6 @@
 #include <QTimer>
 #include <QFile>
 #include <QSqlDriver>
-#ifdef IS_APPIMAGE
-  #include <QCoreApplication>
-  #include <QStandardPaths>
-#endif
 
 // ----------------------------------------------------------------------------
 // KDE Includes
@@ -91,15 +87,7 @@ SQLStorage::SQLStorage(QObject *parent, const QVariantList &args) :
   const auto rcFileName = QLatin1String("sqlstorage.rc");
   setComponentName(componentName, i18n("SQL storage"));
 
-#ifdef IS_APPIMAGE
-  const QString rcFilePath = QString("%1/../share/kxmlgui5/%2/%3").arg(QCoreApplication::applicationDirPath(), componentName, rcFileName);
-  setXMLFile(rcFilePath);
-
-  const QString localRcFilePath = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).first() + QLatin1Char('/') + componentName + QLatin1Char('/') + rcFileName;
-  setLocalXMLFile(localRcFilePath);
-#else
   setXMLFile(rcFileName);
-#endif
 
   createActions();
   // For information, announce that we have been loaded.

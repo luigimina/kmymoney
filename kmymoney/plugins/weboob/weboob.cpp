@@ -30,10 +30,6 @@
 #include <QtConcurrentRun>
 #include <QFutureWatcher>
 #include <QProgressDialog>
-#ifdef IS_APPIMAGE
-  #include <QCoreApplication>
-  #include <QStandardPaths>
-#endif
 
 // ----------------------------------------------------------------------------
 // KDE Includes
@@ -79,15 +75,7 @@ Weboob::Weboob(QObject *parent, const QVariantList &args) :
   const auto rcFileName = QLatin1String("weboob.rc");
   setComponentName(componentName, i18n("Weboob"));
 
-#ifdef IS_APPIMAGE
-  const QString rcFilePath = QString("%1/../share/kxmlgui5/%2/%3").arg(QCoreApplication::applicationDirPath(), componentName, rcFileName);
-  setXMLFile(rcFilePath);
-
-  const QString localRcFilePath = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).first() + QLatin1Char('/') + componentName + QLatin1Char('/') + rcFileName;
-  setLocalXMLFile(localRcFilePath);
-#else
   setXMLFile(rcFileName);
-#endif
 
   qDebug("Plugins: weboob loaded");
 }
