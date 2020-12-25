@@ -21,10 +21,6 @@
 
 // ----------------------------------------------------------------------------
 // QT Includes
-#ifdef IS_APPIMAGE
-#include <QCoreApplication>
-#include <QStandardPaths>
-#endif
 
 // ----------------------------------------------------------------------------
 // KDE Includes
@@ -53,15 +49,7 @@ QIFImporter::QIFImporter(QObject *parent, const QVariantList &args) :
   const auto rcFileName = QLatin1String("qifimporter.rc");
   setComponentName(componentName, i18n("QIF importer"));
 
-#ifdef IS_APPIMAGE
-  const QString rcFilePath = QString("%1/../share/kxmlgui5/%2/%3").arg(QCoreApplication::applicationDirPath(), componentName, rcFileName);
-  setXMLFile(rcFilePath);
-
-  const QString localRcFilePath = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).first() + QLatin1Char('/') + rcFileName;
-  setLocalXMLFile(localRcFilePath);
-#else
   setXMLFile(rcFileName);
-#endif
 
   createActions();
   // For information, announce that we have been loaded.

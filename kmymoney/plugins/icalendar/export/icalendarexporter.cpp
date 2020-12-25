@@ -23,10 +23,6 @@
 #include <QFileDialog>
 #include <QUrl>
 #include <QAction>
-#ifdef IS_APPIMAGE
-  #include <QCoreApplication>
-  #include <QStandardPaths>
-#endif
 
 // KDE includes
 #include <KPluginFactory>
@@ -62,15 +58,7 @@ iCalendarExporter::iCalendarExporter(QObject *parent, const QVariantList &args) 
   const auto rcFileName = QLatin1String("icalendarexporter.rc");
   setComponentName(componentName, i18n("iCalendar exporter"));
 
-#ifdef IS_APPIMAGE
-  const QString rcFilePath = QString("%1/../share/kxmlgui5/%2/%3").arg(QCoreApplication::applicationDirPath(), componentName, rcFileName);
-  setXMLFile(rcFilePath);
-
-  const QString localRcFilePath = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).first() + QLatin1Char('/') + componentName + QLatin1Char('/') + rcFileName;
-  setLocalXMLFile(localRcFilePath);
-#else
   setXMLFile(rcFileName);
-#endif
 
   // For ease announce that we have been loaded.
   qDebug("Plugins: icalendarexporter loaded");
