@@ -105,7 +105,7 @@ QString reports::ReportTable::renderHeader(const QString& title, const QByteArra
 
     if (cssfilename.at(0) == ':') {
       cssfilename.remove(0, 1);
-      scheme = "qrc";
+      scheme = QStringLiteral("qrc");
     }
 
     QUrl cssUrl = cssUrl.fromLocalFile(cssfilename);
