@@ -3,6 +3,7 @@
  *                                                                         *
  *   Copyright (C) 2009      Cristian Onet <onet.cristian@gmail.com>       *
  *   Copyright (C) 2019      Thomas Baumgart <tbaumgart@kde.org>           *
+ *   Copyright (C) 2021      Dawid Wróbel <me@dawidwrobel.com>             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -28,11 +29,7 @@
 #include <QAction>
 #include <QFile>
 #include <QDialog>
-#ifdef ENABLE_WEBENGINE
-  #include <QWebEngineView>
-#else
-  #include <KWebView>
-#endif
+#include <QTextDocument>
 #include <QStandardPaths>
 
 // KDE includes
@@ -121,21 +118,27 @@ void CheckPrinting::unplug()
 
 void CheckPrinting::readCheckTemplate()
 {
-  QString checkTemplateHTMLPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "checkprinting/check_template.html");
+  QFile* checkTemplateHTMLFile;
 
-  if (PluginSettings::checkTemplateFile().isEmpty()) {
-    PluginSettings::setCheckTemplateFile(checkTemplateHTMLPath);
-    PluginSettings::self()->save();
+  if (!PluginSettings::useCustomCheckTemplate || PluginSettings::checkTemplateFile().isEmpty()) {
+      checkTemplateHTMLFile = new QFile(PluginSettings::defaultCheckTemplateFileValue());
+  }
+  else {
+      checkTemplateHTMLFile = new QFile(PluginSettings::checkTemplateFile());
   }
 
-  QFile checkTemplateHTMLFile(PluginSettings::checkTemplateFile());
-  checkTemplateHTMLFile.open(QIODevice::ReadOnly);
+  if (!(checkTemplateHTMLFile->open(QIODevice::ReadOnly))) {
+      qDebug() << "Failed to open the template from" << checkTemplateHTMLFile->fileName();
+  }
+  else {
+      qDebug() << "Template successfully opened from" << checkTemplateHTMLFile->fileName();
+  }
 
-  QTextStream stream(&checkTemplateHTMLFile);
+  QTextStream stream(checkTemplateHTMLFile);
 
   d->m_checkTemplateHTML = stream.readAll();
 
-  checkTemplateHTMLFile.close();
+  checkTemplateHTMLFile->close();
 }
 
 bool CheckPrinting::canBePrinted(const KMyMoneyRegister::SelectedTransaction & selectedTransaction) const
@@ -155,11 +158,7 @@ void CheckPrinting::slotPrintCheck()
 {
   MyMoneyFile* file = MyMoneyFile::instance();
   MyMoneyMoneyToWordsConverter converter;
-  #ifdef ENABLE_WEBENGINE
-  auto htmlPart = new QWebEngineView();
-  #else
-  auto htmlPart = new KWebView();
-  #endif
+  auto htmlPart = new QTextDocument();
 
   KMyMoneyRegister::SelectedTransactions::const_iterator it;
   for (it = d->m_transactions.constBegin(); it != d->m_transactions.constEnd(); ++it) {
@@ -214,14 +213,10 @@ void CheckPrinting::slotPrintCheck()
     }
 
     // print the check
-    htmlPart->setHtml(checkHTML, QUrl("file://"));
+    htmlPart->setHtml(checkHTML);
     auto printer = KMyMoneyPrinter::startPrint();
     if (printer != nullptr) {
-      #ifdef ENABLE_WEBENGINE
-        htmlPart->page()->print(printer, [=] (bool) {});
-      #else
         htmlPart->print(printer);
-      #endif
     }
 
     // mark the transaction as printed

@@ -1,5 +1,6 @@
 /***************************************************************************
  *   Copyright 2009  Cristian Onet onet.cristian@gmail.com                 *
+ *   Copyright 2021  Dawid Wróbel  me@dawidwrobel.com                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -18,63 +19,121 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>  *
  ***************************************************************************/
 
-#include "kcm_checkprinting.h"
-#include <config-kmymoney-version.h>
+// ----------------------------------------------------------------------------
+// Qt Includes
 
-// Qt includes
 #include <QFrame>
-#ifdef ENABLE_WEBENGINE
-#include <QWebEngineView>
-#else
-#include <KWebView>
-#endif
+#include <QTextEdit>
+#include <QFile>
 
-// KDE includes
+// ----------------------------------------------------------------------------
+// KDE Includes
+
 #include <KPluginFactory>
 #include <KAboutData>
 
-#include "pluginsettings.h"
+// ----------------------------------------------------------------------------
+// Project Includes
 
-PluginSettingsWidget::PluginSettingsWidget(QWidget* parent) :
+#include "pluginsettings.h"
+#include "kcm_checkprinting.h"
+
+PluginSettingsWidget::PluginSettingsWidget(QWidget *parent)
+    :
     QWidget(parent)
 {
-  setupUi(this);
-  #ifdef ENABLE_WEBENGINE
-  m_checkTemplatePreviewHTMLPart = new QWebEngineView(m_previewFrame);
-  #else
-  m_checkTemplatePreviewHTMLPart = new KWebView(m_previewFrame);
-  #endif
+    setupUi(this);
+    m_checkTemplatePreviewHTMLPart = new QTextEdit(m_previewFrame);
 
-  QVBoxLayout *layout = new QVBoxLayout;
-  m_previewFrame->setLayout(layout);
-  layout->addWidget(m_checkTemplatePreviewHTMLPart);
+    QVBoxLayout *layout = new QVBoxLayout;
+    m_previewFrame->setLayout(layout);
+    layout->addWidget(m_checkTemplatePreviewHTMLPart);
 
-  connect(kcfg_checkTemplateFile, &KUrlRequester::urlSelected, this, &PluginSettingsWidget::urlSelected);
-  connect(kcfg_checkTemplateFile, QOverload<const QString&>::of(&KUrlRequester::returnPressed), this, &PluginSettingsWidget::returnPressed);
+    if (PluginSettings::checkTemplateFile().isEmpty()) {
+        restoreDefaultSettings();
+    }
+
+    connect(kcfg_checkTemplateFile, &KUrlRequester::textChanged, this, &PluginSettingsWidget::textChanged);
+    connect(kcfg_checkTemplateFile,
+            &KUrlRequester::urlSelected,
+            this,
+            QOverload<const QUrl &>::of(&PluginSettingsWidget::urlSelected));
+    connect(kcfg_checkTemplateFile, QOverload<const QString &>::of(&KUrlRequester::returnPressed), this,
+            QOverload<const QString &>::of(&PluginSettingsWidget::urlSelected));
+    connect(kcfg_useCustomCheckTemplate, SIGNAL(toggled(bool)), kcfg_checkTemplateFile, SLOT(setEnabled(bool)));
+    connect(kcfg_useCustomCheckTemplate,
+            &QCheckBox::toggled,
+            this,
+            QOverload<>::of(&PluginSettingsWidget::urlSelected));
+}
+
+void PluginSettingsWidget::urlSelected()
+{
+    if (kcfg_useCustomCheckTemplate->checkState() == Qt::Unchecked
+        || PluginSettings::checkTemplateFile().isEmpty()
+        || kcfg_checkTemplateFile->url().isEmpty()) {
+        urlSelected(QUrl::fromUserInput(PluginSettings::defaultCheckTemplateFileValue()));
+    }
+    else {
+        urlSelected(kcfg_checkTemplateFile->url());
+    }
+}
+
+void PluginSettingsWidget::urlSelected(const QString &url)
+{
+    urlSelected(QUrl::fromUserInput(url));
 }
 
 void PluginSettingsWidget::urlSelected(const QUrl &url)
 {
-  if (!url.isEmpty())
-    m_checkTemplatePreviewHTMLPart->load(url);
+    if (!url.isEmpty()) {
+        m_checkTemplatePreviewHTMLPart->clear();
+        QFile file(url.toLocalFile());
+
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream stream(&file);
+            m_checkTemplatePreviewHTMLPart->setHtml(stream.readAll());
+            file.close();
+        }
+    }
+    else {
+        urlSelected();
+    }
 }
 
-void PluginSettingsWidget::returnPressed(const QString& url)
+void PluginSettingsWidget::textChanged(const QString &text)
 {
-  if (!url.isEmpty())
-    m_checkTemplatePreviewHTMLPart->load(QUrl::fromUserInput(url));
+    // conceal the default "qrc:/" value to avoid confusing regular users
+    if (text == PluginSettings::defaultCheckTemplateFileValue()) {
+        kcfg_checkTemplateFile->setText("");
+    }
 }
 
-KCMCheckPrinting::KCMCheckPrinting(QWidget *parent, const QVariantList& args)
-  : KCModule(parent, args)
+void PluginSettingsWidget::restoreDefaultSettings() const
 {
-  PluginSettingsWidget* w = new PluginSettingsWidget(this);
-  addConfig(PluginSettings::self(), w);
-  QVBoxLayout *layout = new QVBoxLayout;
-  setLayout(layout);
-  layout->addWidget(w);
-  load();
-  w->urlSelected(QUrl::fromUserInput(PluginSettings::checkTemplateFile()));
+    PluginSettings::setUseCustomCheckTemplate(false);
+    PluginSettings::setCheckTemplateFile(PluginSettings::defaultCheckTemplateFileValue());
+    PluginSettings::self()->save();
+}
+
+PluginSettingsWidget::~PluginSettingsWidget()
+{
+    if (kcfg_checkTemplateFile->url().isEmpty()) {
+        restoreDefaultSettings();
+    }
+}
+
+KCMCheckPrinting::KCMCheckPrinting(QWidget *parent, const QVariantList &args)
+    : KCModule(parent, args)
+{
+    PluginSettingsWidget *w = new PluginSettingsWidget(this);
+    addConfig(PluginSettings::self(), w);
+    QVBoxLayout *layout = new QVBoxLayout;
+    setLayout(layout);
+    layout->addWidget(w);
+    load();
+    w->urlSelected(PluginSettings::useCustomCheckTemplate() ? PluginSettings::checkTemplateFile()
+                                                            : PluginSettings::defaultCheckTemplateFileValue());
 }
 
 KCMCheckPrinting::~KCMCheckPrinting()
