@@ -1,17 +1,20 @@
-/***************************************************************************
-                          pluginloader.h
-                             -------------------
-  (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+ * Copyright 2017       Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+ * Copyright 2021       Thomas Baumgart <tbaumgart@kde.org>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #ifndef PLUGINLOADER_H
 #define PLUGINLOADER_H
@@ -19,19 +22,20 @@
 // ----------------------------------------------------------------------------
 // QT Includes
 
-// ----------------------------------------------------------------------------
-// KDE Includes
+class QObject;
+class QString;
+template <class Key, class T> class QMap;
 
 // ----------------------------------------------------------------------------
-// Project Includes
+// KDE Includes
 
 class KPluginMetaData;
 class KXMLGUIFactory;
 
-class QObject;
-class QString;
+// ----------------------------------------------------------------------------
+// Project Includes
 
-template <class Key, class T> class QMap;
+class SelectedObjects;
 
 namespace KMyMoneyPlugin
 {
@@ -73,6 +77,19 @@ namespace KMyMoneyPlugin
    * @param guiFactory GUI Factory of plugins. This should be GUI Factory of KMyMoneyApp
    */
   void pluginHandling(Action action, Container& ctnPlugins, QObject* parent, KXMLGUIFactory* guiFactory);
+
+  /**
+   * @brief Update the actions in all plugins
+   * @param plugins   List of loaded plugins
+   * @param selection the current selection
+   */
+  void updateActions(const Container& plugins, const SelectedObjects& selections);
+
+  /**
+   * @brief Update the configuration in all plugins
+   * @param plugins   List of loaded plugins
+   */
+  void updateConfiguration(const Container& plugins);
 }
 
 #endif

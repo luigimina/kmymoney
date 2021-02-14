@@ -1,12 +1,11 @@
 /*
- * This file is part of KMyMoney, A Personal Finance Manager by KDE
- * Copyright (C) 2005 Thomas Baumgart <ipwizard@users.sourceforge.net>
- * Copyright (C) 2015 Christian Dávid <christian-david@web.de>
+ * Copyright (C) 2005-2021 Thomas Baumgart <ipwizard@users.sourceforge.net>
+ * Copyright (C) 2015      Christian Dávid <christian-david@web.de>
  *
  * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -43,6 +42,7 @@ class MyMoneyStorageMgr;
 class MyMoneyAccount;
 class KMyMoneySettings;
 class IMyMoneyOperationsFormat;
+class SelectedObjects;
 
 namespace KMyMoneyPlugin { class AppInterface; }
 namespace KMyMoneyPlugin { class ImportInterface; }
@@ -129,10 +129,16 @@ public Q_SLOTS:
   virtual void unplug();
 
   /**
-   * @brief Called if the configuration of the plugin was changed
-   * @todo Implement
+   * This method is called by the application whenever a
+   * selection changes. The default implementation does nothing.
    */
-  virtual void configurationChanged() ;
+  virtual void updateActions(const SelectedObjects& selections);
+
+  /**
+   * This method is called by the application whenever the
+   * configuration changes. The default implementation does nothing.
+   */
+  virtual void updateConfiguration();
 
 protected:
   /** See KMyMoneyApp::toggleAction() for a description */

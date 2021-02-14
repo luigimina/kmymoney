@@ -124,8 +124,10 @@ public:
     *s_globalEditView() = nullptr;
   }
 
-  void updateDynamicActions()
+  eMenu::Menu updateDynamicActions()
   {
+    eMenu::Menu menuType = eMenu::Menu::Transaction;
+
     const auto indexes = q->selectionModel()->selectedIndexes();
     auto const gotoAccount = pActions[eMenu::Action::GoToAccount];
     auto const gotoPayee = pActions[eMenu::Action::GoToPayee];
@@ -138,6 +140,12 @@ public:
     if (!indexes.isEmpty()) {
       const auto baseIdx = MyMoneyFile::instance()->journalModel()->mapToBaseSource(indexes.at(0));
       const auto journalEntry = MyMoneyFile::instance()->journalModel()->itemByIndex(baseIdx);
+
+      // if this entry points to the schedules, we switch the menu type
+      if (baseIdx.model() == MyMoneyFile::instance()->schedulesJournalModel()) {
+        menuType = eMenu::Menu::Schedule;
+      }
+
       MyMoneyAccount acc;
       if (!q->isColumnHidden(JournalModel::Column::Account)) {
         // in case the account column is shown, we jump to that account
@@ -178,6 +186,7 @@ public:
         }
       }
     }
+    return menuType;
   }
 
   LedgerView*                     q;
@@ -230,8 +239,8 @@ LedgerView::LedgerView(QWidget* parent)
   // setup context menu
   setContextMenuPolicy(Qt::CustomContextMenu);
   connect(this, &QWidget::customContextMenuRequested, this, [&](QPoint pos) {
-    d->updateDynamicActions();
-    emit requestCustomContextMenu(eMenu::Menu::Transaction, viewport()->mapToGlobal(pos));
+    const auto menuType = d->updateDynamicActions();
+    emit requestCustomContextMenu(menuType, viewport()->mapToGlobal(pos));
   });
   setTabKeyNavigation(false);
 }
@@ -601,7 +610,51 @@ void LedgerView::selectMostRecentTransaction()
 
 void LedgerView::selectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
 {
+  // call base class implementation
   QTableView::selectionChanged(selected, deselected);
+
+  QSet<int> allSelectedRows;
+  QSet<int> selectedRows;
+
+  if (!selected.isEmpty()) {
+    int lastRow = -1;
+    for (const auto& idx : selectionModel()->selectedIndexes()) {
+      if (idx.row() != lastRow) {
+        lastRow = idx.row();
+        allSelectedRows += lastRow;
+      }
+    }
+    lastRow = -1;
+    for (const auto& idx : selected.indexes()) {
+      if (idx.row() != lastRow) {
+        lastRow = idx.row();
+        selectedRows += lastRow;
+      }
+    }
+
+    allSelectedRows -= selectedRows;
+    // determine the current type of selection by looking at
+    // the first item in allSelectedRows. In case allSelectedRows
+    // is empty, a single item was selected and we are good to go
+    if (!allSelectedRows.isEmpty()) {
+      const auto baseIdx = model()->index(*allSelectedRows.constBegin(), 0);
+      const auto isSchedule = baseIdx.data(eMyMoney::Model::TransactionScheduleRole).toBool();
+
+      // now scan all in selected to check if they are of the same type
+      // and add them to toDeselect if not.
+      QItemSelection toDeselect;
+      for (const auto& idx : selected.indexes()) {
+        if (idx.data(eMyMoney::Model::TransactionScheduleRole).toBool() != isSchedule) {
+          toDeselect.select(idx, idx);
+        }
+      }
+      if (!toDeselect.isEmpty()) {
+        selectionModel()->select(toDeselect, QItemSelectionModel::Deselect);
+        /// @TODO: may be, we should inform the user why we deselect here
+      }
+    }
+  }
+
   d->selection.setSelection(SelectedObjects::Transaction, selectedTransactions());
   emit transactionSelectionChanged(d->selection);
 }
@@ -611,10 +664,15 @@ QStringList LedgerView::selectedTransactions() const
   QStringList selection;
 
   QString id;
+  int lastRow = -1;
   for (const auto& idx : selectionModel()->selectedIndexes()) {
-    id = idx.data(eMyMoney::Model::JournalTransactionIdRole).toString();
-    if (!selection.contains(id)) {
-      selection.append(id);
+    // we don't need to process all columns but only the first one
+    if (idx.row() != lastRow) {
+      lastRow = idx.row();
+      id = idx.data(eMyMoney::Model::JournalTransactionIdRole).toString();
+      if (!selection.contains(id)) {
+        selection.append(id);
+      }
     }
   }
   return selection;
