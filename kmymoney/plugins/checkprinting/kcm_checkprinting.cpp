@@ -9,11 +9,7 @@
 
 // Qt includes
 #include <QFrame>
-#ifdef ENABLE_WEBENGINE
-#include <QWebEngineView>
-#else
-#include <KWebView>
-#endif
+#include <QTextEdit>
 
 // KDE includes
 #include <KPluginFactory>
