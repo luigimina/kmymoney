@@ -42,7 +42,7 @@ set( kmm_utils_platformtools_HEADER
 )
 
 set( kmm_url_HEADER
-  kcmurl.h
+  kmmurl.h
 )
 
 set( kmm_printer_SRCS
