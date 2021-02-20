@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2007-2018 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2021 Dawid Wróbel <me@dawidwrobel.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
@@ -18,6 +19,7 @@
 // ----------------------------------------------------------------------------
 // Project Includes
 
+#include "kmmurl.h"
 #include "kmymoneysettings.h"
 #include "kmymoneyutils.h"
 #include "mymoneyfile.h"
@@ -89,15 +91,7 @@ QString reports::ReportTable::renderHeader(const QString& title, const QByteArra
     }
   } else {
 
-    auto scheme = QStringLiteral("file");
-
-    if (cssfilename.at(0) == ':') {
-      cssfilename.remove(0, 1);
-      scheme = QStringLiteral("qrc");
-    }
-
-    QUrl cssUrl = cssUrl.fromLocalFile(cssfilename);
-    cssUrl.setScheme(scheme);
+    QUrl cssUrl = cssUrl.fromUserInput(cssfilename);
 
     // do not include css inline instead use a link to the css file
     header += "\n<link rel=\"stylesheet\" type=\"text/css\" href=\""
