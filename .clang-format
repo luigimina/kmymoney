@@ -24,12 +24,6 @@ ColumnLimit: 160
 # sort includes inside line separated groups
 SortIncludes: true
 
-# break before braces on function, namespace and class definitions.
-BreakBeforeBraces: Linux
-
-# CrlInstruction *a;
-PointerAlignment: Right
-
 # horizontally aligns arguments after an open bracket.
 AlignAfterOpenBracket: Align
 
@@ -78,5 +72,22 @@ AllowShortLambdasOnASingleLine: Empty
 
 # We do not want clang-format to put all arguments on a new line
 AllowAllArgumentsOnNextLine: false
-CompactNamespaces: 'true'
 
+# KMyMoney specific values
+
+PointerAlignment: Left
+BreakBeforeBraces: Custom
+# break before braces on functions and class definitions.
+BraceWrapping:
+  AfterEnum: false
+  AfterStruct: false
+  AfterCaseLabel: false
+  AfterClass: true
+  AfterFunction: true
+  AfterNamespace: false
+AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: true
+AlignConsecutiveBitFields: true
+AlignTrailingComments: true
+FixNamespaceComments: true
+CompactNamespaces: true
