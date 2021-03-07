@@ -169,7 +169,7 @@ public:
     if (! q->field("interestRateEditValid").toBool()) {
       txt = QString("<") + i18n("calculate") + QString(">");
     } else {
-      txt = q->field("interestRateEdit").value<MyMoneyMoney>().formatMoney(QString(), 3) + QString("%");
+      txt = q->field("interestRateEdit").value<MyMoneyMoney>().formatMoney(QString(), 4) + QString("%");
     }
     q->setField("interestRate1", txt);
     q->setField("interestRate2", txt);
@@ -245,7 +245,7 @@ public:
 
     int fraction = m_account.fraction(MyMoneyFile::instance()->security(m_account.currencyId()));
     q->setField("loanAmount6", q->field("loanAmountEdit").value<MyMoneyMoney>().formatMoney(fraction));
-    q->setField("interestRate6", QString(q->field("interestRateEdit").value<MyMoneyMoney>().formatMoney("", 3) + QString("%")));
+    q->setField("interestRate6", QString(q->field("interestRateEdit").value<MyMoneyMoney>().formatMoney("", 4) + QString("%")));
     txt = QString().sprintf("%d ", q->field("durationValueEdit").toInt())
           + q->field("durationUnitEdit").toString();
     q->setField("duration6", txt);

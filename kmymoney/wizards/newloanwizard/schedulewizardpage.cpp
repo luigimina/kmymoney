@@ -64,15 +64,19 @@ bool ScheduleWizardPage::isComplete() const
 
 void ScheduleWizardPage::initializePage()
 {
-  ui->m_nextDueDateEdit->setEnabled(true);
-  if (field("allPaymentsButton").toBool() || field("noPreviousPaymentButton").toBool()) {
-    setField("nextDueDateEdit", field("firstDueDateEdit").toDate());
-    ui->m_nextDueDateEdit->setEnabled(false);
+  if (!field("nextDueDateEdit").isValid()) {
+    ui->m_nextDueDateEdit->setEnabled(true);
+    if (field("allPaymentsButton").toBool() || field("noPreviousPaymentButton").toBool()) {
+      setField("nextDueDateEdit", field("firstDueDateEdit").toDate());
+      ui->m_nextDueDateEdit->setEnabled(false);
+    } else {
+      QDate nextPayment(QDate::currentDate().year(), 1, field("firstDueDateEdit").toDate().day());
+      setField("nextDueDateEdit", nextPayment);
+    }
+    if (field("nextDueDateEdit").toDate() < field("firstDueDateEdit").toDate()) {
+      setField("nextDueDateEdit", field("firstDueDateEdit").toDate());
+    }
   } else {
-    QDate nextPayment(QDate::currentDate().year(), 1, field("firstDueDateEdit").toDate().day());
-    setField("nextDueDateEdit", nextPayment);
-  }
-  if (field("nextDueDateEdit").toDate() < field("firstDueDateEdit").toDate()) {
-    setField("nextDueDateEdit", field("firstDueDateEdit").toDate());
+    ui->m_nextDueDateEdit->setEnabled(false);
   }
 }
