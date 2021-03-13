@@ -123,6 +123,7 @@ namespace NewAccountWizard
 
     set.clear();
     set.addAccountGroup(Account::Type::Asset);
+    set.addAccountGroup(Account::Type::Liability);
     set.load(d->ui->m_paymentAccount->selector());
   }
 
