@@ -6,7 +6,8 @@ FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 
 COPY library-scripts/desktop-lite-debian.sh /tmp/library-scripts/
 RUN apt-get update && bash /tmp/library-scripts/desktop-lite-debian.sh
-ENV DBUS_SESSION_BUS_ADDRESS="autolaunch:" DISPLAY=":1" LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8"
+RUN sed -i '/it_IT.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+ENV DBUS_SESSION_BUS_ADDRESS="autolaunch:" DISPLAY=":1" LANG="it_IT.UTF-8" LANGUAGE="it_IT.UTF-8" LC_ALL="it_IT.UTF-8"
 ENTRYPOINT ["/usr/local/share/desktop-init.sh"]
 CMD ["sleep", "infinity"]
 
@@ -22,4 +23,4 @@ RUN eatmydata apt-get build-dep -y kmymoney
 RUN eatmydata apt-get install -y qt5-default qtwebengine5-dev
 RUN eatmydata apt-get install -y libsqlcipher-dev
 RUN eatmydata apt-get install -y libqt5sql5-*
-RUN eatmydata apt-get install -y breeze-icon-theme
+RUN eatmydata apt-get install -y oxygen-icon-theme
