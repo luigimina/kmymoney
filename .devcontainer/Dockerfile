@@ -5,7 +5,7 @@ ARG VARIANT="buster"
 FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 
 COPY library-scripts/desktop-lite-debian.sh /tmp/library-scripts/
-RUN apt-get update && bash /tmp/library-scripts/desktop-lite-debian.sh
+RUN apt-get update && bash /tmp/library-scripts/desktop-lite-debian.sh root
 RUN sed -i '/it_IT.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 ENV DBUS_SESSION_BUS_ADDRESS="autolaunch:" DISPLAY=":1" LANG="it_IT.UTF-8" LANGUAGE="it_IT.UTF-8" LC_ALL="it_IT.UTF-8"
 ENTRYPOINT ["/usr/local/share/desktop-init.sh"]
