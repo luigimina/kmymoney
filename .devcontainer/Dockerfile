@@ -24,3 +24,4 @@ RUN eatmydata apt-get install -y qt5-default qtwebengine5-dev
 RUN eatmydata apt-get install -y libsqlcipher-dev
 RUN eatmydata apt-get install -y libqt5sql5-*
 RUN eatmydata apt-get install -y oxygen-icon-theme
+RUN eatmydata apt-get install -y subversion
