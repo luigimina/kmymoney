@@ -1,19 +1,7 @@
-/***************************************************************************
-                         paymentfrequencywizardpage  -  description
-                            -------------------
-   begin                : Sun Jul 4 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "paymentfrequencywizardpage.h"
 
@@ -31,16 +19,16 @@
 #include "mymoneyenums.h"
 
 PaymentFrequencyWizardPage::PaymentFrequencyWizardPage(QWidget *parent)
-  : QWizardPage(parent),
-    ui(new Ui::PaymentFrequencyWizardPage)
+    : QWizardPage(parent),
+      ui(new Ui::PaymentFrequencyWizardPage)
 {
-  ui->setupUi(this);
+    ui->setupUi(this);
 
-  registerField("paymentFrequencyUnitEdit", ui->m_paymentFrequencyUnitEdit, "data", SIGNAL(currentDataChanged(QVariant)));
-  ui->m_paymentFrequencyUnitEdit->setCurrentIndex(ui->m_paymentFrequencyUnitEdit->findData(QVariant((int)eMyMoney::Schedule::Occurrence::Monthly), Qt::UserRole, Qt::MatchExactly));
+    registerField("paymentFrequencyUnitEdit", ui->m_paymentFrequencyUnitEdit, "data", SIGNAL(currentDataChanged(QVariant)));
+    ui->m_paymentFrequencyUnitEdit->setCurrentIndex(ui->m_paymentFrequencyUnitEdit->findData(QVariant((int)eMyMoney::Schedule::Occurrence::Monthly), Qt::UserRole, Qt::MatchExactly));
 }
 
 PaymentFrequencyWizardPage::~PaymentFrequencyWizardPage()
 {
-  delete ui;
+    delete ui;
 }

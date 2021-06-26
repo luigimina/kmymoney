@@ -24,9 +24,11 @@
                 "Name[pt_BR]": "Darren Gould",
                 "Name[ru]": "Darren Gould",
                 "Name[sk]": "Darren Gould",
+                "Name[sl]": "Darren Gould",
                 "Name[sv]": "Darren Gould",
                 "Name[uk]": "Darren Gould",
-                "Name[x-test]": "xxDarren Gouldxx"
+                "Name[x-test]": "xxDarren Gouldxx",
+                "Name[zh_CN]": "Darren Gould"
             }
         ],
         "Description": "Adds budget view to KMyMoney",
@@ -46,9 +48,11 @@
         "Description[pt]": "Adiciona a área do orçamento ao KMyMoney",
         "Description[pt_BR]": "Adiciona área de orçamento no KMyMoney",
         "Description[sk]": "Pridá pohľad rozpočtu do KMyMoney",
+        "Description[sl]": "Doda proračunski pogled v KMyMoney",
         "Description[sv]": "Lägger till budgetvy i KMyMoney",
         "Description[uk]": "Панель бюджетів у KMyMoney",
         "Description[x-test]": "xxAdds budget view to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加预算视图",
         "EnabledByDefault": true,
         "Icon": "budget",
         "Id": "budgetview",
@@ -71,9 +75,11 @@
         "Name[pt]": "Área do Orçamento",
         "Name[pt_BR]": "Área de orçamento",
         "Name[sk]": "Pohľad rozpočtu ",
+        "Name[sl]": "Pogled na proračun",
         "Name[sv]": "Budgetvy",
         "Name[uk]": "Панель бюджету",
         "Name[x-test]": "xxBudget viewxx",
+        "Name[zh_CN]": "预算视图",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

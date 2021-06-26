@@ -1,19 +1,7 @@
-/***************************************************************************
-                         paymenteditwizardpage  -  description
-                            -------------------
-   begin                : Sun Jul 4 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "paymenteditwizardpage.h"
 
@@ -31,19 +19,19 @@
 #include "ui_paymenteditwizardpage.h"
 
 PaymentEditWizardPage::PaymentEditWizardPage(QWidget *parent)
-  : QWizardPage(parent),
-    ui(new Ui::PaymentEditWizardPage)
+    : QWizardPage(parent),
+      ui(new Ui::PaymentEditWizardPage)
 {
-  ui->setupUi(this);
-  // Register the fields with the QWizard and connect the
-  // appropriate signals to update the "Next" button correctly
-  registerField("newPaymentEdit", ui->m_newPaymentEdit, "value", SIGNAL(textChanged()));
-  registerField("newPaymentEditValid", ui->m_newPaymentEdit, "valid", SIGNAL(textChanged()));
+    ui->setupUi(this);
+    // Register the fields with the QWizard and connect the
+    // appropriate signals to update the "Next" button correctly
+    registerField("newPaymentEdit", ui->m_newPaymentEdit, "value", SIGNAL(textChanged()));
+    registerField("newPaymentEditValid", ui->m_newPaymentEdit, "valid", SIGNAL(textChanged()));
 
-  connect(ui->m_newPaymentEdit, &AmountEdit::textChanged, this, &QWizardPage::completeChanged);
+    connect(ui->m_newPaymentEdit, &AmountEdit::textChanged, this, &QWizardPage::completeChanged);
 }
 
 PaymentEditWizardPage::~PaymentEditWizardPage()
 {
-  delete ui;
+    delete ui;
 }

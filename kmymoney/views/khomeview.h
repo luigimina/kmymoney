@@ -1,24 +1,13 @@
-/***************************************************************************
-                          khomeview.h  -  description
-                             -------------------
-    begin                : Tue Jan 22 2002
-    copyright            : (C) 2000-2002 by Michael Edwardes <mte@users.sourceforge.net>
-                           Javier Campos Morales <javi_c@users.sourceforge.net>
-                           Felix Rodriguez <frodriguez@users.sourceforge.net>
-                           John C <thetacoturtle@users.sourceforge.net>
-                           Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           Kevin Tambascio <ktambascio@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2000-2002 Michael Edwardes <mte@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Javier Campos Morales <javi_c@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Felix Rodriguez <frodriguez@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 John C <thetacoturtle@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Thomas Baumgart <ipwizard@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Kevin Tambascio <ktambascio@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 #ifndef KHOMEVIEW_H
 #define KHOMEVIEW_H
 
@@ -45,32 +34,32 @@
 class KHomeViewPrivate;
 class KHomeView : public KMyMoneyViewBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit KHomeView(QWidget *parent = nullptr);
-  ~KHomeView() override;
+    explicit KHomeView(QWidget *parent = nullptr);
+    ~KHomeView() override;
 
-  void executeCustomAction(eView::Action action) override;
-  void refresh();
+    void executeCustomAction(eView::Action action) override;
+    void refresh();
 
 protected:
-  void showEvent(QShowEvent* event) override;
-  void wheelEvent(QWheelEvent *event) override;
-  bool eventFilter(QObject* o, QEvent* e) override;
+    void showEvent(QShowEvent* event) override;
+    void wheelEvent(QWheelEvent *event) override;
+    bool eventFilter(QObject* o, QEvent* e) override;
 
 public Q_SLOTS:
-  /**
-    * Print the current view
-    */
-  void slotPrintView();
+    /**
+      * Print the current view
+      */
+    void slotPrintView();
 
 private:
-  Q_DECLARE_PRIVATE(KHomeView)
+    Q_DECLARE_PRIVATE(KHomeView)
 
 private Q_SLOTS:
-  void slotOpenUrl(const QUrl &url);
-  void slotAdjustScrollPos();
+    void slotOpenUrl(const QUrl &url);
+    void slotAdjustScrollPos();
 };
 
 #endif

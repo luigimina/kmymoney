@@ -24,9 +24,11 @@
                 "Name[pt_BR]": "Michael Edwardes",
                 "Name[ru]": "Michael Edwardes",
                 "Name[sk]": "Michael Edwardes",
+                "Name[sl]": "Michael Edwardes",
                 "Name[sv]": "Michael Edwardes",
                 "Name[uk]": "Michael Edwardes",
-                "Name[x-test]": "xxMichael Edwardesxx"
+                "Name[x-test]": "xxMichael Edwardesxx",
+                "Name[zh_CN]": "Michael Edwardes"
             }
         ],
         "Description": "Add QIF exporting to KMyMoney",
@@ -47,9 +49,11 @@
         "Description[pt]": "Adição da exportação para QIF para o KMyMoney",
         "Description[pt_BR]": "Adiciona exportação QIF no KMyMoney",
         "Description[sk]": "Pridať QIF export do KMyMoney",
+        "Description[sl]": "Dodaj v KMyMoney možnost izvoza QIF",
         "Description[sv]": "Lägg till QIF-export till KMyMoney",
         "Description[uk]": "Експортування даних QIF у KMyMoney",
         "Description[x-test]": "xxAdd QIF exporting to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加 QIF 导出服务",
         "EnabledByDefault": true,
         "Icon": "document-export",
         "Id": "qifexporter",
@@ -74,9 +78,11 @@
         "Name[pt_BR]": "Exportador QIF",
         "Name[ru]": "Экспорт QIF",
         "Name[sk]": "QIF Exporter",
+        "Name[sl]": "Izvoznik QIF",
         "Name[sv]": "QIF-export",
         "Name[uk]": "Інструмент експортування QIF",
         "Name[x-test]": "xxQIF Exporterxx",
+        "Name[zh_CN]": "QIF 导出工具",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

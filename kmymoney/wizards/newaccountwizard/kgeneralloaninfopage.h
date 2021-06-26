@@ -1,19 +1,7 @@
-/***************************************************************************
-                             kgeneralloaninfopage.h
-                             -------------------
-    begin                : Tue Sep 25 2007
-    copyright            : (C) 2007 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KGENERALLOANINFOPAGE_H
 #define KGENERALLOANINFOPAGE_H
@@ -35,15 +23,15 @@ class MyMoneyAccount;
 
 namespace NewAccountWizard
 {
-  class Wizard;
+class Wizard;
 
-  class GeneralLoanInfoPagePrivate;
-  class GeneralLoanInfoPage : public QWidget, public WizardPage<Wizard>
-  {
+class GeneralLoanInfoPagePrivate;
+class GeneralLoanInfoPage : public QWidget, public WizardPage<Wizard>
+{
     Q_OBJECT
     Q_DISABLE_COPY(GeneralLoanInfoPage)
 
-  public:
+public:
     explicit GeneralLoanInfoPage(Wizard* parent);
     ~GeneralLoanInfoPage() override;
 
@@ -55,21 +43,21 @@ namespace NewAccountWizard
     QWidget* initialFocusWidget() const override;
 
     /**
-   * Returns @p true if the user decided to record all payments, @p false otherwise.
-   */
+    * Returns @p true if the user decided to record all payments, @p false otherwise.
+    */
     bool recordAllPayments() const;
 
-  private Q_SLOTS:
+private Q_SLOTS:
     void slotLoadWidgets();
 
-  private:
+private:
     Q_DECLARE_PRIVATE_D(WizardPage<Wizard>::d_ptr, GeneralLoanInfoPage)
     friend class Wizard;
     friend class AccountSummaryPage;
     friend class LoanDetailsPage;
     friend class LoanSchedulePage;
     friend class WizardPrivate;
-  };
+};
 } // namespace
 
 #endif

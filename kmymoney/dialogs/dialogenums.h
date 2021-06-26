@@ -1,32 +1,20 @@
 /*
- * Copyright 2017       Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef DIALOGENUMS_H
 #define DIALOGENUMS_H
 
 namespace eDialogs {
-  /**
-    * This enum is used to describe the bits of an account type filter mask.
-    * Each bit is used to define a specific account class. Multiple classes
-    * can be specified by OR'ing multiple entries. The special entry @p last
-    * marks the left most bit in the mask and is used by scanners of this
-    * bitmask to determine the end of processing.
-    */
-  enum Category : int {
+/**
+  * This enum is used to describe the bits of an account type filter mask.
+  * Each bit is used to define a specific account class. Multiple classes
+  * can be specified by OR'ing multiple entries. The special entry @p last
+  * marks the left most bit in the mask and is used by scanners of this
+  * bitmask to determine the end of processing.
+  */
+enum Category : int {
     none =       0x000,         ///< no account class selected
     liability =  0x001,         ///< liability accounts selected
     asset =      0x002,         ///< asset accounts selected
@@ -37,29 +25,29 @@ namespace eDialogs {
     savings =    0x040,         ///< savings accounts selected
     investment = 0x080,         ///< investment accounts selected
     creditCard = 0x100,         ///< credit card accounts selected
-    last =       0x200          ///< the leftmost bit in the mask
-  };
+    last =       0x200,         ///< the leftmost bit in the mask
+};
 
-  enum class UpdatePrice {
+enum class UpdatePrice {
     All = 0,
     Missing,
     Downloaded,
     SameSource,
-    Ask
-  };
+    Ask,
+};
 
-  enum class PriceMode {
+enum class PriceMode {
     Price = 0,
     PricePerShare,
-    PricePerTransaction
-  };
+    PricePerTransaction,
+};
 
-  enum class ScheduleResultCode {
+enum class ScheduleResultCode {
     Cancel = 0,    // cancel the operation
     Enter,         // enter the schedule
     Skip,          // skip the schedule
-    Ignore         // ignore the schedule
-  };
+    Ignore,        // ignore the schedule
+};
 
 }
 

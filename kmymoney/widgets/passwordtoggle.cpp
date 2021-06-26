@@ -1,19 +1,7 @@
 /*
- * Copyright 2019       Thomas Baumgart <tbaumgart@kde.org>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2019 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "passwordtoggle.h"
 
@@ -37,29 +25,29 @@
 using namespace Icons;
 
 PasswordToggle::PasswordToggle(QLineEdit* parent)
-  : QObject(parent)
-  , m_lineEdit(parent)
+    : QObject(parent)
+    , m_lineEdit(parent)
 {
-  m_toggleAction = m_lineEdit->addAction(Icons::get(Icon::Visibility), QLineEdit::TrailingPosition);
-  m_toggleAction->setVisible(false);
-  m_toggleAction->setToolTip(i18n("Change the visibility of the password"));
-  connect(m_lineEdit, &QLineEdit::textChanged, this, &PasswordToggle::toggleEchoModeAction);
-  connect(m_toggleAction, &QAction::triggered, this, &PasswordToggle::toggleEchoMode);
+    m_toggleAction = m_lineEdit->addAction(Icons::get(Icon::Visibility), QLineEdit::TrailingPosition);
+    m_toggleAction->setVisible(false);
+    m_toggleAction->setToolTip(i18n("Change the visibility of the password"));
+    connect(m_lineEdit, &QLineEdit::textChanged, this, &PasswordToggle::toggleEchoModeAction);
+    connect(m_toggleAction, &QAction::triggered, this, &PasswordToggle::toggleEchoMode);
 }
 
 void PasswordToggle::toggleEchoModeAction(const QString& text)
 {
-  m_toggleAction->setVisible(!text.isEmpty());
+    m_toggleAction->setVisible(!text.isEmpty());
 }
 
 void PasswordToggle::toggleEchoMode()
 {
-  if (m_lineEdit->echoMode() == QLineEdit::Password) {
-    m_lineEdit->setEchoMode(QLineEdit::Normal);
-    m_toggleAction->setIcon(Icons::get(Icon::NoVisibility));
-  } else if (m_lineEdit->echoMode() == QLineEdit::Normal) {
-    m_lineEdit->setEchoMode(QLineEdit::Password);
-    m_toggleAction->setIcon(Icons::get(Icon::Visibility));
-  }
+    if (m_lineEdit->echoMode() == QLineEdit::Password) {
+        m_lineEdit->setEchoMode(QLineEdit::Normal);
+        m_toggleAction->setIcon(Icons::get(Icon::NoVisibility));
+    } else if (m_lineEdit->echoMode() == QLineEdit::Normal) {
+        m_lineEdit->setEchoMode(QLineEdit::Password);
+        m_toggleAction->setIcon(Icons::get(Icon::Visibility));
+    }
 }
 

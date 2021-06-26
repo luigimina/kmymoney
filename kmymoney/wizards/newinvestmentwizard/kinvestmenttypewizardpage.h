@@ -1,20 +1,8 @@
-/***************************************************************************
-                         kinvestmenttypewizardpage  -  description
-                            -------------------
-   begin                : Sun Jun 27 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-                          (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KINVESTMENTTYPEWIZARDPAGE_H
 #define KINVESTMENTTYPEWIZARDPAGE_H
@@ -32,7 +20,9 @@
 
 class MyMoneySecurity;
 
-namespace Ui { class KInvestmentTypeWizardPage; }
+namespace Ui {
+class KInvestmentTypeWizardPage;
+}
 
 /**
  * This class implements the investment type page of the
@@ -40,16 +30,16 @@ namespace Ui { class KInvestmentTypeWizardPage; }
  */
 class KInvestmentTypeWizardPage : public QWizardPage
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit KInvestmentTypeWizardPage(QWidget *parent = nullptr);
-  ~KInvestmentTypeWizardPage();
+    explicit KInvestmentTypeWizardPage(QWidget *parent = nullptr);
+    ~KInvestmentTypeWizardPage();
 
-  void init2(const MyMoneySecurity& security);
-  void setIntroLabelText(const QString& text);
+    void init2(const MyMoneySecurity& security);
+    void setIntroLabelText(const QString& text);
 
 private:
-  Ui::KInvestmentTypeWizardPage  *ui;
+    Ui::KInvestmentTypeWizardPage  *ui;
 };
 
 #endif

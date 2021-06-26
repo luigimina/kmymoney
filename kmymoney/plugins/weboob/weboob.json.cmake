@@ -24,9 +24,11 @@
                 "Name[pt_BR]": "Romain Bignon",
                 "Name[ru]": "Romain Bignon",
                 "Name[sk]": "Romain Bignon",
+                "Name[sl]": "Romain Bignon",
                 "Name[sv]": "Romain Bignon",
                 "Name[uk]": "Romain Bignon",
-                "Name[x-test]": "xxRomain Bignonxx"
+                "Name[x-test]": "xxRomain Bignonxx",
+                "Name[zh_CN]": "Romain Bignon"
             }
         ],
         "Description": "Plugin for weboob",
@@ -47,9 +49,11 @@
         "Description[pt]": "'Plugin' do Weboob",
         "Description[pt_BR]": "Plugin para weboob",
         "Description[sk]": "Plugin pre weboob",
+        "Description[sl]": "Vtičnik za weboob",
         "Description[sv]": "Insticksprogram för weboob",
         "Description[uk]": "Додаток weboob",
         "Description[x-test]": "xxPlugin for weboobxx",
+        "Description[zh_CN]": "weboob 插件",
         "EnabledByDefault": true,
         "Icon": "network-connect",
         "Id": "weboob",
@@ -73,9 +77,11 @@
         "Name[pt]": "Weboob",
         "Name[pt_BR]": "Weboob",
         "Name[sk]": "Weboob",
+        "Name[sl]": "Weboob",
         "Name[sv]": "Weboob",
         "Name[uk]": "Weboob",
         "Name[x-test]": "xxWeboobxx",
+        "Name[zh_CN]": "Weboob",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

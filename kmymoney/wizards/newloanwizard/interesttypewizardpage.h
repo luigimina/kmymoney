@@ -1,19 +1,7 @@
-/***************************************************************************
-                         interesttypewizardpage  -  description
-                            -------------------
-   begin                : Sun Jul 4 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef INTERESTTYPEWIZARDPAGE_H
 #define INTERESTTYPEWIZARDPAGE_H
@@ -29,7 +17,9 @@
 // ----------------------------------------------------------------------------
 // Project Includes
 
-namespace Ui { class InterestTypeWizardPage; }
+namespace Ui {
+class InterestTypeWizardPage;
+}
 
 /**
  * This class implements the Interest Type page of the
@@ -38,12 +28,12 @@ namespace Ui { class InterestTypeWizardPage; }
 
 class InterestTypeWizardPage : public QWizardPage
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit InterestTypeWizardPage(QWidget *parent = nullptr);
-  ~InterestTypeWizardPage();
+    explicit InterestTypeWizardPage(QWidget *parent = nullptr);
+    ~InterestTypeWizardPage();
 
-  Ui::InterestTypeWizardPage *ui;
+    Ui::InterestTypeWizardPage *ui;
 };
 
 #endif

@@ -1,20 +1,8 @@
 /*
- * Copyright 2002-2018  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2002-2018 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KFINDTRANSACTIONDLG_H
 #define KFINDTRANSACTIONDLG_H
@@ -32,85 +20,87 @@
 
 class QTreeWidgetItem;
 
-namespace Ui { class KSortOptionDlg; }
+namespace Ui {
+class KSortOptionDlg;
+}
 
 /**
   * @author Thomas Baumgart
   */
 class KSortOptionDlg : public QDialog
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(KSortOptionDlg)
+    Q_OBJECT
+    Q_DISABLE_COPY(KSortOptionDlg)
 
 public:
-  explicit KSortOptionDlg(QWidget *parent = nullptr);
-  ~KSortOptionDlg();
+    explicit KSortOptionDlg(QWidget *parent = nullptr);
+    ~KSortOptionDlg();
 
-  void setSortOption(const QString& option, const QString& def);
-  QString sortOption() const;
-  void hideDefaultButton();
+    void setSortOption(const QString& option, const QString& def);
+    QString sortOption() const;
+    void hideDefaultButton();
 
 private:
-  Ui::KSortOptionDlg *ui;
+    Ui::KSortOptionDlg *ui;
 };
 
 class KFindTransactionDlgPrivate;
 class KFindTransactionDlg : public QDialog
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(KFindTransactionDlg)
+    Q_OBJECT
+    Q_DISABLE_COPY(KFindTransactionDlg)
 
 public:
-  /**
-   @param withEquityAccounts set to false to hide equity accounts in account page
-  */
-  explicit KFindTransactionDlg(QWidget *parent = nullptr, bool withEquityAccounts = false);
-  virtual ~KFindTransactionDlg();
+    /**
+     @param withEquityAccounts set to false to hide equity accounts in account page
+    */
+    explicit KFindTransactionDlg(QWidget *parent = nullptr, bool withEquityAccounts = false);
+    virtual ~KFindTransactionDlg();
 
-  bool eventFilter(QObject *o, QEvent *e) override;
+    bool eventFilter(QObject *o, QEvent *e) override;
 
 protected Q_SLOTS:
-  virtual void slotReset();
-  virtual void slotSearch();
+    virtual void slotReset();
+    virtual void slotSearch();
 
-  /**
-    * This slot opens the detailed help page in khelpcenter. The
-    * anchor for the information is taken from m_helpAnchor.
-    */
-  virtual void slotShowHelp();
+    /**
+      * This slot opens the detailed help page in khelpcenter. The
+      * anchor for the information is taken from m_helpAnchor.
+      */
+    virtual void slotShowHelp();
 
-  void slotRefreshView();
+    void slotRefreshView();
 
-  /**
-    * This slot selects the current selected transaction/split and emits
-    * the signal @a transactionSelected(const QString& accountId, const QString& transactionId)
-    */
-  void slotSelectTransaction();
+    /**
+      * This slot selects the current selected transaction/split and emits
+      * the signal @a transactionSelected(const QString& accountId, const QString& transactionId)
+      */
+    void slotSelectTransaction();
 
-  void slotRightSize();
+    void slotRightSize();
 
-  void slotSortOptions();
+    void slotSortOptions();
 
 Q_SIGNALS:
-  void transactionSelected(const QString& accountId, const QString& transactionId);
+    void transactionSelected(const QString& accountId, const QString& transactionId);
 
-  /**
-    * This signal is sent out when a selection has been made. It is
-    * used to control the state of the Search button.
-    * The Search button is only active when a selection has been made
-    * (i.e. notEmpty == true)
-    */
-  void selectionNotEmpty(bool);
+    /**
+      * This signal is sent out when a selection has been made. It is
+      * used to control the state of the Search button.
+      * The Search button is only active when a selection has been made
+      * (i.e. notEmpty == true)
+      */
+    void selectionNotEmpty(bool);
 
 protected:
-  KFindTransactionDlgPrivate * const d_ptr;
-  KFindTransactionDlg(KFindTransactionDlgPrivate &dd, QWidget *parent, bool withEquityAccounts);
+    KFindTransactionDlgPrivate * const d_ptr;
+    KFindTransactionDlg(KFindTransactionDlgPrivate &dd, QWidget *parent, bool withEquityAccounts);
 
-  void resizeEvent(QResizeEvent*) override;
-  void showEvent(QShowEvent* event) override;
+    void resizeEvent(QResizeEvent*) override;
+    void showEvent(QShowEvent* event) override;
 
 private:
-  Q_DECLARE_PRIVATE(KFindTransactionDlg)
+    Q_DECLARE_PRIVATE(KFindTransactionDlg)
 };
 
 #endif

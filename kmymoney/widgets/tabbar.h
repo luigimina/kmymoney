@@ -1,20 +1,8 @@
 /*
- * Copyright 2006-2018  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2006-2018 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef TABBAR_H
 #define TABBAR_H
@@ -30,20 +18,24 @@
 // ----------------------------------------------------------------------------
 // Project Includes
 
-namespace eWidgets { namespace eTabBar { enum class SignalEmission; } }
+namespace eWidgets {
+namespace eTabBar {
+enum class SignalEmission;
+}
+}
 
 namespace KMyMoneyTransactionForm
 {
-  /**
-  * @author Thomas Baumgart
-  */
-  class TabBarPrivate;
-  class TabBar : public QTabBar
-  {
+/**
+* @author Thomas Baumgart
+*/
+class TabBarPrivate;
+class TabBar : public QTabBar
+{
     Q_OBJECT
     Q_DISABLE_COPY(TabBar)
 
-  public:
+public:
     explicit TabBar(QWidget* parent = nullptr);
     ~TabBar();
 
@@ -60,7 +52,7 @@ namespace KMyMoneyTransactionForm
 
     int currentIndex() const;
 
-  public Q_SLOTS:
+public Q_SLOTS:
 
     /**
     * overridden for internal reasons, API not changed
@@ -72,26 +64,26 @@ namespace KMyMoneyTransactionForm
     */
     void showEvent(QShowEvent* event) override;
 
-  protected:
+protected:
     void mousePressEvent(QMouseEvent* event) override;
 
-  protected Q_SLOTS:
+protected Q_SLOTS:
     void slotTabCurrentChanged(int id);
 
-  Q_SIGNALS:
+Q_SIGNALS:
     void tabCurrentChanged(int id);
 
-  private:
+private:
     /**
     * returns the Qt index of tab at pos @a p or -1
     * Derived from QTabBarPrivate
     */
     int indexAtPos(const QPoint& p) const;
 
-  private:
+private:
     TabBarPrivate * const d_ptr;
     Q_DECLARE_PRIVATE(TabBar)
-  };
+};
 
 } // namespace
 

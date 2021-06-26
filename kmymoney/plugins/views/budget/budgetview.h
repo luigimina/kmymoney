@@ -1,18 +1,7 @@
-/***************************************************************************
-                             budgetview.h
-                             -------------------
-    copyright            : (C) 2018 by Łukasz Wojniłowicz
-    email                : lukasz.wojnilowicz@gmail.com
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef BUDGETVIEW_H
 #define BUDGETVIEW_H
@@ -31,17 +20,17 @@ class KBudgetView;
 
 class BudgetView : public KMyMoneyPlugin::Plugin
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit BudgetView(QObject *parent, const QVariantList &args);
-  ~BudgetView() override;
+    explicit BudgetView(QObject *parent, const QVariantList &args);
+    ~BudgetView() override;
 
-  void plug() override;
-  void unplug() override;
+    void plug() override;
+    void unplug() override;
 
 private:
-  KBudgetView* m_view;
+    KBudgetView* m_view;
 };
 
 #endif

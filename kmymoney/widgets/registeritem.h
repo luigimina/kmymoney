@@ -1,20 +1,8 @@
 /*
- * Copyright 2006-2018  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2006-2018 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef REGISTERITEM_H
 #define REGISTERITEM_H
@@ -40,23 +28,31 @@ class QModelIndex;
 
 class MyMoneyMoney;
 
-namespace eMyMoney { namespace Split { enum class State; } }
-namespace eWidgets { namespace eRegister { enum class CashFlowDirection; } }
+namespace eMyMoney {
+namespace Split {
+enum class State;
+}
+}
+namespace eWidgets {
+namespace eRegister {
+enum class CashFlowDirection;
+}
+}
 
 namespace KMyMoneyRegister
 {
-  struct RegisterFilter;
-  class Register;
+struct RegisterFilter;
+class Register;
 
-  /**
-  * @author Thomas Baumgart
-  */
-  class RegisterItemPrivate;
-  class RegisterItem
-  {
+/**
+* @author Thomas Baumgart
+*/
+class RegisterItemPrivate;
+class RegisterItem
+{
     Q_DISABLE_COPY(RegisterItem)
 
-  public:
+public:
     explicit RegisterItem(Register* getParent);
     virtual ~RegisterItem();
 
@@ -190,13 +186,13 @@ namespace KMyMoneyRegister
     */
     virtual bool maybeTip(const QPoint& /* relpos */, int /* row */, int /* col */, QRect& /* r */, QString& /* msg */);
 
-  protected:
+protected:
     RegisterItemPrivate * const d_ptr;
     RegisterItem(RegisterItemPrivate &dd, Register *parent);
 
-  private:
+private:
     Q_DECLARE_PRIVATE(RegisterItem)
-  };
+};
 } // namespace
 
 #endif

@@ -1,19 +1,7 @@
-/***************************************************************************
-                          splitdelegate.h
-                             -------------------
-    begin                : Wed Apr 6 2016
-    copyright            : (C) 2016 by Thomas Baumgart
-    email                : Thomas Baumgart <tbaumgart@kde.org>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2016 Thomas Baumgart <Thomas Baumgart <tbaumgart@kde.org>>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef SPLITDELEGATE_H
 #define SPLITDELEGATE_H
@@ -31,48 +19,48 @@
 
 class SplitDelegate : public QStyledItemDelegate
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit SplitDelegate(QObject* parent = 0);
-  virtual ~SplitDelegate();
+    explicit SplitDelegate(QObject* parent = 0);
+    virtual ~SplitDelegate();
 
-  void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
-  QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
-  QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
-  void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const final override;
-  void setEditorData(QWidget* editWidget, const QModelIndex& index) const final override;
+    void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
+    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
+    void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const final override;
+    void setEditorData(QWidget* editWidget, const QModelIndex& index) const final override;
 
-  void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
+    void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const final override;
 
-  /**
-   * This method returns the row that currently has an editor
-   * or -1 if no editor is open
-   */
-  virtual int editorRow() const;
+    /**
+     * This method returns the row that currently has an editor
+     * or -1 if no editor is open
+     */
+    virtual int editorRow() const;
 
-  void setShowValuesInverted(bool inverse);
-  bool showValuesInverted();
+    void setShowValuesInverted(bool inverse);
+    bool showValuesInverted();
 
-  static void setErroneousColor(const QColor& color);
-  static void setImportedColor(const QColor& color);
+    static void setErroneousColor(const QColor& color);
+    static void setImportedColor(const QColor& color);
 
-  static QColor erroneousColor();
+    static QColor erroneousColor();
 
 protected:
-  bool eventFilter(QObject* o, QEvent* event) final override;
+    bool eventFilter(QObject* o, QEvent* event) final override;
 
 protected Q_SLOTS:
-  void endEdit();
+    void endEdit();
 
 Q_SIGNALS:
-  void sizeHintChanged(const QModelIndex&) const;
+    void sizeHintChanged(const QModelIndex&) const;
 
 private:
-  class Private;
-  Private * const d;
+    class Private;
+    Private * const d;
 
-  static QColor m_erroneousColor;
-  static QColor m_importedColor;
+    static QColor m_erroneousColor;
+    static QColor m_importedColor;
 };
 
 #endif // SPLITDELEGATE_H

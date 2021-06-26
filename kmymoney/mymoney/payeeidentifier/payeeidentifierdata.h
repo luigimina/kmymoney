@@ -1,19 +1,7 @@
 /*
- * Copyright 2014       Christian Dávid <christian-david@web.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2014 Christian Dávid <christian-david@web.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef PAYEEIDENTIFIERDATA_H
 #define PAYEEIDENTIFIERDATA_H
@@ -81,52 +69,52 @@ class payeeIdentifierLoader;
 class KMM_PAYEEIDENTIFIER_EXPORT payeeIdentifierData
 {
 public:
-  virtual ~payeeIdentifierData() {}
+    virtual ~payeeIdentifierData() {}
 
-  /**
-   * Use PAYEEIDENTIFIER_ID(className, PIDID) to reimplement this method.
-   */
-  virtual QString payeeIdentifierId() const = 0;
+    /**
+     * Use PAYEEIDENTIFIER_ID(className, PIDID) to reimplement this method.
+     */
+    virtual QString payeeIdentifierId() const = 0;
 
-  /**
-   * @brief Comparison operator
-   */
-  virtual bool operator==(const payeeIdentifierData& other) const = 0;
-  virtual bool operator!=(const payeeIdentifierData& other) const {
-    return (!operator==(other));
-  }
+    /**
+     * @brief Comparison operator
+     */
+    virtual bool operator==(const payeeIdentifierData& other) const = 0;
+    virtual bool operator!=(const payeeIdentifierData& other) const {
+        return (!operator==(other));
+    }
 
-  /**
-   * @brief Check if this payeeIdentifier contains correct data
-   *
-   * You should be able to handle invalid data. It is the task of the ui to prevent
-   * invalid data. But during several procedures invalid data could be used (e.g.
-   * during import).
-   */
-  virtual bool isValid() const = 0;
+    /**
+     * @brief Check if this payeeIdentifier contains correct data
+     *
+     * You should be able to handle invalid data. It is the task of the ui to prevent
+     * invalid data. But during several procedures invalid data could be used (e.g.
+     * during import).
+     */
+    virtual bool isValid() const = 0;
 
-  /**
-   * @brief Create a new payeeIdentifier form XML data
-   *
-   * @param element Note: there could be more data in that elemenet than you created in writeXML()
-   */
-  virtual payeeIdentifierData* createFromXml(const QDomElement &element) const = 0;
+    /**
+     * @brief Create a new payeeIdentifier form XML data
+     *
+     * @param element Note: there could be more data in that elemenet than you created in writeXML()
+     */
+    virtual payeeIdentifierData* createFromXml(const QDomElement &element) const = 0;
 
-  /**
-   * @see MyMoneyObject::writeXML()
-   *
-   * @warning Do not set an attribute "type" or "id" to parent, it is used to store internal data and is
-   * set automatically.
-   */
-  virtual void writeXML(QDomDocument &document, QDomElement &parent) const = 0;
+    /**
+     * @see MyMoneyObject::writeXML()
+     *
+     * @warning Do not set an attribute "type" or "id" to parent, it is used to store internal data and is
+     * set automatically.
+     */
+    virtual void writeXML(QDomDocument &document, QDomElement &parent) const = 0;
 
 protected:
-  /**
-   * @brief Create deep copy
-   */
-  virtual payeeIdentifierData* clone() const = 0;
-  friend class payeeIdentifierLoader;
-  friend class payeeIdentifier;
+    /**
+     * @brief Create deep copy
+     */
+    virtual payeeIdentifierData* clone() const = 0;
+    friend class payeeIdentifierLoader;
+    friend class payeeIdentifier;
 };
 
 Q_DECLARE_INTERFACE(payeeIdentifierData, "org.kmymoney.payeeIdentifier")

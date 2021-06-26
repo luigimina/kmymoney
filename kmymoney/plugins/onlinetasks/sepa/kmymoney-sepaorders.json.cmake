@@ -46,9 +46,11 @@
                 "Name[pt_BR]": "Christian David",
                 "Name[ru]": "Christian David",
                 "Name[sk]": "Christian David",
+                "Name[sl]": "Christian David",
                 "Name[sv]": "Christian David",
                 "Name[uk]": "Christian David",
-                "Name[x-test]": "xxChristian Davidxx"
+                "Name[x-test]": "xxChristian Davidxx",
+                "Name[zh_CN]": "Christian David"
             }
         ],
         "Description": "Order types for single european payment area (SEPA) orders",
@@ -67,9 +69,11 @@
         "Description[pl]": "Rodzaje przelewów dla SEPA",
         "Description[pt]": "Tipos de transferências SEPA (Single European Payment Area)",
         "Description[pt_BR]": "Tipos de ordem para o SEPA (Single European Payment Area)",
+        "Description[sl]": "Plačilni nalogi za enotno evropsko plačilno območje (SEPA)",
         "Description[sv]": "Ordertyp för gemensamma eurobetalningsområdet (SEPA) order",
         "Description[uk]": "Типи векселів для Єдиної європейської системи сплат (SEPA)",
         "Description[x-test]": "xxOrder types for single european payment area (SEPA) ordersxx",
+        "Description[zh_CN]": "单一欧元支付区订单类型",
         "EnabledByDefault": true,
         "Icon": "network-connect",
         "Id": "SEPA orders for online banking",
@@ -92,9 +96,11 @@
         "Name[pt]": "Transferências SEPA",
         "Name[pt_BR]": "Ordens SEPA",
         "Name[sk]": "SEPA príkazy",
+        "Name[sl]": "Naročila SEPA",
         "Name[sv]": "SEPA-order",
         "Name[uk]": "Векселі SEPA",
         "Name[x-test]": "xxSEPA ordersxx",
+        "Name[zh_CN]": "单一欧元支付区订单",
         "ServiceTypes": [
             "KMyMoney/OnlineTask",
             "KMyMoney/OnlineTaskUi",

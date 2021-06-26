@@ -24,9 +24,11 @@
                 "Name[pt_BR]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[ru]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[sk]": "Alvaro Soliverez,Łukasz Wojniłowicz",
+                "Name[sl]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[sv]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[uk]": "Alvaro Soliverez,Łukasz Wojniłowicz",
-                "Name[x-test]": "xxAlvaro Soliverez,Łukasz Wojniłowiczxx"
+                "Name[x-test]": "xxAlvaro Soliverez,Łukasz Wojniłowiczxx",
+                "Name[zh_CN]": "Alvaro Soliverez,Łukasz Wojniłowicz"
             }
         ],
         "Description": "Adds reports view to KMyMoney",
@@ -46,9 +48,11 @@
         "Description[pt]": "Adiciona a área de relatórios ao KMyMoney",
         "Description[pt_BR]": "Adiciona área de relatórios no KMyMoney",
         "Description[sk]": "Pridá pohľad výpisov do KMyMoney",
+        "Description[sl]": "Doda pogled poročil v KMyMoney",
         "Description[sv]": "Lägger till rapportvy i KMyMoney",
         "Description[uk]": "Панель звітів у KMyMoney",
         "Description[x-test]": "xxAdds reports view to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加报告视图",
         "EnabledByDefault": true,
         "Icon": "report",
         "Id": "reportsview",
@@ -72,9 +76,11 @@
         "Name[pt]": "Área de relatórios",
         "Name[pt_BR]": "Área de relatórios",
         "Name[sk]": "Pohľad výpisov",
+        "Name[sl]": "Pogled poročil",
         "Name[sv]": "Rapportvy",
         "Name[uk]": "Перегляд звітів",
         "Name[x-test]": "xxReports viewxx",
+        "Name[zh_CN]": "报表视图",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

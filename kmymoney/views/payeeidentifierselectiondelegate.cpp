@@ -1,20 +1,7 @@
 /*
- * This file is part of KMyMoney, A Personal Finance Manager by KDE
- * Copyright (C) 2014 Christian Dávid <christian-david@web.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2014 Christian Dávid <christian-david@web.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "payeeidentifierselectiondelegate.h"
 
@@ -28,15 +15,15 @@
 payeeIdentifierTypeSelectionWidget::payeeIdentifierTypeSelectionWidget(QWidget* parent)
     : QComboBox(parent)
 {
-  connect(this, SIGNAL(activated(int)), this, SLOT(itemSelected(int)));
+    connect(this, SIGNAL(activated(int)), this, SLOT(itemSelected(int)));
 }
 
 void payeeIdentifierTypeSelectionWidget::itemSelected(int index)
 {
-  if (index != 0) {
-    emit commitData(this);
-    setCurrentIndex(0);
-  }
+    if (index != 0) {
+        emit commitData(this);
+        setCurrentIndex(0);
+    }
 }
 
 payeeIdentifierSelectionDelegate::payeeIdentifierSelectionDelegate(QObject* parent)
@@ -46,47 +33,47 @@ payeeIdentifierSelectionDelegate::payeeIdentifierSelectionDelegate(QObject* pare
 
 QWidget* payeeIdentifierSelectionDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-  Q_UNUSED(option);
-  Q_UNUSED(index);
+    Q_UNUSED(option);
+    Q_UNUSED(index);
 
-  payeeIdentifierTypeSelectionWidget* comboBox = new payeeIdentifierTypeSelectionWidget(parent);
-  comboBox->setFrame(false);
-  connect(comboBox, SIGNAL(commitData(QWidget*)), this, SIGNAL(commitData(QWidget*)));
+    payeeIdentifierTypeSelectionWidget* comboBox = new payeeIdentifierTypeSelectionWidget(parent);
+    comboBox->setFrame(false);
+    connect(comboBox, SIGNAL(commitData(QWidget*)), this, SIGNAL(commitData(QWidget*)));
 
-  comboBox->addItem(i18n("Please select the account number type"));
+    comboBox->addItem(i18n("Please select the account number type"));
 
-  const QMap<QString, QString> availableDelegates {
-    {payeeIdentifiers::ibanBic::staticPayeeIdentifierIid(),         i18n("IBAN and BIC")},
-    {payeeIdentifiers::nationalAccount::staticPayeeIdentifierIid(), i18n("National Account Number")}
-  };
+    const QMap<QString, QString> availableDelegates {
+        {payeeIdentifiers::ibanBic::staticPayeeIdentifierIid(),         i18n("IBAN and BIC")},
+        {payeeIdentifiers::nationalAccount::staticPayeeIdentifierIid(), i18n("National Account Number")}
+    };
 
-  for (auto delegate = availableDelegates.cbegin(); delegate != availableDelegates.cend(); ++delegate )
-    comboBox->addItem(delegate.value(), delegate.key());
+    for (auto delegate = availableDelegates.cbegin(); delegate != availableDelegates.cend(); ++delegate )
+        comboBox->addItem(delegate.value(), delegate.key());
 
-  return comboBox;
+    return comboBox;
 }
 
 void payeeIdentifierSelectionDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-  QComboBox *const comboBox = qobject_cast<QComboBox*>(editor);
-  const QString selectedPidType = comboBox->model()->data(comboBox->model()->index(comboBox->currentIndex(), 0), Qt::UserRole).toString();
-  payeeIdentifier orig = model->data(index, payeeIdentifierContainerModel::payeeIdentifier).value<payeeIdentifier>();
+    QComboBox *const comboBox = qobject_cast<QComboBox*>(editor);
+    const QString selectedPidType = comboBox->model()->data(comboBox->model()->index(comboBox->currentIndex(), 0), Qt::UserRole).toString();
+    payeeIdentifier orig = model->data(index, payeeIdentifierContainerModel::payeeIdentifier).value<payeeIdentifier>();
 
-  payeeIdentifier ident;
-  if (selectedPidType == payeeIdentifiers::ibanBic::staticPayeeIdentifierIid())
-    ident = payeeIdentifier(orig.id(), new payeeIdentifiers::ibanBic());
-  else if (selectedPidType == payeeIdentifiers::nationalAccount::staticPayeeIdentifierIid())
-    ident = payeeIdentifier(orig.id(), new payeeIdentifiers::nationalAccount());
+    payeeIdentifier ident;
+    if (selectedPidType == payeeIdentifiers::ibanBic::staticPayeeIdentifierIid())
+        ident = payeeIdentifier(orig.id(), new payeeIdentifiers::ibanBic());
+    else if (selectedPidType == payeeIdentifiers::nationalAccount::staticPayeeIdentifierIid())
+        ident = payeeIdentifier(orig.id(), new payeeIdentifiers::nationalAccount());
 
-  model->setData(index, QVariant::fromValue<payeeIdentifier>(ident), payeeIdentifierContainerModel::payeeIdentifier);
+    model->setData(index, QVariant::fromValue<payeeIdentifier>(ident), payeeIdentifierContainerModel::payeeIdentifier);
 }
 
 void payeeIdentifierSelectionDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& /*index*/) const
 {
-  editor->setGeometry(option.rect);
+    editor->setGeometry(option.rect);
 }
 
 QSize payeeIdentifierSelectionDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-  return QStyledItemDelegate::sizeHint(option, index);
+    return QStyledItemDelegate::sizeHint(option, index);
 }

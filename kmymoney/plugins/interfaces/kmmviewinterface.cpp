@@ -1,20 +1,8 @@
-/***************************************************************************
-                          viewinterface.cpp
-                             -------------------
-    begin                : Wed Jan 5 2005
-    copyright            : (C) 2005 Thomas Baumgart
-    email                : ipwizard@users.sourceforge.net
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2005 Thomas Baumgart <ipwizard@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "kmmviewinterface.h"
 
@@ -36,29 +24,29 @@ KMyMoneyPlugin::KMMViewInterface::KMMViewInterface(KMyMoneyView* view, QObject* 
     ViewInterface(parent, name),
     m_view(view)
 {
-  connect(m_view, &KMyMoneyView::accountSelected, this, &ViewInterface::accountSelected);
-  connect(m_view, &KMyMoneyView::transactionsSelected, this, &ViewInterface::transactionsSelected);
-  connect(m_view, &KMyMoneyView::accountReconciled,
-          this, &ViewInterface::accountReconciled);
+    connect(m_view, &KMyMoneyView::accountSelected, this, &ViewInterface::accountSelected);
+    connect(m_view, &KMyMoneyView::transactionsSelected, this, &ViewInterface::transactionsSelected);
+    connect(m_view, &KMyMoneyView::accountReconciled,
+            this, &ViewInterface::accountReconciled);
 
 //  connect(app, &KMyMoneyApp::institutionSelected, this, &ViewInterface::institutionSelected);
 
-  connect(m_view, &KMyMoneyView::viewStateChanged, this, &ViewInterface::viewStateChanged);
+    connect(m_view, &KMyMoneyView::viewStateChanged, this, &ViewInterface::viewStateChanged);
 }
 
 void KMyMoneyPlugin::KMMViewInterface::slotRefreshViews()
 {
-  m_view->slotRefreshViews();
+    m_view->slotRefreshViews();
 }
 
 void KMyMoneyPlugin::KMMViewInterface::addView(KMyMoneyViewBase* view, const QString& name, View idView, Icons::Icon icon)
 {
-  m_view->addView(view, name, idView, icon);
+    m_view->addView(view, name, idView, icon);
 }
 
 void KMyMoneyPlugin::KMMViewInterface::removeView(View idView)
 {
-  m_view->removeView(idView);
+    m_view->removeView(idView);
 }
 
 //KMyMoneyViewBase* KMyMoneyPlugin::KMMViewInterface::addPage(const QString& item, const QString& icon)

@@ -1,20 +1,8 @@
-/***************************************************************************
-                             kloanschedulepage.cpp
-                             -------------------
-    begin                : Tue Sep 25 2006
-    copyright            : (C) 2007 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KLOANSCHEDULEPAGE_P_H
 #define KLOANSCHEDULEPAGE_P_H
@@ -34,26 +22,26 @@
 
 namespace NewAccountWizard
 {
-  class Wizard;
+class Wizard;
 
-  class LoanSchedulePagePrivate : public WizardPagePrivate<Wizard>
-  {
+class LoanSchedulePagePrivate : public WizardPagePrivate<Wizard>
+{
     Q_DISABLE_COPY(LoanSchedulePagePrivate)
 
-  public:
+public:
     explicit LoanSchedulePagePrivate(QObject* parent) :
-      WizardPagePrivate<Wizard>(parent),
-      ui(new Ui::KLoanSchedulePage)
+        WizardPagePrivate<Wizard>(parent),
+        ui(new Ui::KLoanSchedulePage)
     {
     }
 
     ~LoanSchedulePagePrivate()
     {
-      delete ui;
+        delete ui;
     }
 
     Ui::KLoanSchedulePage *ui;
-  };
+};
 }
 
 #endif

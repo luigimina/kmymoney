@@ -1,19 +1,7 @@
-/***************************************************************************
-                             kgeneralpage.h
-                             -------------------
-    begin                : Sat Feb 18 2006
-    copyright            : (C) 2006 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2006 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KGENERALPAGE_H
 #define KGENERALPAGE_H
@@ -32,19 +20,19 @@ struct ContactData;
 
 namespace NewUserWizard
 {
-  class Wizard;
-  /**
-  * Wizard page collecting information about the user
-  *
-  * @author Thomas Baumgart
-  */
-  class GeneralPagePrivate;
-  class GeneralPage : public UserInfo, public WizardPage<Wizard>
-  {
+class Wizard;
+/**
+* Wizard page collecting information about the user
+*
+* @author Thomas Baumgart
+*/
+class GeneralPagePrivate;
+class GeneralPage : public UserInfo, public WizardPage<Wizard>
+{
     Q_OBJECT
     Q_DISABLE_COPY(GeneralPage)
 
-  public:
+public:
     explicit GeneralPage(Wizard* parent);
     ~GeneralPage() override;
 
@@ -52,14 +40,14 @@ namespace NewUserWizard
 
     void enterPage() override;
 
-  protected Q_SLOTS:
+protected Q_SLOTS:
     void slotLoadFromAddressBook();
     void slotContactFetched(const ContactData &identity);
 
-  private:
+private:
     Q_DECLARE_PRIVATE_D(WizardPage<Wizard>::d_ptr, GeneralPage)
     friend class Wizard;
-  };
+};
 } // namespace
 
 #endif

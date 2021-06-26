@@ -23,9 +23,11 @@
                 "Name[pt_BR]": "Kevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowicz",
                 "Name[ru]": "Kevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowicz",
                 "Name[sk]": "Kevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowicz",
+                "Name[sl]": "Kevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowicz",
                 "Name[sv]": "Kevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowicz",
                 "Name[uk]": "Kevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowicz",
-                "Name[x-test]": "xxKevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowiczxx"
+                "Name[x-test]": "xxKevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowiczxx",
+                "Name[zh_CN]": "Kevin Tambascio,Thomas Baumgart,Ace Jones,Łukasz Wojniłowicz"
             }
         ],
         "Description": "Adds XML storage support to KMyMoney",
@@ -45,9 +47,11 @@
         "Description[pt]": "Adiciona o suporte do armazenamento em XML ao KMyMoney",
         "Description[pt_BR]": "Adiciona suporte ao armazenamento XML no KMyMoney",
         "Description[sk]": "Pridáva podporu XML úložiska do KMyMoney",
+        "Description[sl]": "Dodaj programu KMyMoney podporo za shranjevanje XML",
         "Description[sv]": "Lägger till stöd för XML-lagring i KMyMoney",
         "Description[uk]": "Підтримка сховищ XML у KMyMoney",
         "Description[x-test]": "xxAdds XML storage support to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加 XML 存储支持",
         "EnabledByDefault": true,
         "Icon": "server-database",
         "Id": "xmlstorage",
@@ -70,9 +74,11 @@
         "Name[pt]": "Armazenamento em XML",
         "Name[pt_BR]": "Armazenamento XML",
         "Name[sk]": "XML Úložisko",
+        "Name[sl]": "Shramba XML",
         "Name[sv]": "XML-lagring",
         "Name[uk]": "Сховище XML",
         "Name[x-test]": "xxXML Storagexx",
+        "Name[zh_CN]": "XML 存储",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

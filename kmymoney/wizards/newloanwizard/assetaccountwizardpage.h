@@ -1,19 +1,7 @@
-/***************************************************************************
-                         assetaccountwizardpage  -  description
-                            -------------------
-   begin                : Sun Jul 4 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef ASSETACCOUNTWIZARDPAGE_H
 #define ASSETACCOUNTWIZARDPAGE_H
@@ -29,7 +17,9 @@
 // ----------------------------------------------------------------------------
 // Project Includes
 
-namespace Ui { class AssetAccountWizardPage; }
+namespace Ui {
+class AssetAccountWizardPage;
+}
 
 /**
  * This class implements the Online Update page of the
@@ -38,20 +28,20 @@ namespace Ui { class AssetAccountWizardPage; }
 
 class AssetAccountWizardPage : public QWizardPage
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit AssetAccountWizardPage(QWidget *parent = nullptr);
-  ~AssetAccountWizardPage();
+    explicit AssetAccountWizardPage(QWidget *parent = nullptr);
+    ~AssetAccountWizardPage();
 
-  /**
-   * Overload the isComplete function to control the Next button
-   */
-  bool isComplete() const final override;
+    /**
+     * Overload the isComplete function to control the Next button
+     */
+    bool isComplete() const final override;
 
-  Ui::AssetAccountWizardPage *ui;
+    Ui::AssetAccountWizardPage *ui;
 
 public Q_SLOTS:
-  void slotAccountNew();
+    void slotAccountNew();
 };
 
 #endif

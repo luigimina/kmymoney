@@ -1,20 +1,8 @@
 /*
- * Copyright 2006-2018  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2006-2018 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef INVESTTRANSACTION_H
 #define INVESTTRANSACTION_H
@@ -30,17 +18,21 @@
 
 #include "transaction.h"
 
-namespace eMyMoney { namespace Split { enum class InvestmentTransactionType; } }
+namespace eMyMoney {
+namespace Split {
+enum class InvestmentTransactionType;
+}
+}
 
 namespace KMyMoneyRegister
 {
 
-  class InvestTransactionPrivate;
-  class InvestTransaction : public Transaction
-  {
+class InvestTransactionPrivate;
+class InvestTransaction : public Transaction
+{
     Q_DISABLE_COPY(InvestTransaction)
 
-  public:
+public:
     explicit InvestTransaction(Register* getParent, const MyMoneyTransaction& transaction, const MyMoneySplit& split, int uniqueId);
     ~InvestTransaction() override;
 
@@ -77,7 +69,7 @@ namespace KMyMoneyRegister
 
     void splits(MyMoneySplit& assetAccountSplit, QList<MyMoneySplit>& interestSplits, QList<MyMoneySplit>& feeSplits) const;
 
-  protected:
+protected:
     bool haveShares() const;
     bool haveFees() const;
     bool haveInterest() const;
@@ -95,9 +87,9 @@ namespace KMyMoneyRegister
     */
     void activity(QString& txt, eMyMoney::Split::InvestmentTransactionType type) const;
 
-  private:
+private:
     Q_DECLARE_PRIVATE(InvestTransaction)
-  };
+};
 } // namespace
 
 #endif

@@ -1,21 +1,9 @@
 /*
- * Copyright 2006       Darren Gould <darren_gould@gmx.de>
- * Copyright 2009-2014  Alvaro Soliverez <asoliverez@gmail.com>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2006 Darren Gould <darren_gould@gmx.de>
+    SPDX-FileCopyrightText: 2009-2014 Alvaro Soliverez <asoliverez@gmail.com>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef BUDGETVIEWPROXYMODEL_H
 #define BUDGETVIEWPROXYMODEL_H
@@ -47,34 +35,34 @@ class MyMoneyMoney;
 class BudgetViewProxyModelPrivate;
 class KMM_WIDGETS_EXPORT BudgetViewProxyModel : public AccountsViewProxyModel
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(BudgetViewProxyModel)
+    Q_OBJECT
+    Q_DISABLE_COPY(BudgetViewProxyModel)
 
 public:
-  explicit BudgetViewProxyModel(QObject *parent = nullptr);
-  ~BudgetViewProxyModel() override;
+    explicit BudgetViewProxyModel(QObject *parent = nullptr);
+    ~BudgetViewProxyModel() override;
 
-  virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-  Qt::ItemFlags flags(const QModelIndex &index) const override;
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-  void setBudget(const MyMoneyBudget& budget);
+    void setBudget(const MyMoneyBudget& budget);
 
 Q_SIGNALS:
-  /**
-    * Emit this signal when the balance of the budget is changed.
-    */
-  void balanceChanged(const MyMoneyMoney &);
+    /**
+      * Emit this signal when the balance of the budget is changed.
+      */
+    void balanceChanged(const MyMoneyMoney &);
 
 protected:
-  bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
-  MyMoneyMoney accountBalance(const QString &accountId) const;
-  MyMoneyMoney accountValue(const MyMoneyAccount &account, const MyMoneyMoney &balance) const;
-  MyMoneyMoney computeTotalValue(const QModelIndex &source_index) const;
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
+    MyMoneyMoney accountBalance(const QString &accountId) const;
+    MyMoneyMoney accountValue(const MyMoneyAccount &account, const MyMoneyMoney &balance) const;
+    MyMoneyMoney computeTotalValue(const QModelIndex &source_index) const;
 
 private:
-  Q_DECLARE_PRIVATE(BudgetViewProxyModel)
+    Q_DECLARE_PRIVATE(BudgetViewProxyModel)
 
-  void checkBalance();
+    void checkBalance();
 };
 
 #endif

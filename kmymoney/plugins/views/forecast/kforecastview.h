@@ -1,19 +1,8 @@
-/***************************************************************************
-                             kforecastview.h
-                             -------------------
-    copyright            : (C) 2007 by Alvaro Soliverez
-    email                : asoliverez@gmail.com
-                           (C) 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Alvaro Soliverez <asoliverez@gmail.com>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KFORECASTVIEW_H
 #define KFORECASTVIEW_H
@@ -31,7 +20,9 @@
 
 class QTreeWidgetItem;
 
-namespace reports { class KReportChartView; }
+namespace reports {
+class KReportChartView;
+}
 
 class FixedColumnTreeView;
 class MyMoneyAccount;
@@ -46,26 +37,26 @@ class MyMoneyPrice;
 class KForecastViewPrivate;
 class KForecastView : public KMyMoneyViewBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit KForecastView(QWidget *parent = nullptr);
-  ~KForecastView() override;
+    explicit KForecastView(QWidget *parent = nullptr);
+    ~KForecastView() override;
 
-  void executeCustomAction(eView::Action action) override;
-  void refresh();
+    void executeCustomAction(eView::Action action) override;
+    void refresh();
 
 protected:
-  void showEvent(QShowEvent* event) override;
+    void showEvent(QShowEvent* event) override;
 
 private:
-  Q_DECLARE_PRIVATE(KForecastView)
+    Q_DECLARE_PRIVATE(KForecastView)
 
 private Q_SLOTS:
-  void slotTabChanged(int index);
-  void slotManualForecast();
-  void itemExpanded(QTreeWidgetItem *item);
-  void itemCollapsed(QTreeWidgetItem *item);
+    void slotTabChanged(int index);
+    void slotManualForecast();
+    void itemExpanded(QTreeWidgetItem *item);
+    void itemCollapsed(QTreeWidgetItem *item);
 };
 
 #endif

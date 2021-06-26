@@ -1,24 +1,9 @@
 /*
- * A tan input dialog for optical photoTan used in online banking
- * Copyright 2019  Jürgen Diez
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License or (at your option) version 3 or any later version
- * accepted by the membership of KDE e.V. (or its successor approved
- * by the membership of KDE e.V.), which shall act as a proxy
- * defined in Section 14 of version 3 of the license.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
+    A tan input dialog for optical photoTan used in online banking
+    SPDX-FileCopyrightText: 2019 Jürgen Diez
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+
+*/
 
 #include "phototandialog.h"
 #include "ui_phototandialog.h"
@@ -33,18 +18,18 @@
 #include "kbankingsettings.h"
 
 photoTanDialog::photoTanDialog(QWidget* parent)
-  : QDialog(parent)
-  , m_accepted(true)
+    : QDialog(parent)
+    , m_accepted(true)
 {
-  ui.reset(new Ui::photoTanDialog);
-  ui->setupUi(this);
+    ui.reset(new Ui::photoTanDialog);
+    ui->setupUi(this);
 
-  connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &photoTanDialog::accept);
-  connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &photoTanDialog::reject);
-  connect(ui->tanInput, &QLineEdit::textEdited, this, &photoTanDialog::tanInputChanged);
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &photoTanDialog::accept);
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &photoTanDialog::reject);
+    connect(ui->tanInput, &QLineEdit::textEdited, this, &photoTanDialog::tanInputChanged);
 
-  tanInputChanged(QString());
-  ui->tanInput->setFocus();
+    tanInputChanged(QString());
+    ui->tanInput->setFocus();
 }
 
 photoTanDialog::~photoTanDialog()
@@ -53,58 +38,58 @@ photoTanDialog::~photoTanDialog()
 
 void photoTanDialog::accept()
 {
-  m_tan = ui->tanInput->text();
-  m_accepted = true;
-  done(Accepted);
+    m_tan = ui->tanInput->text();
+    m_accepted = true;
+    done(Accepted);
 }
 
 void photoTanDialog::reject()
 {
-  m_accepted = false;
-  done(Rejected);
+    m_accepted = false;
+    done(Rejected);
 }
 
 void photoTanDialog::setInfoText(const QString& text)
 {
-  ui->infoText->setText(text);
+    ui->infoText->setText(text);
 }
 
 QString photoTanDialog::infoText()
 {
-  return ui->infoText->toPlainText();
+    return ui->infoText->toPlainText();
 }
 
 void photoTanDialog::setPicture(const QPixmap &picture)
 {
-  QGraphicsScene *scene = new QGraphicsScene();
-  pictureItem = scene->addPixmap(picture);
-  ui->graphicsView->setScene(scene);
+    QGraphicsScene *scene = new QGraphicsScene();
+    pictureItem = scene->addPixmap(picture);
+    ui->graphicsView->setScene(scene);
 }
 
 QPixmap photoTanDialog::picture()
 {
-  return pictureItem->pixmap();
+    return pictureItem->pixmap();
 }
 
 QString photoTanDialog::tan()
 {
-  return m_tan;
+    return m_tan;
 }
 
 void photoTanDialog::setTanLimits(const int& minLength, const int& maxLength)
 {
-  ui->tanInput->setValidator(new QRegExpValidator(QRegExp(QString("\\d{%1,%2}").arg(minLength).arg(maxLength)), ui->tanInput));
+    ui->tanInput->setValidator(new QRegExpValidator(QRegExp(QString("\\d{%1,%2}").arg(minLength).arg(maxLength)), ui->tanInput));
 }
 
 void photoTanDialog::tanInputChanged(const QString& input)
 {
-  QPushButton *const button = ui->buttonBox->button(QDialogButtonBox::Ok);
-  Q_ASSERT(button);
-  if (input.isEmpty() || !ui->tanInput->hasAcceptableInput()) {
-    button->setEnabled(false);
-    button->setToolTip(i18n("A valid tan is required to proceed."));
-  } else {
-    button->setEnabled(true);
-    button->setToolTip(QString());
-  }
+    QPushButton *const button = ui->buttonBox->button(QDialogButtonBox::Ok);
+    Q_ASSERT(button);
+    if (input.isEmpty() || !ui->tanInput->hasAcceptableInput()) {
+        button->setEnabled(false);
+        button->setToolTip(i18n("A valid tan is required to proceed."));
+    } else {
+        button->setEnabled(true);
+        button->setToolTip(QString());
+    }
 }

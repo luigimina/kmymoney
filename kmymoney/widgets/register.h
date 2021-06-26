@@ -1,20 +1,8 @@
 /*
- * Copyright 2006-2018  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2006-2018 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef REGISTER_H
 #define REGISTER_H
@@ -34,22 +22,32 @@ class MyMoneyAccount;
 class MyMoneySplit;
 class MyMoneyTransaction;
 
-namespace eWidgets { enum class SortField;
-                     namespace eTransaction { enum class Column; }
-                     namespace eRegister { enum class DetailColumn;} }
-namespace eMyMoney { namespace Account { enum class Type; } }
+namespace eWidgets {
+enum class SortField;
+namespace eTransaction {
+enum class Column;
+}
+namespace eRegister {
+enum class DetailColumn;
+}
+}
+namespace eMyMoney {
+namespace Account {
+enum class Type;
+}
+}
 
 template <typename T> class QList;
 
 namespace KMyMoneyRegister
 {
-  class RegisterItem;
-  class Transaction;
-  class SelectedTransactions;
+class RegisterItem;
+class Transaction;
+class SelectedTransactions;
 
-  class RegisterPrivate;
-  class Register : public TransactionEditorContainer
-  {
+class RegisterPrivate;
+class Register : public TransactionEditorContainer
+{
     Q_OBJECT
     Q_DISABLE_COPY(Register)
 
@@ -57,7 +55,7 @@ namespace KMyMoneyRegister
     friend class StdTransaction;
     friend class InvestTransaction;
 
-  public:
+public:
     explicit Register(QWidget* parent = nullptr);
     virtual ~Register();
 
@@ -244,10 +242,10 @@ namespace KMyMoneyRegister
     eWidgets::eRegister::DetailColumn getDetailsColumnType() const;
     void setDetailsColumnType(eWidgets::eRegister::DetailColumn detailsColumnType);
 
-  public Q_SLOTS:
-      void ensureFocusItemVisible();
+public Q_SLOTS:
+    void ensureFocusItemVisible();
 
-  protected:
+protected:
 
     void mouseReleaseEvent(QMouseEvent *e) override;
     void contextMenuEvent(QContextMenuEvent *e) override;
@@ -303,14 +301,14 @@ namespace KMyMoneyRegister
     */
     int minimumColumnWidth(int col);
 
-  protected Q_SLOTS:
+protected Q_SLOTS:
     void resize();
 
     void selectItem(int row, int col);
     void slotEnsureItemVisible();
     void slotDoubleClicked(int row, int);
 
-  Q_SIGNALS:
+Q_SIGNALS:
     void transactionsSelected(const KMyMoneyRegister::SelectedTransactions& list);
     /**
     * This signal is emitted when the focus and selection changes to @p item.
@@ -326,11 +324,11 @@ namespace KMyMoneyRegister
     void focusChanged();
 
     /**
-   * This signal is emitted when an @p item is about to be selected. The boolean
-   * @p okToSelect is preset to @c true. If the @p item should not be selected
-   * for whatever reason, the boolean @p okToSelect should be reset to @c false
-   * by the connected slot.
-   */
+    * This signal is emitted when an @p item is about to be selected. The boolean
+    * @p okToSelect is preset to @c true. If the @p item should not be selected
+    * for whatever reason, the boolean @p okToSelect should be reset to @c false
+    * by the connected slot.
+    */
     void aboutToSelectItem(KMyMoneyRegister::RegisterItem* item, bool& okToSelect);
 
     void editTransaction();
@@ -356,10 +354,10 @@ namespace KMyMoneyRegister
     */
     void itemAdded(RegisterItem* item);
 
-  private:
+private:
     RegisterPrivate * const d_ptr;
     Q_DECLARE_PRIVATE(Register)
-  };
+};
 
 } // namespace
 

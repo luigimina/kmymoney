@@ -1,23 +1,11 @@
 /*
- * Copyright 2013-2016  Christian Dávid <christian-david@web.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2013-2016 Christian Dávid <christian-david@web.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "payeeidentifier-test.h"
 
-#include <QtTest>
+#include <QTest>
 
 #include "mymoney/payeeidentifier/payeeidentifier.h"
 #include "mymoney/payeeidentifier/payeeidentifiertyped.h"
@@ -48,39 +36,39 @@ void payeeidentifier_test::cleanup()
 
 void payeeidentifier_test::createAndDeleteEmptyIdent()
 {
-  payeeIdentifier ident{};
+    payeeIdentifier ident{};
 }
 
 void payeeidentifier_test::copyIdent()
 {
-  try {
-    const payeeIdentifier ident = payeeIdentifier(new payeeIdentifiers::ibanBic());
-    payeeIdentifier ident2 = ident;
-    QVERIFY(!ident2.isNull());
-    QCOMPARE(ident2.iid(), payeeIdentifiers::ibanBic::staticPayeeIdentifierIid());
-  } catch (...) {
-    QFAIL("Unexpected exception");
-  }
+    try {
+        const payeeIdentifier ident = payeeIdentifier(new payeeIdentifiers::ibanBic());
+        payeeIdentifier ident2 = ident;
+        QVERIFY(!ident2.isNull());
+        QCOMPARE(ident2.iid(), payeeIdentifiers::ibanBic::staticPayeeIdentifierIid());
+    } catch (...) {
+        QFAIL("Unexpected exception");
+    }
 }
 
 void payeeidentifier_test::moveIdent()
 {
-  try {
-    payeeIdentifier ident = payeeIdentifier(new payeeIdentifiers::ibanBic());
-    payeeIdentifier ident2 = ident;
-  } catch (...) {
-    QFAIL("Unexpected exception");
-  }
+    try {
+        payeeIdentifier ident = payeeIdentifier(new payeeIdentifiers::ibanBic());
+        payeeIdentifier ident2 = ident;
+    } catch (...) {
+        QFAIL("Unexpected exception");
+    }
 }
 
 void payeeidentifier_test::createTypedIdent()
 {
-  try {
-    payeeIdentifier ident = payeeIdentifier(new payeeIdentifiers::ibanBic());
-    payeeIdentifierTyped<payeeIdentifiers::ibanBic> typedIdent{ident};
-  } catch (...) {
-    QFAIL("Unexpected exception");
-  }
+    try {
+        payeeIdentifier ident = payeeIdentifier(new payeeIdentifiers::ibanBic());
+        payeeIdentifierTyped<payeeIdentifiers::ibanBic> typedIdent{ident};
+    } catch (...) {
+        QFAIL("Unexpected exception");
+    }
 }
 
 

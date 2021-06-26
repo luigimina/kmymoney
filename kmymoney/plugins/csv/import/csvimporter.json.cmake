@@ -24,9 +24,11 @@
                 "Name[pt_BR]": "Allan Anderson,Łukasz Wojniłowicz",
                 "Name[ru]": "Allan Anderson,Łukasz Wojniłowicz",
                 "Name[sk]": "Allan Anderson,Łukasz Wojniłowicz",
+                "Name[sl]": "Allan Anderson,Łukasz Wojniłowicz",
                 "Name[sv]": "Allan Anderson,Łukasz Wojniłowicz",
                 "Name[uk]": "Allan Anderson,Łukasz Wojniłowicz",
-                "Name[x-test]": "xxAllan Anderson,Łukasz Wojniłowiczxx"
+                "Name[x-test]": "xxAllan Anderson,Łukasz Wojniłowiczxx",
+                "Name[zh_CN]": "Allan Anderson,Łukasz Wojniłowicz"
             }
         ],
         "Description": "Add CSV importing to KMyMoney",
@@ -47,9 +49,11 @@
         "Description[pt]": "Adição da importação de CSV para o KMyMoney",
         "Description[pt_BR]": "Adiciona importação CSV no KMyMoney",
         "Description[sk]": "Pridať CSV importovanie do KMyMoney",
+        "Description[sl]": "Doda uvoz CSV v KMyMoney",
         "Description[sv]": "Lägg till CSV-import till KMyMoney",
         "Description[uk]": "Імпортування даних CSV у KMyMoney",
         "Description[x-test]": "xxAdd CSV importing to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加 CSV 导入服务",
         "EnabledByDefault": true,
         "Icon": "document-import",
         "Id": "csvimporter",
@@ -75,9 +79,11 @@
         "Name[pt_BR]": "Importador CSV",
         "Name[ru]": "Импорт CSV",
         "Name[sk]": "Importér CSV",
+        "Name[sl]": "Uvoznik CSV",
         "Name[sv]": "CSV-import",
         "Name[uk]": "Імпортування CSV",
         "Name[x-test]": "xxCSV Importerxx",
+        "Name[zh_CN]": "CSV 导入工具",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

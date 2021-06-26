@@ -1,18 +1,7 @@
-/***************************************************************************
-                          menuenums.h
-                             -------------------
-    copyright            : (C) 2017, 2018 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
-
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2017, 2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef MENUENUMS_H
 #define MENUENUMS_H
@@ -25,7 +14,8 @@ class QAction;
 class QMenu;
 
 namespace eMenu {
-  enum class Action {
+// clang-format off
+enum class Action {
     // *************
     // The File menu
     // *************
@@ -33,9 +23,9 @@ namespace eMenu {
     FileImportStatement,
     FileImportTemplate, FileExportTemplate,
     Print,
-    #ifdef KMM_DEBUG
+#ifdef KMM_DEBUG
     FileDump,
-    #endif
+#endif
     FilePersonalData, FileInformation,
     // *************
     // The edit menu
@@ -44,7 +34,7 @@ namespace eMenu {
     // *************
     // The view menu
     // *************
-    ViewTransactionDetail, ViewHideReconciled,
+    ViewTransactionDetail, ViewHideReconciled, ViewShowReconciledBalances,
     ViewHideCategories, ViewShowAll,
     // *************
     // The institution menu
@@ -133,12 +123,15 @@ namespace eMenu {
     WizardNewUser, DebugTraces,
 #endif
     DebugTimers,
-    DeleteOnlineJob, EditOnlineJob, LogOnlineJob
-  };
+    DeleteOnlineJob, EditOnlineJob, LogOnlineJob,
+};
+// clang-format on
 
-  inline uint qHash(const Action key, uint seed) { return ::qHash(static_cast<uint>(key), seed); }
+inline uint qHash(const Action key, uint seed) {
+    return ::qHash(static_cast<uint>(key), seed);
+}
 
-  enum class Menu {
+enum class Menu {
     Institution,
     Account,
     Schedule,
@@ -150,10 +143,12 @@ namespace eMenu {
     MoveTransaction,
     MarkTransaction,
     MarkTransactionContext,
-    OnlineJob
-  };
+    OnlineJob,
+};
 
-  inline uint qHash(const Menu key, uint seed) { return ::qHash(static_cast<uint>(key), seed); }
+inline uint qHash(const Menu key, uint seed) {
+    return ::qHash(static_cast<uint>(key), seed);
+}
 }
 
 KMM_MENUS_EXPORT extern QHash<eMenu::Action, QAction *> pActions;

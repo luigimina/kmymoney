@@ -1,19 +1,7 @@
 /*
- * Copyright 2009-2020  Thomas Baumgart <tbaumgart@kde.org>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2009-2020 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef OFXPARTNER_H
 #define OFXPARTNER_H
@@ -43,11 +31,11 @@ class TransferJob;
 #include <libofx/libofx.h>
 
 struct OfxHomeServiceInfo {
-  OfxFiServiceInfo  ofxInfo;
-  bool ofxValidated;
-  bool sslValidated;
-  QString lastOfxValidated;
-  QString lastSslValidated;
+    OfxFiServiceInfo  ofxInfo;
+    bool ofxValidated;
+    bool sslValidated;
+    QString lastOfxValidated;
+    QString lastSslValidated;
 };
 
 namespace OfxPartner
@@ -70,33 +58,33 @@ QStringList FipidForBank(const QString& bank);
 
 class OfxHttpRequest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  OfxHttpRequest(const QString& method, const QUrl &url, const QByteArray &postData, const QMap<QString, QString>& metaData, const QUrl& dst, bool showProgressInfo = true);
-  virtual ~OfxHttpRequest();
+    OfxHttpRequest(const QString& method, const QUrl &url, const QByteArray &postData, const QMap<QString, QString>& metaData, const QUrl& dst, bool showProgressInfo = true);
+    virtual ~OfxHttpRequest();
 
-  /**
-   * returns the error code provided by KIO::TransferJob or
-   * KIO::Job depending on post() or get() operation. If it
-   * is not set by the actual operation, it returns -1.
-   */
-  int error() const {
-    return m_error;
-  }
+    /**
+     * returns the error code provided by KIO::TransferJob or
+     * KIO::Job depending on post() or get() operation. If it
+     * is not set by the actual operation, it returns -1.
+     */
+    int error() const {
+        return m_error;
+    }
 
 protected Q_SLOTS:
-  void slotOfxFinished(KJob*);
-  void slotOfxData(KIO::Job*, const QByteArray&);
-  void slotOfxConnected(KIO::Job*);
+    void slotOfxFinished(KJob*);
+    void slotOfxData(KIO::Job*, const QByteArray&);
+    void slotOfxConnected(KIO::Job*);
 
 private:
-  class Private;
-  Private*          d;
-  QString           m_dst;
-  QFile             m_file;
-  int               m_error;
-  KIO::TransferJob* m_postJob;
-  KIO::Job*         m_getJob;
-  QPointer<QEventLoop> m_eventLoop;
+    class Private;
+    Private*          d;
+    QString           m_dst;
+    QFile             m_file;
+    int               m_error;
+    KIO::TransferJob* m_postJob;
+    KIO::Job*         m_getJob;
+    QPointer<QEventLoop> m_eventLoop;
 };
 #endif // OFXPARTNER_H

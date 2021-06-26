@@ -24,9 +24,11 @@
                 "Name[pt_BR]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[ru]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[sk]": "Alvaro Soliverez,Łukasz Wojniłowicz",
+                "Name[sl]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[sv]": "Alvaro Soliverez,Łukasz Wojniłowicz",
                 "Name[uk]": "Alvaro Soliverez,Łukasz Wojniłowicz",
-                "Name[x-test]": "xxAlvaro Soliverez,Łukasz Wojniłowiczxx"
+                "Name[x-test]": "xxAlvaro Soliverez,Łukasz Wojniłowiczxx",
+                "Name[zh_CN]": "Alvaro Soliverez,Łukasz Wojniłowicz"
             }
         ],
         "Description": "Adds forecast view to KMyMoney",
@@ -46,9 +48,11 @@
         "Description[pt]": "Adiciona a área de antevisão ao KMyMoney",
         "Description[pt_BR]": "Adiciona área de previsão no KMyMoney",
         "Description[sk]": "Pridá pohľad predpovede do KMyMoney",
+        "Description[sl]": "Doda pogled napovedi v KMyMoney",
         "Description[sv]": "Lägger till prognosvy i KMyMoney",
         "Description[uk]": "Панель прогнозів у KMyMoney",
         "Description[x-test]": "xxAdds forecast view to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加预测视图",
         "EnabledByDefault": true,
         "Icon": "forecast",
         "Id": "forecastview",
@@ -72,9 +76,11 @@
         "Name[pt]": "Área de Previsão",
         "Name[pt_BR]": "Área de previsão",
         "Name[sk]": "Pohľad predpovede",
+        "Name[sl]": "Pogled napovedi",
         "Name[sv]": "Prognosvy",
         "Name[uk]": "Перегляд прогнозів",
         "Name[x-test]": "xxForecast viewxx",
+        "Name[zh_CN]": "预测视图",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

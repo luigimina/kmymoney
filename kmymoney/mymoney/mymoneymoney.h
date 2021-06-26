@@ -1,26 +1,14 @@
 /*
- * Copyright 2000-2004  Michael Edwardes <mte@users.sourceforge.net>
- * Copyright 2001-2017  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2001-2002  Felix Rodriguez <frodriguez@users.sourceforge.net>
- * Copyright 2002-2004  Kevin Tambascio <ktambascio@users.sourceforge.net>
- * Copyright 2005       Ace Jones <acejones@users.sourceforge.net>
- * Copyright 2007-2010  Alvaro Soliverez <asoliverez@gmail.com>
- * Copyright 2011       Carlos Eduardo da Silva <kaduardo@gmail.com>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2000-2004 Michael Edwardes <mte@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2001-2017 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2001-2002 Felix Rodriguez <frodriguez@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2002-2004 Kevin Tambascio <ktambascio@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2005 Ace Jones <acejones@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2007-2010 Alvaro Soliverez <asoliverez@gmail.com>
+    SPDX-FileCopyrightText: 2011 Carlos Eduardo da Silva <kaduardo@gmail.com>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 // krazy:excludeall=dpointer
 
@@ -38,7 +26,11 @@
 typedef qint64 signed64;
 typedef quint64 unsigned64;
 
-namespace eMyMoney { namespace Money { enum signPosition : int; } }
+namespace eMyMoney {
+namespace Money {
+enum signPosition : int;
+}
+}
 
 /**
   * This class represents a value within the MyMoney Engine
@@ -48,119 +40,119 @@ namespace eMyMoney { namespace Money { enum signPosition : int; } }
   */
 class KMM_MYMONEY_EXPORT MyMoneyMoney : public AlkValue
 {
-  KMM_MYMONEY_UNIT_TESTABLE
+    KMM_MYMONEY_UNIT_TESTABLE
 
 public:
-  // construction
-  MyMoneyMoney();
-  explicit MyMoneyMoney(const int iAmount, const unsigned int denom);
-  explicit MyMoneyMoney(const long int iAmount, const unsigned int denom);
-  explicit MyMoneyMoney(const QString& pszAmount);
-  explicit MyMoneyMoney(const qint64 Amount, const unsigned int denom);
-  explicit MyMoneyMoney(const double dAmount, const unsigned int denom = 100);
+    // construction
+    MyMoneyMoney();
+    explicit MyMoneyMoney(const int iAmount, const unsigned int denom);
+    explicit MyMoneyMoney(const long int iAmount, const unsigned int denom);
+    explicit MyMoneyMoney(const QString& pszAmount);
+    explicit MyMoneyMoney(const qint64 Amount, const unsigned int denom);
+    explicit MyMoneyMoney(const double dAmount, const unsigned int denom = 100);
 
-  // copy constructor
-  MyMoneyMoney(const MyMoneyMoney& Amount);
-  explicit MyMoneyMoney(const AlkValue& Amount);
+    // copy constructor
+    MyMoneyMoney(const MyMoneyMoney& Amount);
+    explicit MyMoneyMoney(const AlkValue& Amount);
 
-  virtual ~MyMoneyMoney();
+    virtual ~MyMoneyMoney();
 
-  MyMoneyMoney abs() const;
+    MyMoneyMoney abs() const;
 
-  /**
-    * This method returns a formatted string according to the settings
-    * of _thousandSeparator, _decimalSeparator, _negativeMonetarySignPosition,
-    * _positiveMonetaryPosition, _negativePrefixCurrencySymbol,
-    * _positivePrefixCurrencySymbol, _negativeSpaceSeparatesSymbol and
-    * _positiveSpaceSeparatesSymbol. Those values can be modified using
-    * the appropriate set-methods.
-    *
-    * @param currency The currency symbol
-    * @param prec The number of fractional digits
-    * @param showThousandSeparator should the thousandSeparator symbol
-    *                               be inserted (@a true)
-    *                               or not (@a false) (default true)
-    */
-  QString formatMoney(const QString& currency, const int prec, bool showThousandSeparator = true) const;
+    /**
+      * This method returns a formatted string according to the settings
+      * of _thousandSeparator, _decimalSeparator, _negativeMonetarySignPosition,
+      * _positiveMonetaryPosition, _negativePrefixCurrencySymbol,
+      * _positivePrefixCurrencySymbol, _negativeSpaceSeparatesSymbol and
+      * _positiveSpaceSeparatesSymbol. Those values can be modified using
+      * the appropriate set-methods.
+      *
+      * @param currency The currency symbol
+      * @param prec The number of fractional digits
+      * @param showThousandSeparator should the thousandSeparator symbol
+      *                               be inserted (@a true)
+      *                               or not (@a false) (default true)
+      */
+    QString formatMoney(const QString& currency, const int prec, bool showThousandSeparator = true) const;
 
-  /**
-   * This is a convenience method. It behaves exactly as the above one,
-   * but takes the information about precision out of the denomination
-   * @a denom. No currency symbol is shown. If you want to add a currency
-   * symbol, please use MyMoneyUtils::formatMoney(const MyMoneyAccount& acc, const MyMoneySecurity& sec, bool showThousandSeparator)
-   * instead.
-   *
-   * @note denom is often set to account.fraction(security).
-   */
-  QString formatMoney(int denom, bool showThousandSeparator = true) const;
+    /**
+     * This is a convenience method. It behaves exactly as the above one,
+     * but takes the information about precision out of the denomination
+     * @a denom. No currency symbol is shown. If you want to add a currency
+     * symbol, please use MyMoneyUtils::formatMoney(const MyMoneyAccount& acc, const MyMoneySecurity& sec, bool showThousandSeparator)
+     * instead.
+     *
+     * @note denom is often set to account.fraction(security).
+     */
+    QString formatMoney(int denom, bool showThousandSeparator = true) const;
 
-  /**
-    * This method is used to convert the smallest fraction information into
-    * the corresponding number of digits used for precision.
-    *
-    * @param fract smallest fractional part (e.g. 100 for cents)
-    * @return number of precision digits (e.g. 2 for cents)
-    */
-  static int denomToPrec(signed64 fract);
+    /**
+      * This method is used to convert the smallest fraction information into
+      * the corresponding number of digits used for precision.
+      *
+      * @param fract smallest fractional part (e.g. 100 for cents)
+      * @return number of precision digits (e.g. 2 for cents)
+      */
+    static int denomToPrec(signed64 fract);
 
-  MyMoneyMoney convert(const signed64 denom = 100, const AlkValue::RoundingMethod how = AlkValue::RoundRound) const;
-  static signed64 precToDenom(int prec);
-  double toDouble() const;
+    MyMoneyMoney convert(const signed64 denom = 100, const AlkValue::RoundingMethod how = AlkValue::RoundRound) const;
+    static signed64 precToDenom(int prec);
+    double toDouble() const;
 
-  static void setThousandSeparator(const QChar &);
-  static void setDecimalSeparator(const QChar &);
-  static void setNegativeMonetarySignPosition(const eMyMoney::Money::signPosition pos);
-  static void setPositiveMonetarySignPosition(const eMyMoney::Money::signPosition pos);
-  static void setNegativePrefixCurrencySymbol(const bool flag);
-  static void setPositivePrefixCurrencySymbol(const bool flag);
-  static void setNegativeSpaceSeparatesSymbol(const bool flag);
-  static void setPositiveSpaceSeparatesSymbol(const bool flag);
+    static void setThousandSeparator(const QChar &);
+    static void setDecimalSeparator(const QChar &);
+    static void setNegativeMonetarySignPosition(const eMyMoney::Money::signPosition pos);
+    static void setPositiveMonetarySignPosition(const eMyMoney::Money::signPosition pos);
+    static void setNegativePrefixCurrencySymbol(const bool flag);
+    static void setPositivePrefixCurrencySymbol(const bool flag);
+    static void setNegativeSpaceSeparatesSymbol(const bool flag);
+    static void setPositiveSpaceSeparatesSymbol(const bool flag);
 
-  static const QChar thousandSeparator();
-  static const QChar decimalSeparator();
-  static eMyMoney::Money::signPosition negativeMonetarySignPosition();
-  static eMyMoney::Money::signPosition positiveMonetarySignPosition();
+    static const QChar thousandSeparator();
+    static const QChar decimalSeparator();
+    static eMyMoney::Money::signPosition negativeMonetarySignPosition();
+    static eMyMoney::Money::signPosition positiveMonetarySignPosition();
 
-  const MyMoneyMoney& operator=(const QString& pszAmount);
-  const MyMoneyMoney& operator=(const AlkValue& val);
-  const MyMoneyMoney& operator=(const MyMoneyMoney& val);
+    const MyMoneyMoney& operator=(const QString& pszAmount);
+    const MyMoneyMoney& operator=(const AlkValue& val);
+    const MyMoneyMoney& operator=(const MyMoneyMoney& val);
 
-  // comparison
-  bool operator==(const MyMoneyMoney& Amount) const;
-  bool operator!=(const MyMoneyMoney& Amount) const;
-  bool operator<(const MyMoneyMoney& Amount) const;
-  bool operator>(const MyMoneyMoney& Amount) const;
-  bool operator<=(const MyMoneyMoney& Amount) const;
-  bool operator>=(const MyMoneyMoney& Amount) const;
+    // comparison
+    bool operator==(const MyMoneyMoney& Amount) const;
+    bool operator!=(const MyMoneyMoney& Amount) const;
+    bool operator<(const MyMoneyMoney& Amount) const;
+    bool operator>(const MyMoneyMoney& Amount) const;
+    bool operator<=(const MyMoneyMoney& Amount) const;
+    bool operator>=(const MyMoneyMoney& Amount) const;
 
-  bool operator==(const QString& pszAmount) const;
-  bool operator!=(const QString& pszAmount) const;
-  bool operator<(const QString& pszAmount) const;
-  bool operator>(const QString& pszAmount) const;
-  bool operator<=(const QString& pszAmount) const;
-  bool operator>=(const QString& pszAmount) const;
+    bool operator==(const QString& pszAmount) const;
+    bool operator!=(const QString& pszAmount) const;
+    bool operator<(const QString& pszAmount) const;
+    bool operator>(const QString& pszAmount) const;
+    bool operator<=(const QString& pszAmount) const;
+    bool operator>=(const QString& pszAmount) const;
 
-  // calculation
-  const MyMoneyMoney operator+(const MyMoneyMoney& Amount) const;
-  const MyMoneyMoney operator-(const MyMoneyMoney& Amount) const;
-  const MyMoneyMoney operator*(const MyMoneyMoney& factor) const;
-  const MyMoneyMoney operator/(const MyMoneyMoney& Amount) const;
-  const MyMoneyMoney operator-() const;
-  const MyMoneyMoney operator*(int factor) const;
+    // calculation
+    const MyMoneyMoney operator+(const MyMoneyMoney& Amount) const;
+    const MyMoneyMoney operator-(const MyMoneyMoney& Amount) const;
+    const MyMoneyMoney operator*(const MyMoneyMoney& factor) const;
+    const MyMoneyMoney operator/(const MyMoneyMoney& Amount) const;
+    const MyMoneyMoney operator-() const;
+    const MyMoneyMoney operator*(int factor) const;
 
-  static MyMoneyMoney maxValue;
-  static MyMoneyMoney minValue;
-  static MyMoneyMoney autoCalc;
+    static MyMoneyMoney maxValue;
+    static MyMoneyMoney minValue;
+    static MyMoneyMoney autoCalc;
 
-  bool isNegative() const;
-  bool isPositive() const;
-  bool isZero() const;
-  bool isAutoCalc() const;
+    bool isNegative() const;
+    bool isPositive() const;
+    bool isZero() const;
+    bool isAutoCalc() const;
 
-  MyMoneyMoney reduce() const;
+    MyMoneyMoney reduce() const;
 
-  static const MyMoneyMoney ONE;
-  static const MyMoneyMoney MINUS_ONE;
+    static const MyMoneyMoney ONE;
+    static const MyMoneyMoney MINUS_ONE;
 };
 
 //=============================================================================
@@ -218,14 +210,14 @@ inline MyMoneyMoney::MyMoneyMoney(const AlkValue& Amount) :
 
 inline const MyMoneyMoney& MyMoneyMoney::operator=(const AlkValue & val)
 {
-  AlkValue::operator=(val);
-  return *this;
+    AlkValue::operator=(val);
+    return *this;
 }
 
 inline const MyMoneyMoney& MyMoneyMoney::operator=(const MyMoneyMoney & val)
 {
-  AlkValue::operator=(val);
-  return *this;
+    AlkValue::operator=(val);
+    return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -239,8 +231,8 @@ inline const MyMoneyMoney& MyMoneyMoney::operator=(const MyMoneyMoney & val)
 ////////////////////////////////////////////////////////////////////////////////
 inline const MyMoneyMoney& MyMoneyMoney::operator=(const QString & pszAmount)
 {
-  AlkValue::operator=(pszAmount);
-  return *this;
+    AlkValue::operator=(pszAmount);
+    return *this;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -253,7 +245,7 @@ inline const MyMoneyMoney& MyMoneyMoney::operator=(const QString & pszAmount)
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator==(const MyMoneyMoney& Amount) const
 {
-  return AlkValue::operator==(Amount);
+    return AlkValue::operator==(Amount);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -266,7 +258,7 @@ inline bool MyMoneyMoney::operator==(const MyMoneyMoney& Amount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator!=(const MyMoneyMoney& Amount) const
 {
-  return AlkValue::operator!=(Amount);
+    return AlkValue::operator!=(Amount);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -279,7 +271,7 @@ inline bool MyMoneyMoney::operator!=(const MyMoneyMoney& Amount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator<(const MyMoneyMoney& Amount) const
 {
-  return AlkValue::operator<(Amount);
+    return AlkValue::operator<(Amount);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -293,7 +285,7 @@ inline bool MyMoneyMoney::operator<(const MyMoneyMoney& Amount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator>(const MyMoneyMoney& Amount) const
 {
-  return AlkValue::operator>(Amount);
+    return AlkValue::operator>(Amount);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -307,7 +299,7 @@ inline bool MyMoneyMoney::operator>(const MyMoneyMoney& Amount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator<=(const MyMoneyMoney& Amount) const
 {
-  return AlkValue::operator<=(Amount);
+    return AlkValue::operator<=(Amount);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -321,7 +313,7 @@ inline bool MyMoneyMoney::operator<=(const MyMoneyMoney& Amount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator>=(const MyMoneyMoney& Amount) const
 {
-  return AlkValue::operator>=(Amount);
+    return AlkValue::operator>=(Amount);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -335,7 +327,7 @@ inline bool MyMoneyMoney::operator>=(const MyMoneyMoney& Amount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator==(const QString& pszAmount) const
 {
-  return *this == MyMoneyMoney(pszAmount);
+    return *this == MyMoneyMoney(pszAmount);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -349,7 +341,7 @@ inline bool MyMoneyMoney::operator==(const QString& pszAmount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline bool MyMoneyMoney::operator!=(const QString& pszAmount) const
 {
-  return ! operator==(pszAmount) ;
+    return ! operator==(pszAmount) ;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -362,7 +354,7 @@ inline bool MyMoneyMoney::operator!=(const QString& pszAmount) const
 ////////////////////////////////////////////////////////////////////////////////
 inline const MyMoneyMoney MyMoneyMoney::operator-() const
 {
-  return static_cast<const MyMoneyMoney>(AlkValue::operator-());
+    return static_cast<const MyMoneyMoney>(AlkValue::operator-());
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -375,7 +367,7 @@ inline const MyMoneyMoney MyMoneyMoney::operator-() const
 ////////////////////////////////////////////////////////////////////////////////
 inline const MyMoneyMoney MyMoneyMoney::operator*(int factor) const
 {
-  return static_cast<const MyMoneyMoney>(AlkValue::operator*(factor));
+    return static_cast<const MyMoneyMoney>(AlkValue::operator*(factor));
 }
 
 /**

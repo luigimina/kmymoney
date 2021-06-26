@@ -1,18 +1,9 @@
-/***************************************************************************
+/*
     KMyMoney transaction importing module - searches for a matching transaction in the ledger
 
-    copyright            : (C) 2012 by Lukasz Maszczynski <lukasz@maszczynski.net>
-
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+    SPDX-FileCopyrightText: 2012 Lukasz Maszczynski <lukasz@maszczynski.net>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "existingtransactionmatchfinder.h"
 
@@ -30,29 +21,29 @@ ExistingTransactionMatchFinder::ExistingTransactionMatchFinder(int matchWindow)
 
 void ExistingTransactionMatchFinder::createListOfMatchCandidates()
 {
-  MyMoneyTransactionFilter filter(m_importedSplit.accountId());
-  filter.setReportAllSplits(false);
-  filter.setDateFilter(importedTransaction.postDate().addDays(-m_matchWindow), importedTransaction.postDate().addDays(m_matchWindow));
-  filter.setAmountFilter(m_importedSplit.shares(), m_importedSplit.shares());
+    MyMoneyTransactionFilter filter(m_importedSplit.accountId());
+    filter.setReportAllSplits(false);
+    filter.setDateFilter(importedTransaction.postDate().addDays(-m_matchWindow), importedTransaction.postDate().addDays(m_matchWindow));
+    filter.setAmountFilter(m_importedSplit.shares(), m_importedSplit.shares());
 
-  MyMoneyFile::instance()->transactionList(listOfMatchCandidates, filter);
-  qDebug() << "Considering" << listOfMatchCandidates.size() << "existing transaction(s) for matching";
+    MyMoneyFile::instance()->transactionList(listOfMatchCandidates, filter);
+    qDebug() << "Considering" << listOfMatchCandidates.size() << "existing transaction(s) for matching";
 }
 
 void ExistingTransactionMatchFinder::findMatchInMatchCandidatesList()
 {
-  foreach (const TransactionAndSplitPair & transactionAndSplit, listOfMatchCandidates) {
-    const MyMoneyTransaction & theTransaction = transactionAndSplit.first;
+    foreach (const TransactionAndSplitPair & transactionAndSplit, listOfMatchCandidates) {
+        const MyMoneyTransaction & theTransaction = transactionAndSplit.first;
 
-    if (theTransaction.id() == importedTransaction.id()) {
-      // just skip myself
-      continue;
+        if (theTransaction.id() == importedTransaction.id()) {
+            // just skip myself
+            continue;
+        }
+
+        findMatchingSplit(theTransaction, 0);
+
+        if (matchResult != MatchNotFound) {
+            return;
+        }
     }
-
-    findMatchingSplit(theTransaction, 0);
-
-    if (matchResult != MatchNotFound) {
-      return;
-    }
-  }
 }

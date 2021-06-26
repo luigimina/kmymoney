@@ -1,25 +1,13 @@
-/***************************************************************************
-                          kscheduledview.h  -  description
-                             -------------------
-    begin                : Sun Jan 27 2002
-    copyright            : (C) 2000-2002 by Michael Edwardes
-    email                : mte@users.sourceforge.net
-                           Javier Campos Morales <javi_c@users.sourceforge.net>
-                           Felix Rodriguez <frodriguez@users.sourceforge.net>
-                           John C <thetacoturtle@users.sourceforge.net>
-                           Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           Kevin Tambascio <ktambascio@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2000-2002 Michael Edwardes <mte@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Javier Campos Morales <javi_c@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Felix Rodriguez <frodriguez@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 John C <thetacoturtle@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Thomas Baumgart <ipwizard@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2000-2002 Kevin Tambascio <ktambascio@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 #ifndef KSCHEDULEDVIEW_H
 #define KSCHEDULEDVIEW_H
 
@@ -39,8 +27,14 @@ class KTreeWidgetSearchLineWidget;
 class MyMoneySchedule;
 class MyMoneyAccount;
 
-namespace eDialogs { enum class ScheduleResultCode; }
-namespace eView { namespace Schedules { enum class Requester; } }
+namespace eDialogs {
+enum class ScheduleResultCode;
+}
+namespace eView {
+namespace Schedules {
+enum class Requester;
+}
+}
 
 /**
   * Contains all the scheduled transactions be they bills, deposits or transfers.
@@ -56,68 +50,68 @@ namespace eView { namespace Schedules { enum class Requester; } }
 class KScheduledViewPrivate;
 class KScheduledView : public KMyMoneyViewBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  /**
-    * Standard constructor for QWidgets.
-    */
-  explicit KScheduledView(QWidget *parent = nullptr);
+    /**
+      * Standard constructor for QWidgets.
+      */
+    explicit KScheduledView(QWidget *parent = nullptr);
 
-  /**
-    * Standard destructor.
-    */
-  ~KScheduledView() override;
+    /**
+      * Standard destructor.
+      */
+    ~KScheduledView() override;
 
-  void executeCustomAction(eView::Action action) override;
-  void refresh();
-  void updateActions(const MyMoneyObject& obj);
+    void executeCustomAction(eView::Action action) override;
+    void refresh();
+    void updateActions(const MyMoneyObject& obj);
 
-  // TODO: remove that function
-  /**
-   * ugly proxy function
-   */
-  eDialogs::ScheduleResultCode enterSchedule(MyMoneySchedule& schedule, bool autoEnter, bool extendedKeys);
+    // TODO: remove that function
+    /**
+     * ugly proxy function
+     */
+    eDialogs::ScheduleResultCode enterSchedule(MyMoneySchedule& schedule, bool autoEnter, bool extendedKeys);
 
 public Q_SLOTS:
-  void slotSelectSchedule(const QString& schedule);
-  void slotShowScheduleMenu(const MyMoneySchedule& sch);
-  void slotEditSchedule();
+    void slotSelectSchedule(const QString& schedule);
+    void slotShowScheduleMenu(const MyMoneySchedule& sch);
+    void slotEditSchedule();
 
-  void slotEnterOverdueSchedules(const MyMoneyAccount& acc);
+    void slotEnterOverdueSchedules(const MyMoneyAccount& acc);
 
-  void slotSelectByObject(const MyMoneyObject& obj, eView::Intent intent) override;
+    void slotSelectByObject(const MyMoneyObject& obj, eView::Intent intent) override;
 
 Q_SIGNALS:
-  void enterOverdueSchedulesFinished(eView::Schedules::Requester req);
+    void enterOverdueSchedulesFinished(eView::Schedules::Requester req);
 
 protected:
-  void showEvent(QShowEvent* event) override;
+    void showEvent(QShowEvent* event) override;
 
 private:
-  Q_DECLARE_PRIVATE(KScheduledView)
+    Q_DECLARE_PRIVATE(KScheduledView)
 
 private Q_SLOTS:
 
-  void customContextMenuRequested(const QPoint);
-  void slotListItemExecuted(QTreeWidgetItem*, int);
+    void customContextMenuRequested(const QPoint);
+    void slotListItemExecuted(QTreeWidgetItem*, int);
 
-  void slotAccountActivated();
+    void slotAccountActivated();
 
-  void slotListViewCollapsed(QTreeWidgetItem* item);
-  void slotListViewExpanded(QTreeWidgetItem* item);
+    void slotListViewCollapsed(QTreeWidgetItem* item);
+    void slotListViewExpanded(QTreeWidgetItem* item);
 
-  void slotTimerDone();
+    void slotTimerDone();
 
-  void slotSetSelectedItem();
+    void slotSetSelectedItem();
 
-  void slotRearrange();
+    void slotRearrange();
 
-  void slotNewSchedule();
-  void slotDeleteSchedule();
-  void slotDuplicateSchedule();
-  void slotEnterSchedule();
-  void slotSkipSchedule();
+    void slotNewSchedule();
+    void slotDeleteSchedule();
+    void slotDuplicateSchedule();
+    void slotEnterSchedule();
+    void slotSkipSchedule();
 };
 
 #endif

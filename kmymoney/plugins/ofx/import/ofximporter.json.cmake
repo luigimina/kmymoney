@@ -23,9 +23,11 @@
                 "Name[pt_BR]": "Ace Jones,Thomas Baumgart",
                 "Name[ru]": "Ace Jones,Thomas Baumgart",
                 "Name[sk]": "Ace Jones,Thomas Baumgart",
+                "Name[sl]": "Ace Jones,Thomas Baumgart",
                 "Name[sv]": "Ace Jones,Thomas Baumgart",
                 "Name[uk]": "Ace Jones,Thomas Baumgart",
-                "Name[x-test]": "xxAce Jones,Thomas Baumgartxx"
+                "Name[x-test]": "xxAce Jones,Thomas Baumgartxx",
+                "Name[zh_CN]": "Ace Jones,Thomas Baumgart"
             }
         ],
         "Description": "Add OFX importing to KMyMoney",
@@ -46,9 +48,11 @@
         "Description[pt]": "Adição da importação de OFX para o KMyMoney",
         "Description[pt_BR]": "Adiciona importação OFX no KMyMoney",
         "Description[sk]": "Pridať OFX import do KMyMoney",
+        "Description[sl]": "Doda uvoz OFX v KMyMoney",
         "Description[sv]": "Lägg till OFX-import till KMyMoney",
         "Description[uk]": "Імпортування даних OFX у KMyMoney",
         "Description[x-test]": "xxAdd OFX importing to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加 QFX 导入服务",
         "EnabledByDefault": true,
         "Icon": "network-connect",
         "Id": "ofximporter",
@@ -74,9 +78,11 @@
         "Name[pt_BR]": "Importador OFX",
         "Name[ru]": "Импорт OFX",
         "Name[sk]": "OFX Importer",
+        "Name[sl]": "Uvoznik OFX",
         "Name[sv]": "QFX-import",
         "Name[uk]": "Інструмент імпортування OFX",
         "Name[x-test]": "xxOFX Importerxx",
+        "Name[zh_CN]": "OFX 导入工具",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

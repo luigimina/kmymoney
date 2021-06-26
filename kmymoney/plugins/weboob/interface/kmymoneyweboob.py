@@ -1,35 +1,28 @@
 #
 # This file is part of KMyMoney, A Personal Finance Manager by KDE
-# Copyright (C) 2014-2015 Romain Bignon <romain@symlink.me>
-# Copyright (C) 2014-2015 Florent Fourcot <weboob@flo.fourcot.fr>
+# SPDX-FileCopyrightText: 2014-2015 Romain Bignon <romain@symlink.me>
+# SPDX-FileCopyrightText: 2014-2015 Florent Fourcot <weboob@flo.fourcot.fr>
+# SPDX-License-Identifier: GPL-2.0-or-later
 #
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from weboob.core import Weboob
-from weboob.capabilities.bank import CapBank
+import logging
+from woob.core import Woob
+from woob.capabilities.bank import CapBank
 
-def get_protocols():
-    w = Weboob()
+LOGGER = logging.getLogger(__name__)
 
-    return w.repositories.get_all_modules_info(CapBank).keys()
 
 def get_backends():
-    w = Weboob()
+    w = Woob()
 
     result = {}
     for instance_name, name, params in sorted(w.backends_config.iter_backends()):
-        module = w.modules_loader.get_or_load_module(name)
+        try:
+            module = w.modules_loader.get_or_load_module(name)
+        except Exception as e:
+            LOGGER.error("Failed to read module %s: %s", name, e)
+            continue
+
         if not module.has_caps(CapBank):
             continue
 
@@ -38,23 +31,21 @@ def get_backends():
     return result
 
 def get_accounts(bname):
-    w = Weboob()
+    w = Woob()
 
     w.load_backends(names=[bname])
     backend = w.get_backend(bname)
 
     results = {}
     for account in backend.iter_accounts():
-        # a unicode bigger than 8 characters used as key of the table make some bugs in the C++ code
-        # convert to string before to use it
-        results[str(account.id)] = {'name':    account.label,
+        results[account.id] = {'name':    account.label,
                                'balance': int(account.balance * 100),
                                'type':    int(account.type),
                               }
     return results
 
 def get_transactions(bname, accid, maximum):
-    w = Weboob()
+    w = Woob()
 
     w.load_backends(names=[bname])
     backend = w.get_backend(bname)

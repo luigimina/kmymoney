@@ -1,21 +1,9 @@
-/***************************************************************************
-                          icons.h
-                             -------------------
-    begin                : Sun Jun 25 2017
-    copyright            : (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
-                           (C) 2020 by Dawid Wróbel <me@dawidwrobel.com>
+/*
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-FileCopyrightText: 2020 Dawid Wróbel <me@dawidwrobel.com>
 
-
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef ICONS_H
 #define ICONS_H
@@ -35,6 +23,7 @@ namespace Icons {
 
 enum class IconSet { Common, Oxygen, Tango, Breeze };
 
+// clang-format off
 enum class Icon { OpenDatabase, Merge, Reconcile, Split, Tip, PerformanceTest,
                   Calculator,
                   UserProperties, DocumentProperties,
@@ -42,6 +31,7 @@ enum class Icon { OpenDatabase, Merge, Reconcile, Split, Tip, PerformanceTest,
                   Pause, SeekForward,
                   SkipForward,
                   HideReconciled, HideCategories,
+                  ShowReconciledBalances,
                   Home, Institution, Institutions,
                   Accounts,
                   Schedule, Tags,
@@ -103,8 +93,9 @@ enum class Icon { OpenDatabase, Merge, Reconcile, Split, Tip, PerformanceTest,
                   InvestmentDelete, InvestmentOnlinePrice,
                   BudgetNew, BudgetRename, BudgetDelete, BudgetCopy,
                   PriceUpdate, InvestmentOnlinePriceAll, Reverse, Visibility, NoVisibility,
-                  SelectAll
+                  SelectAll,
                 };
+// clang-format on
 
 KMM_ICONS_EXPORT void setUpMappings(const QString & themeName);
 KMM_ICONS_EXPORT QIcon get(Icons::Icon icon);

@@ -1,20 +1,8 @@
 /*
- * Copyright 2004-2006  Ace Jones <acejones@users.sourceforge.net>
- * Copyright 2005-2017  Thomas Baumgart <tbaumgart@kde.org>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2004-2006 Ace Jones <acejones@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2005-2017 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef MYMONEYSTORAGEANON_H
 #define MYMONEYSTORAGEANON_H
@@ -59,58 +47,58 @@ class MyMoneyKeyValueContainer;
 class MyMoneyStorageANON : public MyMoneyStorageXML
 {
 public:
-  MyMoneyStorageANON();
-  virtual ~MyMoneyStorageANON();
+    MyMoneyStorageANON();
+    virtual ~MyMoneyStorageANON();
 
 protected:
-  void writeUserInformation(QDomElement& userInfo) final override;
+    void writeUserInformation(QDomElement& userInfo) final override;
 
-  void writeInstitution(QDomElement& institutions, const MyMoneyInstitution& i) final override;
+    void writeInstitution(QDomElement& institutions, const MyMoneyInstitution& i) final override;
 
-  void writePayee(QDomElement& payees, const MyMoneyPayee& p) final override;
+    void writePayee(QDomElement& payees, const MyMoneyPayee& p) final override;
 
-  void writeTag(QDomElement& tags, const MyMoneyTag& ta) final override;
+    void writeTag(QDomElement& tags, const MyMoneyTag& ta) final override;
 
-  void writeAccount(QDomElement& accounts, const MyMoneyAccount& p) final override;
+    void writeAccount(QDomElement& accounts, const MyMoneyAccount& p) final override;
 
-  void writeTransaction(QDomElement& transactions, const MyMoneyTransaction& tx) final override;
+    void writeTransaction(QDomElement& transactions, const MyMoneyTransaction& tx) final override;
 
-  void writeSchedule(QDomElement& scheduledTx, const MyMoneySchedule& tx) final override;
+    void writeSchedule(QDomElement& scheduledTx, const MyMoneySchedule& tx) final override;
 
-  void writeBudget(QDomElement& budgets, const MyMoneyBudget& b) final override;
+    void writeBudget(QDomElement& budgets, const MyMoneyBudget& b) final override;
 
-  void writeReport(QDomElement& reports, const MyMoneyReport& r) final override;
+    void writeReport(QDomElement& reports, const MyMoneyReport& r) final override;
 
-  void readFile(QIODevice* s, MyMoneyStorageMgr* storage) final override;
+    void readFile(QIODevice* s, MyMoneyStorageMgr* storage) final override;
 
-  void writeSecurity(QDomElement& securityElement, const MyMoneySecurity& security) final override;
+    void writeSecurity(QDomElement& securityElement, const MyMoneySecurity& security) final override;
 
-  /** Cannot remove prive data from plugins, yet. It is simply doing nothing. */
-  void writeOnlineJob(QDomElement& onlineJobs, const onlineJob& job) final override;
+    /** Cannot remove prive data from plugins, yet. It is simply doing nothing. */
+    void writeOnlineJob(QDomElement& onlineJobs, const onlineJob& job) final override;
 
-  QDomElement findChildElement(const QString& name, const QDomElement& root);
+    QDomElement findChildElement(const QString& name, const QDomElement& root);
 
-  void writeAccounts(QDomElement& accounts) final override;
+    void writeAccounts(QDomElement& accounts) final override;
 
 private:
-  /**
-    * The list of key-value pairs to not modify
-    */
-  static QStringList zKvpNoModify;
+    /**
+      * The list of key-value pairs to not modify
+      */
+    static QStringList zKvpNoModify;
 
-  /**
-    * The list of key-value pairs which are numbers to be hidden
-    */
-  static QStringList zKvpXNumber;
+    /**
+      * The list of key-value pairs which are numbers to be hidden
+      */
+    static QStringList zKvpXNumber;
 
-  QString hideString(const QString&) const;
-  MyMoneyMoney hideNumber(const MyMoneyMoney&) const;
-  void fakeTransaction(MyMoneyTransaction& tn);
-  void fakeBudget(MyMoneyBudget& bn);
-  void fakeKeyValuePair(MyMoneyKeyValueContainer& _kvp);
+    QString hideString(const QString&) const;
+    MyMoneyMoney hideNumber(const MyMoneyMoney&) const;
+    void fakeTransaction(MyMoneyTransaction& tn);
+    void fakeBudget(MyMoneyBudget& bn);
+    void fakeKeyValuePair(MyMoneyKeyValueContainer& _kvp);
 
-  MyMoneyMoney          m_factor;
-  QList<MyMoneyAccount> m_accountList;
+    MyMoneyMoney          m_factor;
+    QList<MyMoneyAccount> m_accountList;
 };
 
 #endif

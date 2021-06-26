@@ -1,19 +1,7 @@
-/***************************************************************************
-                         paymentfrequencywizardpage  -  description
-                            -------------------
-   begin                : Sun Jul 4 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef PAYMENTFREQUENCYWIZARDPAGE_H
 #define PAYMENTFREQUENCYWIZARDPAGE_H
@@ -29,7 +17,9 @@
 // ----------------------------------------------------------------------------
 // Project Includes
 
-namespace Ui { class PaymentFrequencyWizardPage; }
+namespace Ui {
+class PaymentFrequencyWizardPage;
+}
 
 /**
  * This class implements the Payment Frequency page of the
@@ -38,12 +28,12 @@ namespace Ui { class PaymentFrequencyWizardPage; }
 
 class PaymentFrequencyWizardPage : public QWizardPage
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit PaymentFrequencyWizardPage(QWidget *parent = nullptr);
-  ~PaymentFrequencyWizardPage();
+    explicit PaymentFrequencyWizardPage(QWidget *parent = nullptr);
+    ~PaymentFrequencyWizardPage();
 
-  Ui::PaymentFrequencyWizardPage *ui;
+    Ui::PaymentFrequencyWizardPage *ui;
 };
 
 #endif

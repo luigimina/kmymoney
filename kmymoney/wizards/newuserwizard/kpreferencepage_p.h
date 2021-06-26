@@ -1,20 +1,8 @@
-/***************************************************************************
-                             kpreferencepage_p.h
-                             -------------------
-    begin                : Sat Feb 18 2006
-    copyright            : (C) 2006 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2006 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KPREFERENCEPAGE_P_H
 #define KPREFERENCEPAGE_P_H
@@ -33,24 +21,24 @@
 
 namespace NewUserWizard
 {
-  class Wizard;
-  class PreferencePagePrivate : public WizardPagePrivate<Wizard>
-  {
+class Wizard;
+class PreferencePagePrivate : public WizardPagePrivate<Wizard>
+{
     Q_DISABLE_COPY(PreferencePagePrivate)
 
-  public:
+public:
     explicit PreferencePagePrivate(QObject* parent) :
-      WizardPagePrivate<Wizard>(parent),
-      ui(new Ui::KPreferencePage)
+        WizardPagePrivate<Wizard>(parent),
+        ui(new Ui::KPreferencePage)
     {
     }
 
     ~PreferencePagePrivate()
     {
-      delete ui;
+        delete ui;
     }
 
     Ui::KPreferencePage *ui;
-  };
+};
 }
 #endif

@@ -1,20 +1,8 @@
-/***************************************************************************
-                             knewuserwizard.h
-                             -------------------
-    begin                : Sat Feb 18 2006
-    copyright            : (C) 2006 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2006 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KNEWUSERWIZARD_H
 #define KNEWUSERWIZARD_H
@@ -40,18 +28,18 @@ class MyMoneyTemplate;
   */
 namespace NewUserWizard
 {
-  extern int stepCount;
+extern int stepCount;
 
-  /**
-  * @author Thomas Baumgart
-  *
-  * This class implements the new user wizard which is used to gather
-  * some initial information from the user who creates a new KMyMoney
-  * 'file'.
-  */
-  class WizardPrivate;
-  class Wizard : public KMyMoneyWizard
-  {
+/**
+* @author Thomas Baumgart
+*
+* This class implements the new user wizard which is used to gather
+* some initial information from the user who creates a new KMyMoney
+* 'file'.
+*/
+class WizardPrivate;
+class Wizard : public KMyMoneyWizard
+{
     friend class IntroPage;
     friend class GeneralPage;
     friend class CurrencyPage;
@@ -62,7 +50,7 @@ namespace NewUserWizard
     Q_OBJECT
     Q_DISABLE_COPY(Wizard)
 
-  public:
+public:
     explicit Wizard(QWidget *parent = nullptr, bool modal = false, Qt::WindowFlags flags = 0);
     ~Wizard() override;
     /**
@@ -104,9 +92,9 @@ namespace NewUserWizard
     */
     bool startSettingsAfterFinished() const;
 
-  private:
+private:
     Q_DECLARE_PRIVATE(Wizard)
-  };
+};
 
 } // namespace
 

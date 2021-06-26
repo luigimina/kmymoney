@@ -1,19 +1,7 @@
-/***************************************************************************
-                             knewuserwizard_p.h
-                             -------------------
-    begin                : Sat Feb 18 2006
-    copyright            : (C) 2006 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2006 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KNEWUSERWIZARD_P_H
 #define KNEWUSERWIZARD_P_H
@@ -30,26 +18,26 @@
 
 namespace NewUserWizard
 {
-  class IntroPage;
-  class GeneralPage;
-  class CurrencyPage;
-  class AccountPage;
-  class CategoriesPage;
-  class PreferencePage;
+class IntroPage;
+class GeneralPage;
+class CurrencyPage;
+class AccountPage;
+class CategoriesPage;
+class PreferencePage;
 
-  class WizardPrivate : public KMyMoneyWizardPrivate
-  {
+class WizardPrivate : public KMyMoneyWizardPrivate
+{
     Q_DISABLE_COPY(WizardPrivate)
 
-  public:
+public:
     explicit WizardPrivate(Wizard *qq):
-      KMyMoneyWizardPrivate(qq),
-      m_introPage(nullptr),
-      m_generalPage(nullptr),
-      m_currencyPage(nullptr),
-      m_accountPage(nullptr),
-      m_categoriesPage(nullptr),
-      m_preferencePage(nullptr)
+        KMyMoneyWizardPrivate(qq),
+        m_introPage(nullptr),
+        m_generalPage(nullptr),
+        m_currencyPage(nullptr),
+        m_accountPage(nullptr),
+        m_categoriesPage(nullptr),
+        m_preferencePage(nullptr)
     {
     }
 
@@ -64,7 +52,7 @@ namespace NewUserWizard
     AccountPage*      m_accountPage;
     CategoriesPage*   m_categoriesPage;
     PreferencePage*   m_preferencePage;
-  };
+};
 
 } // namespace
 

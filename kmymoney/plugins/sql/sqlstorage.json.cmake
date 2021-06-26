@@ -23,9 +23,11 @@
                 "Name[pt_BR]": "Tony Bloomfield,Łukasz Wojniłowicz",
                 "Name[ru]": "Tony Bloomfield,Łukasz Wojniłowicz",
                 "Name[sk]": "Tony Bloomfield,Łukasz Wojniłowicz",
+                "Name[sl]": "Tony Bloomfield,Łukasz Wojniłowicz",
                 "Name[sv]": "Tony Bloomfield,Łukasz Wojniłowicz",
                 "Name[uk]": "Tony Bloomfield,Łukasz Wojniłowicz",
-                "Name[x-test]": "xxTony Bloomfield,Łukasz Wojniłowiczxx"
+                "Name[x-test]": "xxTony Bloomfield,Łukasz Wojniłowiczxx",
+                "Name[zh_CN]": "Tony Bloomfield,Łukasz Wojniłowicz"
             }
         ],
         "Description": "Adds SQL storage support to KMyMoney",
@@ -45,9 +47,11 @@
         "Description[pt]": "Adiciona o suporte do armazenamento em SQL ao KMyMoney",
         "Description[pt_BR]": "Adiciona suporte ao armazenamento SQL no KMyMoney",
         "Description[sk]": "Pridáva podporu SQL úložiska do KMyMoney",
+        "Description[sl]": "Doda v KMyMoney podporo za shranjevanje SQL",
         "Description[sv]": "Lägger till stöd för SQL-lagring i KMyMoney",
         "Description[uk]": "Підтримка сховища даних SQL у KMyMoney",
         "Description[x-test]": "xxAdds SQL storage support to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加 SQL 存储支持",
         "EnabledByDefault": true,
         "Icon": "server-database",
         "Id": "sqlstorage",
@@ -71,9 +75,11 @@
         "Name[pt]": "Armazenamento em SQL",
         "Name[pt_BR]": "Armazenamento SQL",
         "Name[sk]": "SQL Úložisko",
+        "Name[sl]": "Shramba SQL",
         "Name[sv]": "SQL-lagring",
         "Name[uk]": "Сховище SQL",
         "Name[x-test]": "xxSQL Storagexx",
+        "Name[zh_CN]": "SQL 存储",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],

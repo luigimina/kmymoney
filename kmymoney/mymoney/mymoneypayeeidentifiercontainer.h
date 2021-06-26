@@ -1,19 +1,7 @@
 /*
- * Copyright 2014-2016  Christian Dávid <christian-david@web.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2014-2016 Christian Dávid <christian-david@web.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef MYMONEYPAYEEIDENTIFIERCONTAINER_H
 #define MYMONEYPAYEEIDENTIFIERCONTAINER_H
@@ -36,38 +24,38 @@ template <class T> class payeeIdentifierTyped;
 class KMM_MYMONEY_EXPORT MyMoneyPayeeIdentifierContainer
 {
 public:
-  MyMoneyPayeeIdentifierContainer();
+    MyMoneyPayeeIdentifierContainer();
 
-  unsigned int payeeIdentifierCount() const;
-  ::payeeIdentifier payeeIdentifier(unsigned int) const;
-  QList< ::payeeIdentifier > payeeIdentifiers() const;
+    unsigned int payeeIdentifierCount() const;
+    ::payeeIdentifier payeeIdentifier(unsigned int) const;
+    QList< ::payeeIdentifier > payeeIdentifiers() const;
 
-  template< class type >
-  QList< ::payeeIdentifierTyped<type> > payeeIdentifiersByType() const;
+    template< class type >
+    QList< ::payeeIdentifierTyped<type> > payeeIdentifiersByType() const;
 
-  void addPayeeIdentifier(const ::payeeIdentifier& ident);
-  void addPayeeIdentifier(const unsigned int position, const ::payeeIdentifier& ident);
+    void addPayeeIdentifier(const ::payeeIdentifier& ident);
+    void addPayeeIdentifier(const unsigned int position, const ::payeeIdentifier& ident);
 
-  void removePayeeIdentifier(const ::payeeIdentifier& ident);
-  void removePayeeIdentifier(const int index);
+    void removePayeeIdentifier(const ::payeeIdentifier& ident);
+    void removePayeeIdentifier(const int index);
 
-  void modifyPayeeIdentifier(const ::payeeIdentifier& ident);
-  void modifyPayeeIdentifier(const int index, const ::payeeIdentifier& ident);
+    void modifyPayeeIdentifier(const ::payeeIdentifier& ident);
+    void modifyPayeeIdentifier(const int index, const ::payeeIdentifier& ident);
 
-  void resetPayeeIdentifiers(const QList< ::payeeIdentifier >& list = QList< ::payeeIdentifier >());
+    void resetPayeeIdentifiers(const QList< ::payeeIdentifier >& list = QList< ::payeeIdentifier >());
 
-  void loadXML(QDomElement node);
-  void writeXML(QDomDocument document, QDomElement parent) const;
+    void loadXML(QDomElement node);
+    void writeXML(QDomDocument document, QDomElement parent) const;
 
 protected:
-  QList< ::payeeIdentifier > m_payeeIdentifiers;
+    QList< ::payeeIdentifier > m_payeeIdentifiers;
 };
 
 template< class type >
 QList< payeeIdentifierTyped<type> > MyMoneyPayeeIdentifierContainer::payeeIdentifiersByType() const
 {
-  QList< payeeIdentifierTyped<type> > typedList;
-  return typedList;
+    QList< payeeIdentifierTyped<type> > typedList;
+    return typedList;
 }
 
 #endif // MYMONEYPAYEEIDENTIFIERCONTAINER_H

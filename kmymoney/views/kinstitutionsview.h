@@ -1,18 +1,8 @@
-/***************************************************************************
-                             kinstitutionssview.h
-                             -------------------
-    copyright            : (C) 2007 by Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <ipwizard@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KINSTITUTIONSVIEW_H
 #define KINSTITUTIONSVIEW_H
@@ -40,33 +30,33 @@ class MyMoneyMoney;
 class KInstitutionsViewPrivate;
 class KInstitutionsView : public KMyMoneyAccountsViewBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit KInstitutionsView(QWidget *parent = nullptr);
-  ~KInstitutionsView();
+    explicit KInstitutionsView(QWidget *parent = nullptr);
+    ~KInstitutionsView();
 
-  void executeCustomAction(eView::Action action) override;
-  void refresh();
-  void updateActions(const MyMoneyObject &obj);
+    void executeCustomAction(eView::Action action) override;
+    void refresh();
+    void updateActions(const MyMoneyObject &obj);
 
 public Q_SLOTS:
-  void slotNetWorthChanged(const MyMoneyMoney &);
-  void slotShowInstitutionsMenu(const MyMoneyInstitution& inst);
-  void slotEditInstitution();
+    void slotNetWorthChanged(const MyMoneyMoney &);
+    void slotShowInstitutionsMenu(const MyMoneyInstitution& inst);
+    void slotEditInstitution();
 
-  void slotSelectByObject(const MyMoneyObject& obj, eView::Intent intent) override;
-  void slotSelectByVariant(const QVariantList& variant, eView::Intent intent) override;
+    void slotSelectByObject(const MyMoneyObject& obj, eView::Intent intent) override;
+    void slotSelectByVariant(const QVariantList& variant, eView::Intent intent) override;
 
 protected:
-  void showEvent(QShowEvent * event) override;
+    void showEvent(QShowEvent * event) override;
 
 private:
-  Q_DECLARE_PRIVATE(KInstitutionsView)
+    Q_DECLARE_PRIVATE(KInstitutionsView)
 
 private Q_SLOTS:
-  void slotNewInstitution();
-  void slotDeleteInstitution();
+    void slotNewInstitution();
+    void slotDeleteInstitution();
 };
 
 #endif

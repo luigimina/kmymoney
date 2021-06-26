@@ -1,9 +1,9 @@
 # The CMake version we require
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.12)
 
 set(RELEASE_SERVICE_VERSION_MAJOR "5")
 set(RELEASE_SERVICE_VERSION_MINOR "1")
-set(RELEASE_SERVICE_VERSION_MICRO "1")
+set(RELEASE_SERVICE_VERSION_MICRO "2")
 set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 
 # Setting the name of the main project
@@ -43,6 +43,7 @@ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0.0)
     message(FATAL_ERROR "This version of KMyMoney requires at least gcc 6.0.0 to be built successfully")
 endif()
 
+set(APPLE_SUPPRESS_X11_WARNING TRUE)
 find_package(ECM 5.42 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
@@ -266,30 +267,17 @@ cmake_dependent_option(ENABLE_KBANKING "Enable KBanking plugin" ON
 add_feature_info(KBanking ENABLE_KBANKING "Interface for the following online banking protocols: HBCI, EBICS, OFX Direct Connect, Paypal")
 
 # check for optional Weboob support
-set(Python_ADDITIONAL_VERSIONS 2.7 2.6)
-find_package(PythonInterp 2.6)
-find_package(PythonLibs ${PYTHON_VERSION_STRING})
-
-if(PYTHONINTERP_FOUND AND PYTHONLIBS_FOUND)
-  if(NOT PYTHON_VERSION_MAJOR VERSION_LESS 3)
-    unset(PYTHONLIBS_FOUND)
-    unset(PYTHONINTERP_FOUND)
-    message(WARNING "Python 2 required, but Python 3 found.")
-  else()
-    include(FindPythonModule)
-    find_python_module(weboob REQUIRED)
-  endif()
-endif()
+find_package (Python3 COMPONENTS Interpreter Development)
 
 cmake_dependent_option(ENABLE_WEBOOB "Enable Weboob plugin" ON
-                       "PYTHONLIBS_FOUND;PYTHONINTERP_FOUND;PY_WEBOOB;Qt5Concurrent_FOUND" OFF)
+                       "Python3_FOUND;Qt5Concurrent_FOUND" OFF)
 add_feature_info(Weboob ENABLE_WEBOOB "Online banking interface using Weboob.")
 
 
 # check for optional ical support
-find_package(Libical)
+find_package(LibIcal)
 cmake_dependent_option(ENABLE_LIBICAL "Enable Calendar plugin" ON
-                       "LIBICAL_FOUND" OFF)
+                       "LibIcal_FOUND" OFF)
 add_feature_info(iCalendar ENABLE_LIBICAL "iCalendar integration.")
 
 
@@ -436,3 +424,18 @@ feature_summary(WHAT ENABLED_FEATURES
 
 feature_summary(WHAT DISABLED_FEATURES
                 DESCRIPTION "The following features have been disabled:")
+
+# TODO Remove the clang-format file + cmake code once we depend on ECM 5.80
+set(GIT_DIR "${CMAKE_SOURCE_DIR}/.git")
+find_program(KDE_CLANG_FORMAT_EXECUTABLE clang-format)
+# In case of tarballs there is no .git directory
+if (EXISTS ${GIT_DIR})
+    # The pre-commit hook is a bash script, consequently it won't work on non-unix platforms
+    if (UNIX)
+        if(KDE_CLANG_FORMAT_EXECUTABLE)
+            configure_file("${CMAKE_SOURCE_DIR}/clang-format-pre-commit-hook.sh" "${GIT_DIR}/hooks/pre-commit" @ONLY)
+        else()
+            message(WARNING "No clang-format executable was found, skipping the formatting pre-commit hook")
+        endif()
+    endif()
+endif()

@@ -1,47 +1,46 @@
-/****************************************************************************
-**
-** Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).
-** Contact: https://www.qt.io/developers/
-**
-** This file is part of the test suite of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:LGPL$
-** GNU Lesser General Public License Usage
-** This file may be used under the terms of the GNU Lesser General Public
-** License version 2.1 as published by the Free Software Foundation and
-** appearing in the file LICENSE.LGPL included in the packaging of this
-** file. Please review the following information to ensure the GNU Lesser
-** General Public License version 2.1 requirements will be met:
-** http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
-**
-** In addition, as a special exception, Nokia gives you certain additional
-** rights. These rights are described in the Nokia Qt LGPL Exception
-** version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU General
-** Public License version 3.0 as published by the Free Software Foundation
-** and appearing in the file LICENSE.GPL included in the packaging of this
-** file. Please review the following information to ensure the GNU General
-** Public License version 3.0 requirements will be met:
-** https://www.gnu.org/copyleft/gpl.html.
-**
-** Other Usage
-** Alternatively, this file may be used in accordance with the terms and
-** conditions contained in a signed written agreement between you and Nokia.
-**
-**
-**
-**
-**
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2012 Nokia Corporation and /or its subsidiary(-ies).
+    Contact: https://www.qt.io/developers/
+
+    This file is part of the test suite of the Qt Toolkit.
+
+    $QT_BEGIN_LICENSE:LGPL$
+    GNU Lesser General Public License Usage
+    This file may be used under the terms of the GNU Lesser General Public
+    License version 2.1 as published by the Free Software Foundation and
+    appearing in the file LICENSE.LGPL included in the packaging of this
+    file. Please review the following information to ensure the GNU Lesser
+    General Public License version 2.1 requirements will be met:
+    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+
+    In addition, as a special exception, Nokia gives you certain additional
+    rights. These rights are described in the Nokia Qt LGPL Exception
+    version 1.1, included in the file LGPL_EXCEPTION.txt in this package.
+
+    GNU General Public License Usage
+    Alternatively, this file may be used under the terms of the GNU General
+    Public License version 3.0 as published by the Free Software Foundation
+    and appearing in the file LICENSE.GPL included in the packaging of this
+    file. Please review the following information to ensure the GNU General
+    Public License version 3.0 requirements will be met:
+    https://www.gnu.org/copyleft/gpl.html.
+
+    Other Usage
+    Alternatively, this file may be used in accordance with the terms and
+    conditions contained in a signed written agreement between you and Nokia.
+
+
+
+
+
+
+    $QT_END_LICENSE$
+
+*/
 
 #include "modeltest.h"
 
-#include <QtTest>
+#include <QTest>
 
 Q_DECLARE_METATYPE ( QModelIndex )
 
@@ -449,7 +448,7 @@ void ModelTest::data()
 
     colorVariant = model->data ( model->index ( 0, 0 ), Qt::TextColorRole );
     if ( colorVariant.isValid() ) {
-      QVERIFY(  colorVariant.canConvert<QColor> () );
+        QVERIFY(  colorVariant.canConvert<QColor> () );
     }
 
     // Check that the "check state" is one we know about.
@@ -534,7 +533,7 @@ void ModelTest::layoutChanged()
  */
 void ModelTest::rowsAboutToBeRemoved ( const QModelIndex &parent, int start, int end )
 {
-qDebug() << "ratbr" << parent << start << end;
+    qDebug() << "ratbr" << parent << start << end;
     Changing c;
     c.parent = parent;
     c.oldSize = model->rowCount ( parent );
@@ -550,7 +549,7 @@ qDebug() << "ratbr" << parent << start << end;
  */
 void ModelTest::rowsRemoved ( const QModelIndex & parent, int start, int end )
 {
-  qDebug() << "rr" << parent << start << end;
+    qDebug() << "rr" << parent << start << end;
     Changing c = remove.pop();
     QVERIFY( c.parent == parent );
     QVERIFY( c.oldSize - ( end - start + 1 ) == model->rowCount ( parent ) );

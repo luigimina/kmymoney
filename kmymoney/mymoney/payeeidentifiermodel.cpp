@@ -1,19 +1,7 @@
 /*
- * Copyright 2015-2016  Christian Dávid <christian-david@web.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2015-2016 Christian Dávid <christian-david@web.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "payeeidentifiermodel.h"
 
@@ -31,96 +19,96 @@ static constexpr decltype(reinterpret_cast<QModelIndex*>(0)->internalId()) inval
 
 payeeIdentifierModel::payeeIdentifierModel(QObject* parent)
     : QAbstractItemModel(parent),
-    m_payeeIdentifierIds(),
-    m_typeFilter()
+      m_payeeIdentifierIds(),
+      m_typeFilter()
 {
 
 }
 
 void payeeIdentifierModel::setTypeFilter(QStringList filter)
 {
-  m_typeFilter = filter;
-  loadData();
+    m_typeFilter = filter;
+    loadData();
 }
 
 void payeeIdentifierModel::setTypeFilter(QString type)
 {
-  setTypeFilter(QStringList(type));
+    setTypeFilter(QStringList(type));
 }
 
 
 void payeeIdentifierModel::loadData()
 {
-  beginResetModel();
+    beginResetModel();
 
-  const QList<MyMoneyPayee> payees = MyMoneyFile::instance()->payeeList();
-  m_payeeIdentifierIds.clear();
-  m_payeeIdentifierIds.reserve(payees.count());
-  Q_FOREACH(const MyMoneyPayee& payee, payees) {
-    m_payeeIdentifierIds.append(payee.id());
-  }
-  endResetModel();
+    const QList<MyMoneyPayee> payees = MyMoneyFile::instance()->payeeList();
+    m_payeeIdentifierIds.clear();
+    m_payeeIdentifierIds.reserve(payees.count());
+    Q_FOREACH(const MyMoneyPayee& payee, payees) {
+        m_payeeIdentifierIds.append(payee.id());
+    }
+    endResetModel();
 }
 
 MyMoneyPayee payeeIdentifierModel::payeeByIndex(const QModelIndex& index) const
 {
-  if (index.isValid() && index.row() >= 0 && index.row() < m_payeeIdentifierIds.count()) {
-    try {
-      return MyMoneyFile::instance()->payee(m_payeeIdentifierIds.at(index.row()));
-    } catch (const MyMoneyException &) {
+    if (index.isValid() && index.row() >= 0 && index.row() < m_payeeIdentifierIds.count()) {
+        try {
+            return MyMoneyFile::instance()->payee(m_payeeIdentifierIds.at(index.row()));
+        } catch (const MyMoneyException &) {
+        }
     }
-  }
 
-  return MyMoneyPayee();
+    return MyMoneyPayee();
 }
 
 QVariant payeeIdentifierModel::data(const QModelIndex& index, int role) const
 {
-  if (!index.isValid())
-    return QVariant();
-
-  const auto isPayeeIdentifierValid = index.parent().isValid();
-  if (role == payeeIdentifierModel::isPayeeIdentifier)
-    return isPayeeIdentifierValid;
-
-  const MyMoneyPayee payee = (isPayeeIdentifierValid) ? payeeByIndex(index.parent()) : payeeByIndex(index);
-
-
-  if (role == payeeName || (!isPayeeIdentifierValid && role == Qt::DisplayRole)) {
-    // Return data for MyMoneyPayee
-    return payee.name();
-  } else if (isPayeeIdentifierValid) {
-    // Return data for payeeIdentifier
-    if (index.row() >= 0 && static_cast<unsigned int>(index.row()) < payee.payeeIdentifierCount()) {
-      ::payeeIdentifier ident = payee.payeeIdentifier(index.row());
-
-      if (role == payeeIdentifier) {
-        return QVariant::fromValue< ::payeeIdentifier >(ident);
-      } else if (ident.isNull()) {
+    if (!index.isValid())
         return QVariant();
-      } else if (role == payeeIdentifierType) {
-        return ident.iid();
-      } else if (role == Qt::DisplayRole) {
-        // The custom delegates won't ask for this role
-        return QVariant::fromValue(i18n("The plugin to show this information could not be found."));
-      }
-    }
-  }
 
-  return QVariant();
+    const auto isPayeeIdentifierValid = index.parent().isValid();
+    if (role == payeeIdentifierModel::isPayeeIdentifier)
+        return isPayeeIdentifierValid;
+
+    const MyMoneyPayee payee = (isPayeeIdentifierValid) ? payeeByIndex(index.parent()) : payeeByIndex(index);
+
+
+    if (role == payeeName || (!isPayeeIdentifierValid && role == Qt::DisplayRole)) {
+        // Return data for MyMoneyPayee
+        return payee.name();
+    } else if (isPayeeIdentifierValid) {
+        // Return data for payeeIdentifier
+        if (index.row() >= 0 && static_cast<unsigned int>(index.row()) < payee.payeeIdentifierCount()) {
+            ::payeeIdentifier ident = payee.payeeIdentifier(index.row());
+
+            if (role == payeeIdentifier) {
+                return QVariant::fromValue< ::payeeIdentifier >(ident);
+            } else if (ident.isNull()) {
+                return QVariant();
+            } else if (role == payeeIdentifierType) {
+                return ident.iid();
+            } else if (role == Qt::DisplayRole) {
+                // The custom delegates won't ask for this role
+                return QVariant::fromValue(i18n("The plugin to show this information could not be found."));
+            }
+        }
+    }
+
+    return QVariant();
 }
 
 Qt::ItemFlags payeeIdentifierModel::flags(const QModelIndex &index) const
 {
-  Q_UNUSED(index)
+    Q_UNUSED(index)
 #if 0
-  if (!index.parent().isValid()) {
-    if (payeeByIndex(index).payeeIdentifierCount() > 0)
-      return Qt::ItemIsEnabled;
-  }
+    if (!index.parent().isValid()) {
+        if (payeeByIndex(index).payeeIdentifierCount() > 0)
+            return Qt::ItemIsEnabled;
+    }
 #endif
 
-  return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 }
 
 /**
@@ -131,30 +119,30 @@ Qt::ItemFlags payeeIdentifierModel::flags(const QModelIndex &index) const
  */
 QModelIndex payeeIdentifierModel::index(int row, int column, const QModelIndex &parent) const
 {
-  if (parent.isValid())
-    return createIndex(row, column, parent.row());
-  return createIndex(row, column, invalidParent);
+    if (parent.isValid())
+        return createIndex(row, column, parent.row());
+    return createIndex(row, column, invalidParent);
 }
 
 int payeeIdentifierModel::columnCount(const QModelIndex& parent) const
 {
-  Q_UNUSED(parent);
-  return 1;
+    Q_UNUSED(parent);
+    return 1;
 }
 
 int payeeIdentifierModel::rowCount(const QModelIndex& parent) const
 {
-  if (parent.isValid()) {
-    if (parent.internalId() != invalidParent)
-      return 0;
-    return payeeByIndex(parent).payeeIdentifierCount();
-  }
-  return m_payeeIdentifierIds.count();
+    if (parent.isValid()) {
+        if (parent.internalId() != invalidParent)
+            return 0;
+        return payeeByIndex(parent).payeeIdentifierCount();
+    }
+    return m_payeeIdentifierIds.count();
 }
 
 QModelIndex payeeIdentifierModel::parent(const QModelIndex& child) const
 {
-  if (child.internalId() != invalidParent)
-    return createIndex(child.internalId(), 0, invalidParent);
-  return QModelIndex();
+    if (child.internalId() != invalidParent)
+        return createIndex(child.internalId(), 0, invalidParent);
+    return QModelIndex();
 }

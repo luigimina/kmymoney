@@ -1,20 +1,8 @@
 /*
- * Copyright 2005-2017  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2005-2006  Ace Jones <acejones@users.sourceforge.net>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2005-2017 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2005-2006 Ace Jones <acejones@users.sourceforge.net>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef TESTUTILITIES_H
 #define TESTUTILITIES_H
@@ -87,37 +75,37 @@ extern QString acCash;
 class TransactionHelper: public MyMoneyTransaction
 {
 private:
-  QString m_id;
+    QString m_id;
 public:
-  TransactionHelper(const QDate& _date, const QString& _action, MyMoneyMoney _value, const QString& _accountid, const QString& _categoryid, const QString& _currencyid = QString(), const QString& _payee = "Test Payee");
-  ~TransactionHelper();
-  void update();
+    TransactionHelper(const QDate& _date, const QString& _action, MyMoneyMoney _value, const QString& _accountid, const QString& _categoryid, const QString& _currencyid = QString(), const QString& _payee = "Test Payee");
+    ~TransactionHelper();
+    void update();
 protected:
-  TransactionHelper() {}
+    TransactionHelper() {}
 };
 
 class InvTransactionHelper: public TransactionHelper
 {
 public:
-  InvTransactionHelper(const QDate& _date, const QString& _action, MyMoneyMoney _shares, MyMoneyMoney _value, const QString& _stockaccountid, const QString& _transferid, const QString& _categoryid, MyMoneyMoney _fee = MyMoneyMoney());
-  void init(const QDate& _date, const QString& _action, MyMoneyMoney _shares, MyMoneyMoney _price, MyMoneyMoney _fee, const QString& _stockaccountid, const QString& _transferid, const QString& _categoryid);
+    InvTransactionHelper(const QDate& _date, const QString& _action, MyMoneyMoney _shares, MyMoneyMoney _value, const QString& _stockaccountid, const QString& _transferid, const QString& _categoryid, MyMoneyMoney _fee = MyMoneyMoney());
+    void init(const QDate& _date, const QString& _action, MyMoneyMoney _shares, MyMoneyMoney _price, MyMoneyMoney _fee, const QString& _stockaccountid, const QString& _transferid, const QString& _categoryid);
 };
 
 class BudgetEntryHelper
 {
 private:
-  QDate m_date;
-  QString m_categoryid;
-  MyMoneyMoney m_amount;
+    QDate m_date;
+    QString m_categoryid;
+    MyMoneyMoney m_amount;
 
 public:
-  BudgetEntryHelper() {}
-  BudgetEntryHelper(const QDate& _date, const QString& _categoryid, bool /* _applytosub */, const MyMoneyMoney& _amount): m_date(_date), m_categoryid(_categoryid), m_amount(_amount) {}
+    BudgetEntryHelper() {}
+    BudgetEntryHelper(const QDate& _date, const QString& _categoryid, bool /* _applytosub */, const MyMoneyMoney& _amount): m_date(_date), m_categoryid(_categoryid), m_amount(_amount) {}
 };
 
 class BudgetHelper: public QList<BudgetEntryHelper>
 {
-  MyMoneyMoney budgetAmount(const QDate& _date, const QString& _categoryid, bool& _applytosub);
+    MyMoneyMoney budgetAmount(const QDate& _date, const QString& _categoryid, bool& _applytosub);
 };
 
 extern QString makeAccount(const QString& _name, eMyMoney::Account::Type _type, MyMoneyMoney _balance, const QDate& _open, const QString& _parent, QString _currency = "", bool _taxReport = false, bool _openingBalance = false);

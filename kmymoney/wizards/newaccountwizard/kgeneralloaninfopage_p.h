@@ -1,20 +1,8 @@
-/***************************************************************************
-                             kgeneralloaninfopage.cpp
-                             -------------------
-    begin                : Tue Sep 25 2006
-    copyright            : (C) 2007 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef KGENERALLOANINFOPAGE_P_H
 #define KGENERALLOANINFOPAGE_P_H
@@ -34,28 +22,28 @@
 
 namespace NewAccountWizard
 {
-  class Wizard;
+class Wizard;
 
-  class GeneralLoanInfoPagePrivate : public WizardPagePrivate<Wizard>
-  {
+class GeneralLoanInfoPagePrivate : public WizardPagePrivate<Wizard>
+{
     Q_DISABLE_COPY(GeneralLoanInfoPagePrivate)
 
-  public:
+public:
     explicit GeneralLoanInfoPagePrivate(QObject* parent) :
-      WizardPagePrivate<Wizard>(parent),
-      ui(new Ui::KGeneralLoanInfoPage),
-      m_firstTime(false)
+        WizardPagePrivate<Wizard>(parent),
+        ui(new Ui::KGeneralLoanInfoPage),
+        m_firstTime(false)
     {
     }
 
     ~GeneralLoanInfoPagePrivate()
     {
-      delete ui;
+        delete ui;
     }
 
     Ui::KGeneralLoanInfoPage *ui;
     bool                      m_firstTime;
-  };
+};
 }
 
 #endif

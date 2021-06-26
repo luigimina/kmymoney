@@ -1,18 +1,7 @@
-/***************************************************************************
-                          xea2kmt.cpp
-                          -------------------
-    copyright            : (C) 2014 by Ralf Habacker <ralf.habacker@freenet.de>
-
-****************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2014 Ralf Habacker <ralf.habacker@freenet.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "../kmymoney/mymoney/mymoneyaccount.h"
 
@@ -112,12 +101,12 @@ public:
     }
 
     TemplateAccount(const TemplateAccount &b)
-      : id(b.id),
-        m_type(b.m_type),
-        m_name(b.m_name),
-        code(b.code),
-        parent(b.parent),
-        slotList(b.slotList)
+        : id(b.id),
+          m_type(b.m_type),
+          m_name(b.m_name),
+          code(b.code),
+          parent(b.parent),
+          slotList(b.slotList)
     {
     }
 
@@ -220,7 +209,7 @@ QDebug operator <<(QDebug out, const TemplateAccount::PointerList &a)
 {
     out << "TemplateAccount::List(";
     foreach(const TemplateAccount *account, a)
-            out << *account;
+        out << *account;
     out << ")";
     return out;
 }
@@ -499,13 +488,13 @@ protected:
         QString fileName = inFileName;
         fileName.replace(QRegExp(".*/accounts"),"accounts");
         xml.writeComment(QString("\n"
-            "     Converted using xea2kmt from GnuCash sources\n"
-            "\n"
-            "        %1\n"
-            "\n"
-            "     Please check the source file for possible copyright\n"
-            "     and license information.\n"
-        ).arg(fileName));
+                                 "     Converted using xea2kmt from GnuCash sources\n"
+                                 "\n"
+                                 "        %1\n"
+                                 "\n"
+                                 "     Please check the source file for possible copyright\n"
+                                 "     and license information.\n"
+                                ).arg(fileName));
         xml.writeDTD("<!DOCTYPE KMYMONEY-TEMPLATE>");
         xml.writeStartElement("","kmymoney-account-template");
         _template.fileName = fileName;

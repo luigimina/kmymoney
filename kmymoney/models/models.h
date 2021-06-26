@@ -1,19 +1,7 @@
 /*
- * Copyright 2009-2015  Cristian Oneț <onet.cristian@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2009-2015 Cristian One ț <onet.cristian@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef MODELS_H
 #define MODELS_H
@@ -64,63 +52,63 @@ class SecuritiesModel;
   */
 class KMM_MODELS_EXPORT Models : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  Models();
-  ~Models();
+    Models();
+    ~Models();
 
-  /**
-    * This is the function to access the Models object.
-    * It returns a pointer to the single instance of the object.
-    */
-  static Models* instance();
+    /**
+      * This is the function to access the Models object.
+      * It returns a pointer to the single instance of the object.
+      */
+    static Models* instance();
 
-  AccountsModel* accountsModel();
-  InstitutionsModel* institutionsModel();
+    AccountsModel* accountsModel();
+    InstitutionsModel* institutionsModel();
 #ifdef ENABLE_UNFINISHEDFEATURES
-  LedgerModel* ledgerModel();
+    LedgerModel* ledgerModel();
 #endif
-  CostCenterModel* costCenterModel();
-  PayeesModel* payeesModel();
-  EquitiesModel* equitiesModel();
-  SecuritiesModel* securitiesModel();
+    CostCenterModel* costCenterModel();
+    PayeesModel* payeesModel();
+    EquitiesModel* equitiesModel();
+    SecuritiesModel* securitiesModel();
 
-  /**
-   * returns the index of an item the @a model based on the @a id of role @a role.
-   */
-  static QModelIndex indexById(QAbstractItemModel* model, int role, const QString& id);
+    /**
+     * returns the index of an item the @a model based on the @a id of role @a role.
+     */
+    static QModelIndex indexById(QAbstractItemModel* model, int role, const QString& id);
 
 public Q_SLOTS:
-  /**
-    * This slot is used to notify the models that the data has been loaded and ready to use.
-    * @ref MyMoneyFile.
-    */
-  void fileOpened();
+    /**
+      * This slot is used to notify the models that the data has been loaded and ready to use.
+      * @ref MyMoneyFile.
+      */
+    void fileOpened();
 
-  /**
-    * This slot is used to notify the models that the data has been unloaded.
-    * @ref MyMoneyFile.
-    */
-  void fileClosed();
+    /**
+      * This slot is used to notify the models that the data has been unloaded.
+      * @ref MyMoneyFile.
+      */
+    void fileClosed();
 
 Q_SIGNALS:
-  void modelsLoaded();
+    void modelsLoaded();
 
 private:
 
-  /**
-    * This class defines a singleton.
-    */
-  Models(const Models&);
-  /**
-    * This class defines a singleton.
-    */
-  Models& operator=(Models&);
+    /**
+      * This class defines a singleton.
+      */
+    Models(const Models&);
+    /**
+      * This class defines a singleton.
+      */
+    Models& operator=(Models&);
 
 private:
-  struct Private;
-  Private* const d;
+    struct Private;
+    Private* const d;
 };
 
 #endif // MODELS_H

@@ -1,19 +1,7 @@
 /*
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef MYMONEYSTORAGENAMES_H
 #define MYMONEYSTORAGENAMES_H
@@ -27,100 +15,100 @@
 // Project Includes
 
 enum class Tag {
-  Institutions,
-  Payees,
-  CostCenters,
-  Tags,
-  Accounts,
-  Transactions,
-  Schedules,
-  Securities,
-  Currencies,
-  Prices,
-  Reports,
-  Budgets,
-  OnlineJobs,
-  KMMFile,
-  FileInfo,
-  User
+    Institutions,
+    Payees,
+    CostCenters,
+    Tags,
+    Accounts,
+    Transactions,
+    Schedules,
+    Securities,
+    Currencies,
+    Prices,
+    Reports,
+    Budgets,
+    OnlineJobs,
+    KMMFile,
+    FileInfo,
+    User,
 };
 
 enum class Node {
-  Institution,
-  Payee,
-  CostCenter,
-  Tag,
-  Account,
-  Transaction,
-  Split,
-  ScheduleTX,
-  Security,
-  Currency,
-  Price,
-  PricePair,
-  Report,
-  Budget,
-  OnlineJob,
-  KeyValuePairs,
-  Equity
+    Institution,
+    Payee,
+    CostCenter,
+    Tag,
+    Account,
+    Transaction,
+    Split,
+    ScheduleTX,
+    Security,
+    Currency,
+    Price,
+    PricePair,
+    Report,
+    Budget,
+    OnlineJob,
+    KeyValuePairs,
+    Equity,
 };
 
 namespace Element {
-  enum class General {
+enum class General {
     Address,
     CreationDate,
     LastModifiedDate,
     Version,
     FixVersion,
-    Pair
-  };
+    Pair,
+};
 
-  enum class Transaction {
+enum class Transaction {
     Split = 0,
-    Splits
-  };
+    Splits,
+};
 
-  enum class Split {
+enum class Split {
     Split = 0,
     Tag,
     Match,
     Container,
-    KeyValuePairs
-  };
+    KeyValuePairs,
+};
 
-  enum class Account {
+enum class Account {
     SubAccount,
     SubAccounts,
-    OnlineBanking
-  };
+    OnlineBanking,
+};
 
-  enum class Payee {
+enum class Payee {
     Address,
-    Identifier
-  };
+    Identifier,
+};
 
-  enum class KVP {
-    Pair
-  };
+enum class KVP {
+    Pair,
+};
 
-  enum class Institution {
+enum class Institution {
     AccountID,
     AccountIDS,
-    Address
-  };
+    Address,
+};
 
-  enum class Schedule {
+enum class Schedule {
     Payment,
-    Payments
-  };
+    Payments,
+};
 
-  enum class OnlineJob {
-    OnlineTask
-  };
+enum class OnlineJob {
+    OnlineTask,
+};
 }
 
 namespace Attribute {
-  enum class General {
+enum class General {
     ID = 0,
     Date,
     Count,
@@ -138,10 +126,10 @@ namespace Attribute {
     Street,
     Telephone,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Transaction {
+enum class Transaction {
     Name = 0,
     Type,
     PostDate,
@@ -150,10 +138,10 @@ namespace Attribute {
     Commodity,
     BankID,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Split {
+enum class Split {
     ID = 0,
     BankID,
     Account,
@@ -170,10 +158,10 @@ namespace Attribute {
     ReconcileFlag,
     KMMatchedTx,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Account {
+enum class Account {
     ID = 0,
     Name,
     Type,
@@ -189,10 +177,10 @@ namespace Attribute {
     IBAN,
     BIC,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Payee {
+enum class Payee {
     ID = 0,
     Name,
     Type,
@@ -217,10 +205,10 @@ namespace Attribute {
     Country,
     AccountNumber,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Tag {
+enum class Tag {
     ID = 0,
     Name,
     Type,
@@ -228,10 +216,10 @@ namespace Attribute {
     Closed,
     Notes,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Security {
+enum class Security {
     ID = 0,
     Name,
     Symbol,
@@ -243,17 +231,17 @@ namespace Attribute {
     TradingCurrency,
     TradingMarket,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class KVP {
+enum class KVP {
     Key,
     Value,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Institution {
+enum class Institution {
     ID = 0,
     Name,
     Manager,
@@ -263,10 +251,10 @@ namespace Attribute {
     Zip,
     Telephone,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class Schedule {
+enum class Schedule {
     ID = 0,
     Name,
     Type,
@@ -282,10 +270,10 @@ namespace Attribute {
     EndDate,
     LastDayInMonth,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class OnlineJob {
+enum class OnlineJob {
     ID = 0,
     Send,
     BankAnswerDate,
@@ -296,15 +284,15 @@ namespace Attribute {
     RejectedByBank,
     SendingError,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 
-  enum class CostCenter {
+enum class CostCenter {
     ID = 0,
     Name,
     // insert new entries above this line
-    LastAttribute
-  };
+    LastAttribute,
+};
 }
 
 QString elementName(Element::General elementID);

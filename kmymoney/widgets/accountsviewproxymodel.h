@@ -1,20 +1,8 @@
 /*
- * Copyright 2009       Cristian Oneț <onet.cristian@gmail.com>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2009 Cristian One ț <onet.cristian@gmail.com>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef ACCOUNTSVIEWPROXYMODEL_H
 #define ACCOUNTSVIEWPROXYMODEL_H
@@ -45,29 +33,29 @@ class QPoint;
 class AccountsViewProxyModelPrivate;
 class KMM_WIDGETS_EXPORT AccountsViewProxyModel : public AccountsProxyModel
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(AccountsViewProxyModel)
+    Q_OBJECT
+    Q_DISABLE_COPY(AccountsViewProxyModel)
 
 public:
-  explicit AccountsViewProxyModel(QObject *parent = nullptr);
-  ~AccountsViewProxyModel() override;
+    explicit AccountsViewProxyModel(QObject *parent = nullptr);
+    ~AccountsViewProxyModel() override;
 
-  void setColumnVisibility(eAccountsModel::Column column, bool visible);
-  QSet<eAccountsModel::Column> getVisibleColumns();
+    void setColumnVisibility(eAccountsModel::Column column, bool visible);
+    QSet<eAccountsModel::Column> getVisibleColumns();
 
 public Q_SLOTS:
-  void slotColumnsMenu(const QPoint);
+    void slotColumnsMenu(const QPoint);
 
 Q_SIGNALS:
-  void columnToggled(const eAccountsModel::Column column, const bool show);
+    void columnToggled(const eAccountsModel::Column column, const bool show);
 
 protected:
-  AccountsViewProxyModel(AccountsViewProxyModelPrivate &dd, QObject *parent);
-  bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
-  bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const override;
+    AccountsViewProxyModel(AccountsViewProxyModelPrivate &dd, QObject *parent);
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
+    bool filterAcceptsColumn(int source_column, const QModelIndex &source_parent) const override;
 
 private:
-  Q_DECLARE_PRIVATE(AccountsViewProxyModel)
+    Q_DECLARE_PRIVATE(AccountsViewProxyModel)
 };
 
 #endif

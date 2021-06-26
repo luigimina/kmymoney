@@ -1,20 +1,8 @@
 /*
- * Copyright 2005       Ace Jones <acejones@users.sourceforge.net>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2005 Ace Jones <acejones@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef QUERYTABLE_H
 #define QUERYTABLE_H
@@ -58,22 +46,24 @@ class ReportAccount;
 class QueryTable : public ListTable
 {
 public:
-  explicit QueryTable(const MyMoneyReport&);
-  void init();
+    explicit QueryTable(const MyMoneyReport&);
+    void init();
 
 protected:
-  void constructAccountTable();
-  void constructTotalRows();
-  void constructTransactionTable();
-  void sumInvestmentValues(const ReportAccount &account, QList<CashFlowList> &cfList, QList<MyMoneyMoney> &shList) const;
-  void constructPerformanceRow(const ReportAccount& account, TableRow& result, CashFlowList &all) const;
-  void constructCapitalGainRow(const ReportAccount& account, TableRow& result) const;
-  QString helperROI(const MyMoneyMoney& buys, const MyMoneyMoney& sells, const MyMoneyMoney& startingBal, const MyMoneyMoney& endingBal, const MyMoneyMoney& cashIncome) const;
-  QString helperIRR(const CashFlowList& all) const;
-  void constructSplitsTable();
-  bool linkEntries() const final override { return true; }
+    void constructAccountTable();
+    void constructTotalRows();
+    void constructTransactionTable();
+    void sumInvestmentValues(const ReportAccount &account, QList<CashFlowList> &cfList, QList<MyMoneyMoney> &shList) const;
+    void constructPerformanceRow(const ReportAccount& account, TableRow& result, CashFlowList &all) const;
+    void constructCapitalGainRow(const ReportAccount& account, TableRow& result) const;
+    QString helperROI(const MyMoneyMoney& buys, const MyMoneyMoney& sells, const MyMoneyMoney& startingBal, const MyMoneyMoney& endingBal, const MyMoneyMoney& cashIncome) const;
+    QString helperIRR(const CashFlowList& all) const;
+    void constructSplitsTable();
+    bool linkEntries() const final override {
+        return true;
+    }
 private:
-  enum InvestmentValue {Buys = 0, Sells, BuysOfSells, SellsOfBuys, LongTermBuysOfSells, LongTermSellsOfBuys, BuysOfOwned, ReinvestIncome, CashIncome, End};
+    enum InvestmentValue {Buys = 0, Sells, BuysOfSells, SellsOfBuys, LongTermBuysOfSells, LongTermSellsOfBuys, BuysOfOwned, ReinvestIncome, CashIncome, End};
 
 };
 

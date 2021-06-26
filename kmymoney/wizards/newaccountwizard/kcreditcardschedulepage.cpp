@@ -1,20 +1,8 @@
-/***************************************************************************
-                             kcreditcardschedulepage.cpp
-                             -------------------
-    begin                : Tue Sep 25 2006
-    copyright            : (C) 2007 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "kcreditcardschedulepage.h"
 #include "kcreditcardschedulepage_p.h"
@@ -57,10 +45,10 @@ using namespace eMyMoney;
 
 namespace NewAccountWizard
 {
-  CreditCardSchedulePage::CreditCardSchedulePage(Wizard* wizard) :
+CreditCardSchedulePage::CreditCardSchedulePage(Wizard* wizard) :
     QWidget(wizard),
     WizardPage<Wizard>(*new CreditCardSchedulePagePrivate(wizard), StepSchedule, this, wizard)
-  {
+{
     Q_D(CreditCardSchedulePage);
     d->ui->setupUi(this);
 
@@ -94,27 +82,27 @@ namespace NewAccountWizard
     d->ui->m_method->setCurrentItem((int)Schedule::PaymentType::DirectDebit);
 
     slotLoadWidgets();
-  }
+}
 
-  CreditCardSchedulePage::~CreditCardSchedulePage()
-  {
-  }
+CreditCardSchedulePage::~CreditCardSchedulePage()
+{
+}
 
-  void CreditCardSchedulePage::enterPage()
-  {
+void CreditCardSchedulePage::enterPage()
+{
     Q_D(CreditCardSchedulePage);
     if (d->ui->m_name->text().isEmpty())
-      d->ui->m_name->setText(i18n("Credit Card %1 monthly payment", d->m_wizard->d_func()->m_accountTypePage->d_func()->ui->m_accountName->text()));
-  }
+        d->ui->m_name->setText(i18n("Credit Card %1 monthly payment", d->m_wizard->d_func()->m_accountTypePage->d_func()->ui->m_accountName->text()));
+}
 
-  QWidget* CreditCardSchedulePage::initialFocusWidget() const
-  {
+QWidget* CreditCardSchedulePage::initialFocusWidget() const
+{
     Q_D(const CreditCardSchedulePage);
     return d->ui->m_reminderCheckBox;
-  }
+}
 
-  bool CreditCardSchedulePage::isComplete() const
-  {
+bool CreditCardSchedulePage::isComplete() const
+{
     Q_D(const CreditCardSchedulePage);
     bool rc = true;
     QString msg = i18n("Finish entry and create account");
@@ -123,42 +111,42 @@ namespace NewAccountWizard
         if (d->ui->m_date->date() < d->m_wizard->d_func()->m_accountTypePage->d_func()->ui->m_openingDate->date()) {
             rc = false;
             msg = i18n("Next due date is prior to opening date");
-          }
+        }
         if (d->ui->m_paymentAccount->selectedItem().isEmpty()) {
             rc = false;
             msg = i18n("No account selected");
-          }
+        }
         if (d->ui->m_amount->text().isEmpty()) {
             rc = false;
             msg = i18n("No amount for payment selected");
-          }
+        }
         if (d->ui->m_payee->selectedItem().isEmpty()) {
             rc = false;
             msg = i18n("No payee for payment selected");
-          }
+        }
         if (d->ui->m_name->text().isEmpty()) {
             rc = false;
             msg = i18n("No name assigned for schedule");
-          }
-      }
+        }
+    }
     d->m_wizard->d_func()->m_nextButton->setToolTip(msg);
 
     return rc;
-  }
+}
 
-  void CreditCardSchedulePage::slotLoadWidgets()
-  {
+void CreditCardSchedulePage::slotLoadWidgets()
+{
     Q_D(CreditCardSchedulePage);
     AccountSet set;
     set.addAccountGroup(Account::Type::Asset);
     set.load(d->ui->m_paymentAccount->selector());
 
     d->ui->m_payee->loadPayees(MyMoneyFile::instance()->payeeList());
-  }
+}
 
-  KMyMoneyWizardPage* CreditCardSchedulePage::nextPage() const
-  {
+KMyMoneyWizardPage* CreditCardSchedulePage::nextPage() const
+{
     Q_D(const CreditCardSchedulePage);
     return d->m_wizard->d_func()->m_hierarchyPage;
-  }
+}
 }

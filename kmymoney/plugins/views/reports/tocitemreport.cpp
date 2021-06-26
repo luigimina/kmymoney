@@ -1,19 +1,7 @@
-/***************************************************************************
-                          tocitemreport.cpp  -  description
-                             -------------------
-    begin                : Sat Jul 03 2010
-    copyright            : (C) Bernd Gonsior
-    email                : bernd.gonsior@googlemail.com
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    copyright            : (C) Bernd Gonsior <bernd.gonsior@googlemail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "tocitemreport.h"
 
@@ -29,21 +17,21 @@
 TocItemReport::TocItemReport(QTreeWidgetItem* parent, MyMoneyReport& report):
     TocItem(parent, QStringList() << report.name() << report.comment())
 {
-  m_report = report;
+    m_report = report;
 
-  type = TocItem::REPORT;
+    type = TocItem::REPORT;
 
-  QString tocTyp = QString::number(type);
-  QString id = report.name();
+    QString tocTyp = QString::number(type);
+    QString id = report.name();
 
-  QStringList key;
-  key << tocTyp << id;
+    QStringList key;
+    key << tocTyp << id;
 
-  QVariant data(key);
-  this->setData(0, Qt::UserRole, data);
+    QVariant data(key);
+    this->setData(0, Qt::UserRole, data);
 }
 
 MyMoneyReport& TocItemReport::getReport()
 {
-  return m_report;
+    return m_report;
 }

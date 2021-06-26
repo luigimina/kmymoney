@@ -1,20 +1,8 @@
 /*
- * Copyright 2006-2018  Thomas Baumgart <tbaumgart@kde.org>
- * Copyright 2017-2018  Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2006-2018 Thomas Baumgart <tbaumgart@kde.org>
+    SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef SELECTEDTRANSACTIONS_H
 #define SELECTEDTRANSACTIONS_H
@@ -35,23 +23,23 @@
 
 namespace KMyMoneyRegister
 {
-  class Register;
+class Register;
 
-  class SelectedTransactions: public QList<SelectedTransaction>
-  {
-  public:
+class SelectedTransactions: public QList<SelectedTransaction>
+{
+public:
     // TODO: find out how to move this ctor out of header
     SelectedTransactions() {} // krazy:exclude=inline
     explicit  SelectedTransactions(const Register* r);
 
     /**
-   * @return the highest warnLevel of all transactions in the list
-   */
+    * @return the highest warnLevel of all transactions in the list
+    */
     SelectedTransaction::warnLevel_t warnLevel() const;
 
     bool canModify() const;
     bool canDuplicate() const;
-  };
+};
 
 } // namespace
 

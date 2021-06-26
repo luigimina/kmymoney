@@ -1,19 +1,7 @@
-/***************************************************************************
-                         editintrowizardpage  -  description
-                            -------------------
-   begin                : Sun Jul 4 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef EDITINTROWIZARDPAGE_H
 #define EDITINTROWIZARDPAGE_H
@@ -29,7 +17,9 @@
 // ----------------------------------------------------------------------------
 // Project Includes
 
-namespace Ui { class EditIntroWizardPage; }
+namespace Ui {
+class EditIntroWizardPage;
+}
 
 /**
  * This class implements the Edit Intro page of the
@@ -38,13 +28,13 @@ namespace Ui { class EditIntroWizardPage; }
 
 class EditIntroWizardPage : public QWizardPage
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit EditIntroWizardPage(QWidget *parent = nullptr);
-  ~EditIntroWizardPage();
+    explicit EditIntroWizardPage(QWidget *parent = nullptr);
+    ~EditIntroWizardPage();
 
 private:
-  Ui::EditIntroWizardPage *ui;
+    Ui::EditIntroWizardPage *ui;
 };
 
 #endif

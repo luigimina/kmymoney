@@ -1,20 +1,8 @@
 /*
- * Copyright 2003       Michael Edwardes <mte@users.sourceforge.net>
- * Copyright 2006       Ace Jones <acejones@users.sourceforge.net>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2003 Michael Edwardes <mte@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2006 Ace Jones <acejones@users.sourceforge.net>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef MYMONEYSCHEDULETEST_H
 #define MYMONEYSCHEDULETEST_H
@@ -23,27 +11,27 @@
 
 class MyMoneyScheduleTest : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 private Q_SLOTS:
-  void testEmptyConstructor();
-  void testConstructor();
-  void testSetFunctions();
-  void testCopyConstructor();
-  void testAssignmentConstructor();
-  void testAddHalfMonths();
-  void testAdjustedNextDueDate();
-  void testModifyNextDueDate();
-  void testDaysBetweenEvents();
-  void testEventsPerYear();
-  void testOccurrenceToString();
-  void testOccurrencePeriodToString();
-  void testOccurrencePeriod();
-  void testSimpleToFromCompoundOccurrence();
-  void testProcessingDates();
-  void testAdjustedNextPayment();
-  void testAdjustedWhenItWillEnd();
-  void testProcessLastDayInMonth();
+    void testEmptyConstructor();
+    void testConstructor();
+    void testSetFunctions();
+    void testCopyConstructor();
+    void testAssignmentConstructor();
+    void testAddHalfMonths();
+    void testAdjustedNextDueDate();
+    void testModifyNextDueDate();
+    void testDaysBetweenEvents();
+    void testEventsPerYear();
+    void testOccurrenceToString();
+    void testOccurrencePeriodToString();
+    void testOccurrencePeriod();
+    void testSimpleToFromCompoundOccurrence();
+    void testProcessingDates();
+    void testAdjustedNextPayment();
+    void testAdjustedWhenItWillEnd();
+    void testProcessLastDayInMonth();
 };
 
 #endif

@@ -1,24 +1,9 @@
 /*
- * A gwenhywfar gui for aqbanking using KDE widgets
- * Copyright 2014 - 2016 Christian David <christian-david@web.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License or (at your option) version 3 or any later version
- * accepted by the membership of KDE e.V. (or its successor approved
- * by the membership of KDE e.V.), which shall act as a proxy
- * defined in Section 14 of version 3 of the license.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
+    A gwenhywfar gui for aqbanking using KDE widgets
+    SPDX-FileCopyrightText: 2014-2016 Christian David <christian-david@web.de>
+    SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+
+*/
 
 #ifndef GWENKDEGUI_H
 #define GWENKDEGUI_H
@@ -37,53 +22,53 @@
 class gwenKdeGui : public QT5_Gui
 {
 public:
-  gwenKdeGui();
-  ~gwenKdeGui();
+    gwenKdeGui();
+    ~gwenKdeGui();
 
-  int getPassword(uint32_t flags,
-                          const char *token,
-                          const char *title,
-                          const char *text,
-                          char *buffer,
-                          int minLen,
-                          int maxLen,
-                          GWEN_GUI_PASSWORD_METHOD methodId,
-                          GWEN_DB_NODE *methodParams,
-                          uint32_t guiid) final override;
+    int getPassword(uint32_t flags,
+                    const char *token,
+                    const char *title,
+                    const char *text,
+                    char *buffer,
+                    int minLen,
+                    int maxLen,
+                    GWEN_GUI_PASSWORD_METHOD methodId,
+                    GWEN_DB_NODE *methodParams,
+                    uint32_t guiid) final override;
 
-  int execDialog(GWEN_DIALOG *dlg, GWEN_UNUSED uint32_t guiid) final override;
+    int execDialog(GWEN_DIALOG *dlg, GWEN_UNUSED uint32_t guiid) final override;
 
 private:
-  int getPasswordText(uint32_t flags,
-                      const char *token,
-                      const char *title,
-                      const char *text,
-                      char *buffer,
-                      int minLen,
-                      int maxLen,
-                      GWEN_GUI_PASSWORD_METHOD methodId,
-                      GWEN_DB_NODE *methodParams,
-                      uint32_t guiid);
-  int getPasswordHhd(uint32_t flags,
-                     const char *token,
-                     const char *title,
-                     const char *text,
-                     char *buffer,
-                     int minLen,
-                     int maxLen,
-                     GWEN_GUI_PASSWORD_METHOD methodId,
-                     GWEN_DB_NODE *methodParams,
-                     uint32_t guiid);
-   int getPasswordPhoto(uint32_t flags,
-                      const char *token,
-                      const char *title,
-                      const char *text,
-                      char *buffer,
-                      int minLen,
-                      int maxLen,
-                      GWEN_GUI_PASSWORD_METHOD methodId,
-                      GWEN_DB_NODE *methodParams,
-                      uint32_t guiid);
+    int getPasswordText(uint32_t flags,
+                        const char *token,
+                        const char *title,
+                        const char *text,
+                        char *buffer,
+                        int minLen,
+                        int maxLen,
+                        GWEN_GUI_PASSWORD_METHOD methodId,
+                        GWEN_DB_NODE *methodParams,
+                        uint32_t guiid);
+    int getPasswordHhd(uint32_t flags,
+                       const char *token,
+                       const char *title,
+                       const char *text,
+                       char *buffer,
+                       int minLen,
+                       int maxLen,
+                       GWEN_GUI_PASSWORD_METHOD methodId,
+                       GWEN_DB_NODE *methodParams,
+                       uint32_t guiid);
+    int getPasswordPhoto(uint32_t flags,
+                         const char *token,
+                         const char *title,
+                         const char *text,
+                         char *buffer,
+                         int minLen,
+                         int maxLen,
+                         GWEN_GUI_PASSWORD_METHOD methodId,
+                         GWEN_DB_NODE *methodParams,
+                         uint32_t guiid);
 
 };
 
@@ -92,38 +77,38 @@ private:
  */
 class gwenKdeGuiTanResult : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  explicit gwenKdeGuiTanResult(QObject* parent = nullptr)
-      : QObject(parent),
-      m_tan(QString()),
-      m_aborted(false)
-      {}
+    explicit gwenKdeGuiTanResult(QObject* parent = nullptr)
+        : QObject(parent),
+          m_tan(QString()),
+          m_aborted(false)
+    {}
 
-  ~gwenKdeGuiTanResult() {}
+    ~gwenKdeGuiTanResult() {}
 
-  QString tan() {
-    return m_tan;
-  }
+    QString tan() {
+        return m_tan;
+    }
 
-  bool aborted() {
-    return m_aborted;
-  }
+    bool aborted() {
+        return m_aborted;
+    }
 
 public Q_SLOTS:
-  void abort() {
-    m_aborted = true;
-  }
+    void abort() {
+        m_aborted = true;
+    }
 
-  void acceptTan(QString tan) {
-    m_tan = tan;
-    m_aborted = false;
-  }
+    void acceptTan(QString tan) {
+        m_tan = tan;
+        m_aborted = false;
+    }
 
 private:
-  QString m_tan;
-  bool m_aborted;
+    QString m_tan;
+    bool m_aborted;
 };
 
 #endif // GWENKDEGUI_H

@@ -1,19 +1,8 @@
-/***************************************************************************
-                             ksettingsreports.cpp
-                             --------------------
-    copyright            : (C) 2010 by Bernd Gonsior
-    email                : bernd.gonsior@googlemail.com
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Bernd Gonsior <bernd.gonsior@googlemail.com>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "ksettingsreports.h"
 
@@ -40,31 +29,31 @@
 
 
 KSettingsReports::KSettingsReports(QWidget* parent) :
-  QWidget(parent),
-  d_ptr(new KSettingsReportsPrivate)
+    QWidget(parent),
+    d_ptr(new KSettingsReportsPrivate)
 {
-  Q_D(KSettingsReports);
-  d->ui->setupUi(this);
+    Q_D(KSettingsReports);
+    d->ui->setupUi(this);
 
-  // keep initial (default) css file in mind
-  d->m_cssFileOld = KMyMoneySettings::cssFileDefault();
+    // keep initial (default) css file in mind
+    d->m_cssFileOld = KMyMoneySettings::cssFileDefault();
 
-  // set default css file in ksettingsreports dialog
-  d->ui->kcfg_CssFileDefault->setUrl(QUrl::fromLocalFile(KMyMoneySettings::cssFileDefault()));
+    // set default css file in ksettingsreports dialog
+    d->ui->kcfg_CssFileDefault->setUrl(QUrl::fromLocalFile(KMyMoneySettings::cssFileDefault()));
 
-  d->m_fileKLineEdit = d->ui->kcfg_CssFileDefault->lineEdit();
+    d->m_fileKLineEdit = d->ui->kcfg_CssFileDefault->lineEdit();
 
-  connect(d->ui->kcfg_CssFileDefault, &KUrlRequester::urlSelected,
-          this, &KSettingsReports::slotCssUrlSelected);
+    connect(d->ui->kcfg_CssFileDefault, &KUrlRequester::urlSelected,
+            this, &KSettingsReports::slotCssUrlSelected);
 
-  connect(d->m_fileKLineEdit, &QLineEdit::editingFinished,
-          this, &KSettingsReports::slotEditingFinished);
+    connect(d->m_fileKLineEdit, &QLineEdit::editingFinished,
+            this, &KSettingsReports::slotEditingFinished);
 }
 
 KSettingsReports::~KSettingsReports()
 {
-  Q_D(KSettingsReports);
-  delete d;
+    Q_D(KSettingsReports);
+    delete d;
 }
 
 

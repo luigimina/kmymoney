@@ -1,19 +1,7 @@
 /*
- * Copyright 2015-2016  Christian Dávid <christian-david@web.de>
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of
- * the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+    SPDX-FileCopyrightText: 2015-2016 Christian Dávid <christian-david@web.de>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #ifndef PAYEEIDENTIFIERMODEL_H
 #define PAYEEIDENTIFIERMODEL_H
@@ -34,42 +22,42 @@
  */
 class KMM_MYMONEY_EXPORT payeeIdentifierModel : public QAbstractItemModel
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  enum roles {
-    payeeName = Qt::UserRole, /**< MyMoneyPayee::name() */
-    isPayeeIdentifier = Qt::UserRole + 1, /**< refers index to payeeIdentifier (true) or MyMoneyPayee (false) */
-    payeeIdentifierType = Qt::UserRole + 2, /**< type of payeeIdentifier */
-    payeeIdentifier = Qt::UserRole + 3, /**< actual payeeIdentifier */
-    payeeIdentifierUserRole = Qt::UserRole + 4 /**< role to start with for inheriting models */
-  };
+    enum roles {
+        payeeName = Qt::UserRole, /**< MyMoneyPayee::name() */
+        isPayeeIdentifier = Qt::UserRole + 1, /**< refers index to payeeIdentifier (true) or MyMoneyPayee (false) */
+        payeeIdentifierType = Qt::UserRole + 2, /**< type of payeeIdentifier */
+        payeeIdentifier = Qt::UserRole + 3, /**< actual payeeIdentifier */
+        payeeIdentifierUserRole = Qt::UserRole + 4, /**< role to start with for inheriting models */
+    };
 
-  explicit payeeIdentifierModel(QObject* parent = 0);
-  QVariant data(const QModelIndex& index, int role) const final override;
-  int columnCount(const QModelIndex& parent) const final override;
-  int rowCount(const QModelIndex& parent) const final override;
-  QModelIndex parent(const QModelIndex& child) const final override;
-  QModelIndex index(int row, int column, const QModelIndex &parent) const final override;
-  Qt::ItemFlags flags(const QModelIndex &index) const final override;
+    explicit payeeIdentifierModel(QObject* parent = 0);
+    QVariant data(const QModelIndex& index, int role) const final override;
+    int columnCount(const QModelIndex& parent) const final override;
+    int rowCount(const QModelIndex& parent) const final override;
+    QModelIndex parent(const QModelIndex& child) const final override;
+    QModelIndex index(int row, int column, const QModelIndex &parent) const final override;
+    Qt::ItemFlags flags(const QModelIndex &index) const final override;
 
-  /**
-   * @brief Set which payeeIdentifier types to show
-   *
-   * @param filter list of payeeIdentifier types. An empty list leads to an empty model.
-   */
-  void setTypeFilter(QStringList filter);
+    /**
+     * @brief Set which payeeIdentifier types to show
+     *
+     * @param filter list of payeeIdentifier types. An empty list leads to an empty model.
+     */
+    void setTypeFilter(QStringList filter);
 
-  /** convenience overload for setTypeFilter(QStringList) */
-  void setTypeFilter(QString type);
+    /** convenience overload for setTypeFilter(QStringList) */
+    void setTypeFilter(QString type);
 
-  void loadData();
+    void loadData();
 
 private:
-  typedef QPair<QString, int> identId_t;
-  inline MyMoneyPayee payeeByIndex(const QModelIndex& index) const;
-  QStringList m_payeeIdentifierIds;
-  QStringList m_typeFilter;
+    typedef QPair<QString, int> identId_t;
+    inline MyMoneyPayee payeeByIndex(const QModelIndex& index) const;
+    QStringList m_payeeIdentifierIds;
+    QStringList m_typeFilter;
 };
 
 #endif // PAYEEIDENTIFIERMODEL_H

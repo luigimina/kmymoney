@@ -1,19 +1,7 @@
-/***************************************************************************
-                         interestcalculationwizardpage  -  description
-                            -------------------
-   begin                : Sun Jul 4 2010
-   copyright            : (C) 2010 by Fernando Vilas
-   email                : kmymoney-devel@kde.org
-***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2010 Fernando Vilas <kmymoney-devel@kde.org>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "interestcalculationwizardpage.h"
 
@@ -34,19 +22,19 @@ InterestCalculationWizardPage::InterestCalculationWizardPage(QWidget *parent)
     : QWizardPage(parent),
       ui(new Ui::InterestCalculationWizardPage)
 {
-  ui->setupUi(this);
-  ui->ButtonGroup5->setId(ui->m_interestOnReceptionButton, 0);
-  ui->ButtonGroup5->setId(ui->m_interestOnPaymentButton, 1);
+    ui->setupUi(this);
+    ui->ButtonGroup5->setId(ui->m_interestOnReceptionButton, 0);
+    ui->ButtonGroup5->setId(ui->m_interestOnPaymentButton, 1);
 
-  // Register the fields with the QWizard and connect the
-  // appropriate signals to update the "Next" button correctly
-  registerField("interestOnReceptionButton", ui->m_interestOnReceptionButton);
-  registerField("interestOnPaymentButton", ui->m_interestOnPaymentButton);
+    // Register the fields with the QWizard and connect the
+    // appropriate signals to update the "Next" button correctly
+    registerField("interestOnReceptionButton", ui->m_interestOnReceptionButton);
+    registerField("interestOnPaymentButton", ui->m_interestOnPaymentButton);
 
-  ui->m_interestOnReceptionButton->click();
+    ui->m_interestOnReceptionButton->click();
 }
 
 InterestCalculationWizardPage::~InterestCalculationWizardPage()
 {
-  delete ui;
+    delete ui;
 }

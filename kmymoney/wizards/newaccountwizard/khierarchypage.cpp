@@ -1,20 +1,8 @@
-/***************************************************************************
-                             khierarchypage.cpp
-                             -------------------
-    begin                : Tue Sep 25 2006
-    copyright            : (C) 2007 Thomas Baumgart
-    email                : Thomas Baumgart <ipwizard@users.sourceforge.net>
-                           (C) 2017 by Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
+/*
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "khierarchypage.h"
 #include "khierarchypage_p.h"
@@ -52,10 +40,10 @@ using namespace eMyMoney;
 
 namespace NewAccountWizard
 {
-  HierarchyPage::HierarchyPage(Wizard* wizard) :
+HierarchyPage::HierarchyPage(Wizard* wizard) :
     QWidget(wizard),
     WizardPage<Wizard>(*new HierarchyPagePrivate(wizard), StepParentAccount, this, wizard)
-  {
+{
     Q_D(HierarchyPage);
     d->ui->setupUi(this);
     d->m_filterProxyModel = nullptr;
@@ -65,62 +53,78 @@ namespace NewAccountWizard
     d->m_filterProxyModel->setHideEquityAccounts(!KMyMoneySettings::expertMode());
     d->m_filterProxyModel->addAccountGroup(QVector<Account::Type> {Account::Type::Asset, Account::Type::Liability});
     auto const model = Models::instance()->accountsModel();
-    d->m_filterProxyModel->setSourceModel(model);
     d->m_filterProxyModel->setSourceColumns(model->getColumns());
+    d->m_filterProxyModel->setSourceModel(model);
     d->m_filterProxyModel->setDynamicSortFilter(true);
 
     d->ui->m_parentAccounts->setModel(d->m_filterProxyModel);
     d->ui->m_parentAccounts->sortByColumn((int)eAccountsModel::Column::Account, Qt::AscendingOrder);
 
     connect(d->ui->m_parentAccounts->selectionModel(), &QItemSelectionModel::currentChanged, this, &HierarchyPage::parentAccountChanged);
-  }
+}
 
-  HierarchyPage::~HierarchyPage()
-  {
-  }
+HierarchyPage::~HierarchyPage()
+{
+}
 
-  void HierarchyPage::enterPage()
-  {
+void HierarchyPage::enterPage()
+{
     Q_D(HierarchyPage);
     // Ensure that the list reflects the Account Type
     MyMoneyAccount topAccount = d->m_wizard->d_func()->m_accountTypePage->parentAccount();
     d->m_filterProxyModel->clear();
     d->m_filterProxyModel->addAccountGroup(QVector<Account::Type> {topAccount.accountGroup()});
     d->ui->m_parentAccounts->expandAll();
-  }
 
-  KMyMoneyWizardPage* HierarchyPage::nextPage() const
-  {
+    const auto model = d->ui->m_parentAccounts->model();
+    const auto indexes =
+        model->match(model->index(0, 0), static_cast<int>(eAccountsModel::Role::ID), d->m_initialParentAccountId, 1, Qt::MatchFixedString | Qt::MatchRecursive);
+    if (!indexes.isEmpty()) {
+        const auto idx = indexes.first();
+        d->ui->m_parentAccounts->setCurrentIndex(idx);
+        d->ui->m_parentAccounts->selectionModel()->select(QItemSelection(idx, idx), QItemSelectionModel::Current | QItemSelectionModel::Rows);
+        d->ui->m_parentAccounts->scrollTo(idx, QAbstractItemView::EnsureVisible);
+    }
+}
+
+KMyMoneyWizardPage* HierarchyPage::nextPage() const
+{
     Q_D(const HierarchyPage);
     return d->m_wizard->d_func()->m_accountSummaryPage;
-  }
+}
 
-  QWidget* HierarchyPage::initialFocusWidget() const
-  {
+QWidget* HierarchyPage::initialFocusWidget() const
+{
     Q_D(const HierarchyPage);
     return d->ui->m_parentAccounts;
-  }
+}
 
-  const MyMoneyAccount& HierarchyPage::parentAccount()
-  {
+const MyMoneyAccount& HierarchyPage::parentAccount()
+{
     Q_D(HierarchyPage);
     auto dataVariant = d->ui->m_parentAccounts->model()->data(d->ui->m_parentAccounts->currentIndex(), (int)eAccountsModel::Role::Account);
     if (dataVariant.isValid()) {
         d->m_parentAccount = dataVariant.value<MyMoneyAccount>();
-      } else {
+    } else {
         d->m_parentAccount = MyMoneyAccount();
-      }
+    }
     return d->m_parentAccount;
-  }
+}
 
-  bool HierarchyPage::isComplete() const
-  {
+void HierarchyPage::setParentAccount(const QString& id)
+{
+    Q_D(HierarchyPage);
+    d->m_initialParentAccountId = id;
+}
+
+bool HierarchyPage::isComplete() const
+{
     Q_D(const HierarchyPage);
     return d->ui->m_parentAccounts->currentIndex().isValid();
-  }
+}
 
-  void HierarchyPage::parentAccountChanged()
-  {
+void HierarchyPage::parentAccountChanged()
+{
     completeStateChanged();
-  }
+}
 }

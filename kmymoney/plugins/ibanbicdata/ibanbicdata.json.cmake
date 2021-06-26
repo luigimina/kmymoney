@@ -24,14 +24,17 @@
                 "Name[pt_BR]": "Christian Dávid",
                 "Name[ru]": "Christian Dávid",
                 "Name[sk]": "Christian Dávid",
+                "Name[sl]": "Christian Dávid",
                 "Name[sv]": "Christian Dávid",
                 "Name[uk]": "Christian Dávid",
-                "Name[x-test]": "xxChristian Dávidxx"
+                "Name[x-test]": "xxChristian Dávidxx",
+                "Name[zh_CN]": "Christian Dávid"
             }
         ],
         "Description": "Adds predefined IBAN/BIC numbers to KMyMoney",
         "Description[ca@valencia]": "Afig números IBAN/BIC predefinits al KMyMoney",
         "Description[ca]": "Afegeix números IBAN/BIC predefinits al KMyMoney",
+        "Description[de]": "Fügt vordefinierte IBAN- und BIC-Nummern zu KMyMoney hinzu",
         "Description[en_GB]": "Adds predefined IBAN/BIC numbers to KMyMoney",
         "Description[es]": "Añade números IBAN/BIC predefinidos a KMyMoney",
         "Description[et]": "IBAN/BIC etteantud numbrite lisamine KMyMoneys",
@@ -46,9 +49,11 @@
         "Description[pt]": "Adiciona os números IBAN/BIC predefinidos ao KMyMoney",
         "Description[pt_BR]": "Adiciona números IBAN/BIC pré-definidos no KMyMoney",
         "Description[sk]": "Pridá preddefinované IBAN/BIC čísla do KMyMoney",
+        "Description[sl]": "V KMyMoney doda vnaprej določene številke IBAN/BIC",
         "Description[sv]": "Lägger till fördefinierade IBAN/BIC-nummer i KMyMoney",
         "Description[uk]": "Попередньо визначені номери IBAN/BIC у KMyMoney",
         "Description[x-test]": "xxAdds predefined IBAN/BIC numbers to KMyMoneyxx",
+        "Description[zh_CN]": "为 KMyMoney 添加预定义的国际银行账号/银行识别码",
         "EnabledByDefault": true,
         "Icon": "server-database",
         "Id": "ibanbicdata",
@@ -72,9 +77,11 @@
         "Name[pt]": "Dados do IBAN/BIC",
         "Name[pt_BR]": "Dados IBAN/BIC",
         "Name[sk]": "IBAN/BIC Údaje",
+        "Name[sl]": "Podatki IBAN/BIC",
         "Name[sv]": "IBAN- och BIC-data",
         "Name[uk]": "Дані IBAN та BIC",
         "Name[x-test]": "xxIBAN/BIC Dataxx",
+        "Name[zh_CN]": "国际银行账号/银行识别码数据",
         "ServiceTypes": [
             "KMyMoney/Plugin"
         ],
