@@ -1,5 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2010-2014 Cristian One ț <onet.cristian@gmail.com>
+    SPDX-FileCopyrightText: 2010-2014 Cristian Oneț <onet.cristian@gmail.com>
     SPDX-FileCopyrightText: 2017-2018 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -196,6 +196,7 @@ void KMyMoneyAccountTreeView::keyPressEvent(QKeyEvent *event)
     Q_D(KMyMoneyAccountTreeView);
     if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter) {
         d->openIndex(currentIndex());
+        emit returnPressed();
         event->accept();
     } else {
         QTreeView::keyPressEvent(event);

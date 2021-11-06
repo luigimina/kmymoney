@@ -44,6 +44,10 @@
 #include "misc/webconnect.h"
 #include "platformtools.h"
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 #ifdef KMM_DEBUG
 #include "mymoneyutils.h"
 #include "mymoneytracer.h"
@@ -65,6 +69,14 @@ int main(int argc, char *argv[])
     // https://doc.qt.io/qt-5/qhash.html#algorithmic-complexity-attacks
     // for details.
     qSetGlobalQHashSeed(0);
+#endif
+
+#ifdef Q_OS_WIN
+    // enable console logging on Windows
+    if (AttachConsole(ATTACH_PARENT_PROCESS)) {
+        freopen("CONOUT$", "w", stdout);
+        freopen("CONOUT$", "w", stderr);
+    }
 #endif
 
     /**
@@ -98,8 +110,8 @@ int main(int argc, char *argv[])
         aboutData.setupCommandLine(&parser);
 
         // language
-        //    const QCommandLineOption langOption(QStringLiteral("lang"), i18n("language to be used"));
-        //    parser.addOption(langOption);
+        const QCommandLineOption langOption(QStringLiteral("lang"), i18n("language to be used"), "lang");
+        parser.addOption(langOption);
 
         // no file
         const QCommandLineOption noFileOption(QStringLiteral("n"), i18n("do not open last used file"));
@@ -129,19 +141,20 @@ int main(int argc, char *argv[])
         parser.addPositionalArgument(QStringLiteral("url"), i18n("file to open"));
 
         /**
-         * do the command line parsing
+         * do the command line parsing (and handle --help and --version)
          */
-        parser.parse(QApplication::arguments());
+        parser.process(QApplication::arguments());
 
-        bool ishelpSet = parser.isSet(QStringLiteral("help"));
-        if (ishelpSet || parser.isSet(QStringLiteral("author")) || parser.isSet(QStringLiteral("license"))) {
+        if (parser.isSet(QStringLiteral("author")) || parser.isSet(QStringLiteral("license"))) {
             aboutData = initializeCreditsData();
-            if (ishelpSet)
-                parser.showHelp();
         }
 
-        if (parser.isSet(QStringLiteral("version")))
-            parser.showVersion();
+        if (parser.isSet(QStringLiteral("lang"))) {
+            QString language = parser.value(langOption);
+            if (!language.isEmpty()) {
+                KLocalizedString::setLanguages(QStringList() << language);
+            }
+        }
 
         /**
          * handle standard options
@@ -210,13 +223,6 @@ int main(int argc, char *argv[])
         MyMoneyMoney::setPositivePrefixCurrencySymbol(true);
         break;
     }
-
-//  QString language = parser.value(langOption);
-//  if (!language.isEmpty()) {
-    //if (!KLocale::global()->setLanguage(QStringList() << language)) {
-    //  qWarning("Unable to select language '%s'. This has one of two reasons:\n\ta) the standard KDE message catalog is not installed\n\tb) the KMyMoney message catalog is not installed", qPrintable(language));
-    //}
-//  }
 
     kmymoney = new KMyMoneyApp();
 
@@ -415,8 +421,8 @@ static void migrateConfigFiles()
         };
 
         for (const auto& sConfigName : qAsConst(sConfigNames)) {
-            const auto sOldConfigFilename = sOldMainConfigPath + sConfigName;
-            const auto sNewConfigFilename = sMainConfigPath + configNamesChange.value(sConfigName, sConfigName);
+            const QString sOldConfigFilename = sOldMainConfigPath + sConfigName;
+            const QString sNewConfigFilename = sMainConfigPath + configNamesChange.value(sConfigName, sConfigName);
             if (QFile::exists(sOldConfigFilename)) {
                 if (QFile::copy(sOldConfigFilename, sNewConfigFilename))
                     QFile::remove(sOldConfigFilename);

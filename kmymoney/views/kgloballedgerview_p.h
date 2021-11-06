@@ -1,5 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2006 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2006 Thomas Baumgart <ipwizard@users.sourceforge.net>
     SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -413,7 +413,7 @@ public:
         // TODO: check why the invalidate is needed here
         m_filterProxyModel->invalidate();
         m_filterProxyModel->sort((int)eAccountsModel::Column::Account);
-        m_filterProxyModel->setHideClosedAccounts(KMyMoneySettings::hideClosedAccounts() && !KMyMoneySettings::showAllAccounts());
+        m_filterProxyModel->setHideClosedAccounts(!KMyMoneySettings::showAllAccounts());
         m_filterProxyModel->setHideEquityAccounts(!KMyMoneySettings::expertMode());
         m_accountComboBox->expandAll();
 
@@ -1117,29 +1117,6 @@ public:
     {
         if (m_register->focusItem() == 0)
             return false;
-
-        bool rc = true;
-        if (list.warnLevel() == KMyMoneyRegister::SelectedTransaction::OneAccountClosed) {
-            // scan all splits for the first closed account
-            QString closedAccount;
-            foreach(const auto selectedTransaction, list) {
-                foreach(const auto split, selectedTransaction.transaction().splits()) {
-                    const auto id = split.accountId();
-                    const auto acc = MyMoneyFile::instance()->account(id);
-                    if (acc.isClosed()) {
-                        closedAccount = acc.name();
-                        // we're done
-                        rc = false;
-                        break;
-                    }
-                }
-                if(!rc)
-                    break;
-            }
-            tooltip = i18n("Cannot process transactions in account %1, which is closed.", closedAccount);
-            showTooltip(tooltip);
-            return false;
-        }
 
         if (!m_register->focusItem()->isSelected()) {
             tooltip = i18n("Cannot process transaction with focus if it is not selected.");

@@ -405,28 +405,30 @@ public:
         for (it = m_transactionList.constBegin(); it != m_transactionList.constEnd(); ++it) {
             const MyMoneySplit& split = (*it).second;
             MyMoneyAccount acc = file->account(split.accountId());
-            ++splitCount;
-            uniqueMap[(*it).first.id()]++;
+            if (!acc.isIncomeExpense()) {
+                ++splitCount;
+                uniqueMap[(*it).first.id()]++;
 
-            KMyMoneyRegister::Register::transactionFactory(ui->m_register, (*it).first, (*it).second, uniqueMap[(*it).first.id()]);
+                KMyMoneyRegister::Register::transactionFactory(ui->m_register, (*it).first, (*it).second, uniqueMap[(*it).first.id()]);
 
-            // take care of foreign currencies
-            MyMoneyMoney val = split.shares().abs();
-            if (acc.currencyId() != base.id()) {
-                const MyMoneyPrice &price = file->price(acc.currencyId(), base.id());
-                // in case the price is valid, we use it. Otherwise, we keep
-                // a flag that tells us that the balance is somewhat inaccurate
-                if (price.isValid()) {
-                    val *= price.rate(base.id());
-                } else {
-                    balanceAccurate = false;
+                // take care of foreign currencies
+                MyMoneyMoney val = split.shares().abs();
+                if (acc.currencyId() != base.id()) {
+                    const MyMoneyPrice& price = file->price(acc.currencyId(), base.id());
+                    // in case the price is valid, we use it. Otherwise, we keep
+                    // a flag that tells us that the balance is somewhat inaccurate
+                    if (price.isValid()) {
+                        val *= price.rate(base.id());
+                    } else {
+                        balanceAccurate = false;
+                    }
                 }
-            }
 
-            if (split.shares().isNegative()) {
-                payment += val;
-            } else {
-                deposit += val;
+                if (split.shares().isNegative()) {
+                    payment += val;
+                } else {
+                    deposit += val;
+                }
             }
         }
         balance = deposit - payment;
@@ -458,6 +460,13 @@ public:
         Q_Q(KPayeesView);
         if (!(type >= 0 && type < KPayeeReassignDlg::TypeCount))
             return false;
+
+        auto addPatternOrName = [&](const QString& pattern) {
+            if (pattern.startsWith(QLatin1String("^")) && pattern.startsWith(QLatin1String("^"))) {
+                return pattern;
+            }
+            return QRegularExpression::escape(pattern);
+        };
 
         const auto file = MyMoneyFile::instance();
 
@@ -549,7 +558,7 @@ public:
                 } catch (const MyMoneyException &) {
                     if (type == KPayeeReassignDlg::TypeMerge) {
                         // it's ok to use payee_id for both arguments since the first is const,
-                        // so it's garantee not to change its content
+                        // so it's guaranteed not to change its content
                         if (!KMyMoneyUtils::newPayee(payee_id, payee_id))
                             return false; // the user aborted the dialog, so let's abort as well
                         newPayee = file->payee(payee_id);
@@ -624,14 +633,28 @@ public:
             bool ignorecase;
             QStringList payeeNames;
             auto matchType = newPayee.matchData(ignorecase, payeeNames);
-            QStringList deletedPayeeNames;
+            QStringList deletedMatchPattern;
 
             // now loop over all selected payees and remove them
             for (QList<MyMoneyPayee>::iterator it = m_selectedPayeesList.begin();
                     it != m_selectedPayeesList.end(); ++it) {
                 if (newPayee.id() != (*it).id()) {
                     if (addToMatchList) {
-                        deletedPayeeNames << (*it).name();
+                        QStringList matchPattern;
+                        auto mType = (*it).matchData(ignorecase, matchPattern);
+                        switch (mType) {
+                        case eMyMoney::Payee::MatchType::NameExact:
+                            matchPattern << QStringLiteral("^%1$").arg((*it).name());
+                            break;
+                        case eMyMoney::Payee::MatchType::Name:
+                            matchPattern << (*it).name();
+                            break;
+                        default:
+                            break;
+                        }
+                        if (!matchPattern.isEmpty()) {
+                            deletedMatchPattern << matchPattern;
+                        }
                     }
                     file->removePayee(*it);
                 }
@@ -642,13 +665,13 @@ public:
                 ignorecase = true;
 
             // update the destination payee if this was requested by the user
-            if (addToMatchList && deletedPayeeNames.count() > 0) {
+            if (addToMatchList && deletedMatchPattern.count() > 0) {
                 // add new names to the list
                 // TODO: it would be cool to somehow shrink the list to make better use
                 //       of regular expressions at this point. For now, we leave this task
                 //       to the user himeself.
                 QStringList::const_iterator it_n;
-                for (it_n = deletedPayeeNames.constBegin(); it_n != deletedPayeeNames.constEnd(); ++it_n) {
+                for (it_n = deletedMatchPattern.constBegin(); it_n != deletedMatchPattern.constEnd(); ++it_n) {
                     if (matchType == eMyMoney::Payee::MatchType::Key) {
                         // make sure we really need it and it is not caught by an existing regexp
                         QStringList::const_iterator it_k;
@@ -657,10 +680,11 @@ public:
                             if (exp.indexIn(*it_n) != -1)
                                 break;
                         }
-                        if (it_k == payeeNames.constEnd())
-                            payeeNames << QRegExp::escape(*it_n);
+                        if (it_k == payeeNames.constEnd()) {
+                            payeeNames << addPatternOrName(*it_n);
+                        }
                     } else if (payeeNames.contains(*it_n) == 0)
-                        payeeNames << QRegExp::escape(*it_n);
+                        payeeNames << addPatternOrName(*it_n);
                 }
 
                 // and update the payee in the engine context

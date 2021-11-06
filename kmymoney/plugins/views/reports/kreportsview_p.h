@@ -130,7 +130,7 @@ public:
      */
     void updateDataRange();
     void copyToClipboard();
-    void saveAs(const QString& filename, bool includeCSS = false);
+    void saveAs(const QString& filename, const QString& selectedMimeType, bool includeCSS);
     void updateReport();
     QString createTable(const QString& links = QString());
     const ReportControl* control() const {
@@ -221,26 +221,13 @@ KReportTab::KReportTab(QTabWidget* parent, const MyMoneyReport& report, const KR
     m_layout->setStretch(1, 10);
     m_layout->setStretch(2, 10);
 
-    connect(m_control->ui->buttonChart, &QAbstractButton::clicked,
-            eventHandler, &KReportsView::slotToggleChart);
-
-    connect(m_control->ui->buttonConfigure, &QAbstractButton::clicked,
-            eventHandler, &KReportsView::slotConfigure);
-
-    connect(m_control->ui->buttonNew, &QAbstractButton::clicked,
-            eventHandler, &KReportsView::slotDuplicate);
-
-    connect(m_control->ui->buttonCopy, &QAbstractButton::clicked,
-            eventHandler, &KReportsView::slotCopyView);
-
-    connect(m_control->ui->buttonExport, &QAbstractButton::clicked,
-            eventHandler, &KReportsView::slotSaveView);
-
-    connect(m_control->ui->buttonDelete, &QAbstractButton::clicked,
-            eventHandler, &KReportsView::slotDelete);
-
-    connect(m_control->ui->buttonClose, &QAbstractButton::clicked,
-            eventHandler, &KReportsView::slotCloseCurrent);
+    connect(m_control->ui->buttonChart, &QAbstractButton::clicked, eventHandler, &KReportsView::slotToggleChart);
+    connect(m_control->ui->buttonConfigure, &QAbstractButton::clicked, eventHandler, &KReportsView::slotConfigure);
+    connect(m_control->ui->buttonNew, &QAbstractButton::clicked, eventHandler, &KReportsView::slotDuplicate);
+    connect(m_control->ui->buttonCopy, &QAbstractButton::clicked, eventHandler, &KReportsView::slotCopyView);
+    connect(m_control->ui->buttonExport, &QAbstractButton::clicked, eventHandler, &KReportsView::slotExportView);
+    connect(m_control->ui->buttonDelete, &QAbstractButton::clicked, eventHandler, &KReportsView::slotDelete);
+    connect(m_control->ui->buttonClose, &QAbstractButton::clicked, eventHandler, &KReportsView::slotCloseCurrent);
 
 #ifdef ENABLE_WEBENGINE
     connect(m_tableView->page(), &QWebEnginePage::urlChanged,
@@ -326,12 +313,12 @@ void KReportTab::copyToClipboard()
     QApplication::clipboard()->setMimeData(pMimeData);
 }
 
-void KReportTab::saveAs(const QString& filename, bool includeCSS)
+void KReportTab::saveAs(const QString& filename, const QString& selectedMimeType, bool includeCSS)
 {
     QFile file(filename);
 
     if (file.open(QIODevice::WriteOnly)) {
-        if (QFileInfo(filename).suffix().toLower() == QLatin1String("csv")) {
+        if (selectedMimeType == QStringLiteral("text/csv")) {
             QTextStream(&file) << m_table->renderReport(QLatin1String("csv"), m_encoding, QString());
         } else {
             QString table =
@@ -1041,14 +1028,12 @@ public:
         }
         {
             ReportGroup list("CashFlow", i18n("Cash Flow"));
-            list.push_back(MyMoneyReport(
-                               eMyMoney::Report::RowType::CashFlow,
-                               eMyMoney::Report::QueryColumn::Number | eMyMoney::Report::QueryColumn::Payee | eMyMoney::Report::QueryColumn::Account,
-                               TransactionFilter::Date::YearToDate,
-                               eMyMoney::Report::DetailLevel::All,
-                               i18n("Cash Flow Transactions This Month"),
-                               i18n("Default Report")
-                           ));
+            list.push_back(MyMoneyReport(eMyMoney::Report::RowType::CashFlow,
+                                         eMyMoney::Report::QueryColumn::Number | eMyMoney::Report::QueryColumn::Payee | eMyMoney::Report::QueryColumn::Account,
+                                         TransactionFilter::Date::CurrentMonth,
+                                         eMyMoney::Report::DetailLevel::All,
+                                         i18n("Cash Flow Transactions This Month"),
+                                         i18n("Default Report")));
             groups.push_back(list);
         }
         {

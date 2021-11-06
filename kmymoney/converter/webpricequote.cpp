@@ -1,6 +1,7 @@
 /*
-    SPDX-FileCopyrightText: 2004 Ace Jones <Ace Jones <acejones@users.sourceforge.net>>
-    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>>
+    SPDX-FileCopyrightText: 2004 Ace Jones <acejones@users.sourceforge.net>
+    SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+    SPDX-FileCopyrightText: 2021 Dawid Wróbel <me@dawidwrobel.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
@@ -678,6 +679,16 @@ const QMap<QString, WebPriceQuoteSource> WebPriceQuote::defaultQuoteSources()
                              "%y %m %d"                   // date format
                                                 );
 
+    result["Puls Biznesu - Funds"] = WebPriceQuoteSource("Puls Biznesu - Funds",
+                                                         "http://notowania.pb.pl/instrument/%1",
+                                                         QString(),
+                                                         QString(), // webIDRegExp
+                                                         WebPriceQuoteSource::identifyBy::IdentificationNumber,
+                                                         "(\\d+,\\d{2})\\D+\\(\\d{4}-\\d{2}-\\d{2}\\)", // price regexp
+                                                         "\\d+,\\d{2}\\D+\\((\\d{4}-\\d{2}-\\d{2})\\)", // date regexp
+                                                         "%y-%m-%d" // date format
+    );
+
     // The following price quote was contributed by
     // Piotr Adacha <piotr.adacha@googlemail.com>
 
@@ -767,6 +778,8 @@ const QStringList WebPriceQuote::quoteSourcesNative()
     QRegularExpressionMatch match;
 
     // get rid of all 'non online quote source' entries
+    // and only keep the names of the quote sources in the list
+    // (i.e. remove the leading "Online-Quote-Source-")
     for (it = groups.begin(); it != groups.end(); it = groups.erase(it)) {
         if ((*it).indexOf(onlineQuoteSource, 0, &match) >= 0) {
             // Insert the name part
@@ -798,7 +811,7 @@ const QStringList WebPriceQuote::quoteSourcesNative()
 
     // if the user has OLD quote source based only on symbols (and not ISIN)
     // now is the time to convert it to the new system.
-    foreach (const auto group, groups) {
+    for (const auto& group : groups) {
         KConfigGroup grp = kconfig->group(QString(QLatin1String("Online-Quote-Source-%1")).arg(group));
         if (grp.hasKey("SymbolRegex")) {
             grp.writeEntry("IDRegex", grp.readEntry("SymbolRegex"));
@@ -889,6 +902,7 @@ void WebPriceQuoteSource::write() const
     else
         grp.deleteEntry("SkipStripping");
     kconfig->sync();
+    kconfig->reparseConfiguration();
 }
 
 void WebPriceQuoteSource::rename(const QString& name)
@@ -903,6 +917,7 @@ void WebPriceQuoteSource::remove() const
     KSharedConfigPtr kconfig = KSharedConfig::openConfig();
     kconfig->deleteGroup(QString("Online-Quote-Source-%1").arg(m_name));
     kconfig->sync();
+    kconfig->reparseConfiguration();
 }
 
 //

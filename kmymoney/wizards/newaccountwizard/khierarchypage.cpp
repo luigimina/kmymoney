@@ -1,5 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2007 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <ipwizard@users.sourceforge.net>
     SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -61,6 +61,7 @@ HierarchyPage::HierarchyPage(Wizard* wizard) :
     d->ui->m_parentAccounts->sortByColumn((int)eAccountsModel::Column::Account, Qt::AscendingOrder);
 
     connect(d->ui->m_parentAccounts->selectionModel(), &QItemSelectionModel::currentChanged, this, &HierarchyPage::parentAccountChanged);
+    connect(d->ui->m_parentAccounts, &KMyMoneyAccountTreeView::returnPressed, wizard, &KMyMoneyWizard::selectNextPage);
 }
 
 HierarchyPage::~HierarchyPage()

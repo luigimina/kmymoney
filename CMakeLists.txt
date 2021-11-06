@@ -1,6 +1,10 @@
+# For all the configurable CMake switches, please see https://invent.kde.org/office/kmymoney/-/wikis/home#cmake-switches
+
 # The CMake version we require
 cmake_minimum_required(VERSION 3.12)
+set(ECM_MINIMUM_VERSION 5.42)
 
+set(KMYMONEY_STABLE_BRANCH TRUE)
 set(RELEASE_SERVICE_VERSION_MAJOR "5")
 set(RELEASE_SERVICE_VERSION_MINOR "1")
 set(RELEASE_SERVICE_VERSION_MICRO "2")
@@ -11,11 +15,26 @@ project(KMyMoney VERSION "${RELEASE_SERVICE_VERSION}" LANGUAGES CXX)
 
 # Determine the GIT reference (if we're based on GIT)
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
-  execute_process(COMMAND git rev-parse --short HEAD WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" OUTPUT_VARIABLE VERSION_SUFFIX OUTPUT_STRIP_TRAILING_WHITESPACE)
+  execute_process(COMMAND git rev-parse --short HEAD
+          WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+          OUTPUT_VARIABLE VERSION_SUFFIX
+          OUTPUT_STRIP_TRAILING_WHITESPACE)
   set(VERSION_SUFFIX "-${VERSION_SUFFIX}")
   # Add variables which are similar to the build in names of cmake
   set(PROJECT_VERSION_SUFFIX "${VERSION_SUFFIX}")
   set(${PROJECT_NAME}_VERSION_SUFFIX "${VERSION_SUFFIX}")
+
+  execute_process(
+          COMMAND git rev-parse --abbrev-ref HEAD
+          WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+          OUTPUT_VARIABLE GIT_BRANCH
+          OUTPUT_STRIP_TRAILING_WHITESPACE)
+  string(TOLOWER "${GIT_BRANCH}" GIT_BRANCH)
+  message(STATUS "Working on branch ${GIT_BRANCH}")
+  if ("${GIT_BRANCH}" MATCHES "master|main")
+      set(KMYMONEY_STABLE_BRANCH FALSE)
+      message(STATUS "Detected an unstable ${GIT_BRANCH} branch")
+  endif()
 elseif(DEFINED VERSION_SUFFIX)
   string(REGEX REPLACE "-*(.+)" "\\1" DASHFREE_SUFFIX "${VERSION_SUFFIX}")
   set(PROJECT_VERSION_SUFFIX "-${DASHFREE_SUFFIX}")
@@ -44,13 +63,17 @@ if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0.0)
 endif()
 
 set(APPLE_SUPPRESS_X11_WARNING TRUE)
-find_package(ECM 5.42 REQUIRED NO_MODULE)
+find_package(ECM ${ECM_MINIMUM_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 include(KDEInstallDirs)
+if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/po)
+    # Block KDE's translation infrastructure, we'll use our own
+    add_custom_target(fetch-translations)
+endif()
 include(KDECMakeSettings)
 # reimplementation because kmymoney app image is bound to ECM 5.36
-if("${ECM_GLOBAL_FIND_VERSION}" VERSION_LESS "5.38.0")
+if("${ECM_MINIMUM_VERSION}" VERSION_LESS "5.38.0")
   set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
   set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
   if(WIN32)
@@ -71,6 +94,12 @@ include(KMyMoneyMacros)
 find_package(PkgConfig)
 
 set (OPT_KF5_COMPONENTS DocTools Holidays Contacts Akonadi IdentityManagement Activities)
+set (REQ_KF5_COMPONENTS Archive CoreAddons Config ConfigWidgets I18n Completion KCMUtils ItemModels ItemViews Service Wallet XmlGui TextWidgets Notifications KIO)
+
+if (KMYMONEY_STABLE_BRANCH)
+  list(APPEND REQ_KF5_COMPONENTS IconThemes)
+endif()
+
 find_package(Gpgmepp)
 if (Gpgmepp_FOUND)
   set(GPG_FOUND TRUE)
@@ -90,10 +119,9 @@ find_package(Qt5 5.6 OPTIONAL_COMPONENTS
   Sql Concurrent QuickWidgets)
 
 find_package(KF5 5.2 REQUIRED COMPONENTS
-  Archive CoreAddons Config ConfigWidgets I18n Completion KCMUtils ItemModels ItemViews Service Wallet IconThemes XmlGui TextWidgets Notifications KIO)
+  ${REQ_KF5_COMPONENTS})
 find_package(KF5 5.2 OPTIONAL_COMPONENTS
   ${OPT_KF5_COMPONENTS})
-
 
 if(LibAlkimia5_DIR)
   set(_LibAlkimia5_DIR ${LibAlkimia5_DIR})
@@ -124,6 +152,7 @@ cmake_dependent_option(ENABLE_GPG "Enable GPG support." ON
 add_feature_info("Encryption" ENABLE_GPG "Allows to store your financial data using strong GPG encryption.")
 
 add_definitions(-DQT_USE_QSTRINGBUILDER -DQT_NO_CAST_TO_ASCII -DQT_NO_URL_CAST_FROM_STRING)
+add_definitions(-DTRANSLATION_DOMAIN=\"kmymoney\")
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -266,12 +295,15 @@ cmake_dependent_option(ENABLE_KBANKING "Enable KBanking plugin" ON
 
 add_feature_info(KBanking ENABLE_KBANKING "Interface for the following online banking protocols: HBCI, EBICS, OFX Direct Connect, Paypal")
 
-# check for optional Weboob support
-find_package (Python3 COMPONENTS Interpreter Development)
+# check for optional Woob support
+find_package(Python3 COMPONENTS Interpreter Development)
+set_package_properties(Python3 PROPERTIES
+        TYPE OPTIONAL
+        PURPOSE "Required by Woob plugin.")
 
-cmake_dependent_option(ENABLE_WEBOOB "Enable Weboob plugin" ON
-                       "Python3_FOUND;Qt5Concurrent_FOUND" OFF)
-add_feature_info(Weboob ENABLE_WEBOOB "Online banking interface using Weboob.")
+cmake_dependent_option(ENABLE_WOOB "Enable Woob plugin" ON
+                       "Python3_FOUND;Qt5Concurrent_FOUND;NOT IS_APPIMAGE" OFF)
+add_feature_info(Woob ENABLE_WOOB "Online banking interface using Woob.")
 
 
 # check for optional ical support
@@ -301,6 +333,54 @@ add_feature_info("prefix.sh" KDE_INSTALL_PREFIX_SCRIPT "create prefix.sh script 
 
 # TODO: this should be removed
 enable_testing()
+
+# Source translations (adapted from Krita)
+find_package(Python3 COMPONENTS Interpreter)
+set_package_properties(Python3 PROPERTIES
+        TYPE OPTIONAL
+        PURPOSE "Required to manually parse and fetch available translations.")
+
+find_package(Subversion 1.4)
+set_package_properties(Subversion PROPERTIES
+        TYPE OPTIONAL
+        PURPOSE "Required to access the KDE l10n SVN repository.")
+
+cmake_dependent_option(FETCH_TRANSLATIONS "Retrieve translations before building KMyMoney" OFF
+        "Python3_FOUND;Subversion_FOUND" OFF)
+add_feature_info("Fetch translations" FETCH_TRANSLATIONS "Downloads KMyMoney translations from KDE l10n SVN")
+
+if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/po AND FETCH_TRANSLATIONS)
+    set(TRANSLATIONS ${CMAKE_CURRENT_BINARY_DIR}/po)
+        if (KMYMONEY_STABLE_BRANCH)
+            set(tr_EXTRA_FLAGS "")
+        else()
+            set(tr_EXTRA_FLAGS "--unstable")
+        endif()
+
+    get_filename_component(absolute_podir ${TRANSLATIONS} ABSOLUTE)
+    string(MD5 pathmd5 ${absolute_podir})
+
+    find_file (KMYMONEY_PO_SCRIPT copy_po.py PATHS ${CMAKE_CURRENT_SOURCE_DIR}/packaging REQUIRED)
+    if (NOT TARGET fetch-${pathmd5})
+        file(MAKE_DIRECTORY ${TRANSLATIONS})
+
+        add_custom_target(fetch-${pathmd5}
+                COMMENT "Retrieving translations..."
+                COMMAND ${Python3_EXECUTABLE} ${KMYMONEY_PO_SCRIPT} ${tr_EXTRA_FLAGS}
+                BYPRODUCTS ${TRANSLATIONS}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                )
+    endif()
+endif()
+
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/po OR EXISTS ${CMAKE_CURRENT_BINARY_DIR}/po )
+    find_package(KF5I18n CONFIG REQUIRED)
+    ki18n_install(po)
+    if (TRANSLATIONS)
+        add_dependencies(pofiles-${pathmd5} fetch-${pathmd5})
+        add_dependencies(tsfiles-${pathmd5} fetch-${pathmd5})
+    endif()
+endif()
 
 ######################### Settings ##########################
 

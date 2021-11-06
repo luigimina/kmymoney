@@ -1,5 +1,5 @@
 /*
-    SPDX-FileCopyrightText: 2007 Thomas Baumgart <Thomas Baumgart <ipwizard@users.sourceforge.net>>
+    SPDX-FileCopyrightText: 2007 Thomas Baumgart <ipwizard@users.sourceforge.net>
     SPDX-FileCopyrightText: 2017 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -146,7 +146,8 @@ public:
         ui->m_securitiesTree->setModel(m_securitiesProxyModel);
         ui->m_securitiesTree->header()->restoreState(cfgHeader);
 
-        ui->m_searchSecurities->setProxy(m_securitiesProxyModel);
+        q->connect(ui->m_searchSecurities, &QLineEdit::textChanged, m_securitiesProxyModel, &QSortFilterProxyModel::setFilterFixedString);
+
         ui->m_deleteSecurityButton->setIcon(Icons::get(Icon::EditDelete));
         ui->m_editSecurityButton->setIcon(Icons::get(Icon::DocumentEdit));
 
@@ -165,11 +166,11 @@ public:
     void loadInvestmentTab()
     {
         Q_Q(KInvestmentView);
-        m_equitiesProxyModel->setHideClosedAccounts(KMyMoneySettings::hideClosedAccounts() && !KMyMoneySettings::showAllAccounts());
+        m_equitiesProxyModel->setHideClosedAccounts(!KMyMoneySettings::showAllAccounts());
         m_equitiesProxyModel->setHideZeroBalanceAccounts(KMyMoneySettings::hideZeroBalanceEquities());
         m_equitiesProxyModel->invalidate();
 
-        m_accountsProxyModel->setHideClosedAccounts(KMyMoneySettings::hideClosedAccounts() && !KMyMoneySettings::showAllAccounts());
+        m_accountsProxyModel->setHideClosedAccounts(!KMyMoneySettings::showAllAccounts());
         m_accountsProxyModel->invalidate();
 
         if (!m_idInvAcc.isEmpty()) {                                          // check if account to be selected exist

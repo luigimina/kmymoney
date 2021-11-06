@@ -92,10 +92,11 @@
 class KBanking::Private
 {
 public:
-    Private() :
-        passwordCacheTimer(nullptr),
-        jobList(),
-        fileId()
+    Private()
+        : passwordCacheTimer(nullptr)
+        , gui(nullptr)
+        , jobList()
+        , fileId()
     {
         QString gwenProxy = QString::fromLocal8Bit(qgetenv("GWEN_PROXY"));
         if (gwenProxy.isEmpty()) {
@@ -151,9 +152,10 @@ public:
     }
 
     QTimer *passwordCacheTimer;
-    QMap<QString, QStringList>  jobList;
-    QString                     fileId;
-    QSet<QAction *>             actions;
+    gwenKdeGui* gui;
+    QMap<QString, QStringList> jobList;
+    QString fileId;
+    QSet<QAction*> actions;
 };
 
 
@@ -190,10 +192,9 @@ void KBanking::plug()
     connect(d->passwordCacheTimer, &QTimer::timeout, this, &KBanking::slotClearPasswordCache);
 
     if (m_kbanking) {
-        //! @todo when is gwenKdeGui deleted?
-        gwenKdeGui *gui = new gwenKdeGui();
-        GWEN_Gui_SetGui(gui->getCInterface());
-        GWEN_Gui_SetLogHookFn(gui->getCInterface(), &KBanking::Private::gwenLogHook);
+        d->gui = new gwenKdeGui;
+        GWEN_Gui_SetGui(d->gui->getCInterface());
+        GWEN_Gui_SetLogHookFn(d->gui->getCInterface(), &KBanking::Private::gwenLogHook);
         if (qEnvironmentVariableIsEmpty("GWEN_LOGLEVEL")) {
             GWEN_Logger_SetLevel(GWEN_LOGDOMAIN, GWEN_LoggerLevel_Warning);
         }
@@ -213,7 +214,7 @@ void KBanking::plug()
 #endif
 
             // get certificate handling and dialog settings management
-            AB_Gui_Extend(gui->getCInterface(), m_kbanking->getCInterface());
+            AB_Gui_Extend(d->gui->getCInterface(), m_kbanking->getCInterface());
 
             // create actions
             createActions();
@@ -238,8 +239,11 @@ void KBanking::unplug()
         m_kbanking->fini();
         delete m_kbanking;
     }
+    delete d->gui;
+    d->gui = nullptr;
+
     // remove and delete the actions for this plugin
-    for (const auto& action : d->actions) {
+    for (const auto& action : qAsConst(d->actions)) {
         actionCollection()->removeAction(action);
     }
     qDebug("Plugins: kbanking unplugged");
@@ -324,7 +328,7 @@ void KBanking::createActions()
 #ifdef KMM_DEBUG
     QAction *openChipTanDialog = actionCollection()->addAction("open_chiptan_dialog");
     openChipTanDialog->setText("Open ChipTan Dialog");
-    connect(openChipTanDialog, &QAction::triggered, [&]() {
+    connect(openChipTanDialog, &QAction::triggered, this, [&]() {
         auto dlg = new chipTanDialog();
         dlg->setHhdCode("0F04871100030333555414312C32331D");
         dlg->setInfoText("<html><h1>Test Graphic for debugging</h1><p>The encoded data is</p><p>Account Number: <b>335554</b><br/>Amount: <b>1,23</b></p></html>");
@@ -336,7 +340,7 @@ void KBanking::createActions()
 
     QAction *openPhotoTanDialog = actionCollection()->addAction("open_phototan_dialog");
     openPhotoTanDialog->setText("Open PhotoTan Dialog");
-    connect(openPhotoTanDialog, &QAction::triggered, [&]() {
+    connect(openPhotoTanDialog, &QAction::triggered, this, [&]() {
         auto dlg = new photoTanDialog();
         QImage img;
         img.loadFromData(photoTan, sizeof(photoTan), "PNG");
@@ -661,7 +665,8 @@ void KBanking::sendOnlineJob(QList<onlineJob>& jobs)
 
         executeQueue();
     }
-    jobs = m_onlineJobQueue.values() + unhandledJobs;
+    jobs = m_onlineJobQueue.values();
+    jobs += unhandledJobs;
     m_onlineJobQueue.clear();
 }
 
@@ -1325,7 +1330,7 @@ void KBankingExt::_xaToStatement(MyMoneyStatement &ks,
             }
             ++idx;
         }
-        kt.m_strBankID = QString("%1-%2").arg(acc.id()).arg(hash);
+        kt.m_strBankID = QString("%1-%2").arg(acc.id(), hash);
     }
 
     // store transaction
@@ -1338,8 +1343,6 @@ void KBankingExt::_slToStatement(MyMoneyStatement &ks,
                                  const AB_SECURITY *sy)
 {
     MyMoneyFile* file = MyMoneyFile::instance();
-    QString s;
-    QString memo;
     const char *p;
     const AB_VALUE *val;
     const GWEN_TIME *ti;
