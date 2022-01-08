@@ -24,9 +24,7 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "gcc -v",
-	"mounts": [
-		"source=/usr,target=/workspaces/usr,type=bind,consistency=cached"
-	  ],
+
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"containerUser": "vscode",
 	"features": {
