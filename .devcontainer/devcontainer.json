@@ -30,5 +30,9 @@
 	"features": {
 		"git": "latest",
 		"desktop-lite": "latest"
-	}
+	},
+
+	"mounts": [
+		"source=/usr,target=/workspaces/usr,type=bind,consistency=cached"
+	  ]
 }
