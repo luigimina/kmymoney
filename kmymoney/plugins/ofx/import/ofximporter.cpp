@@ -15,10 +15,8 @@
 #include <QRadioButton>
 #include <QSpinBox>
 #include <QByteArray>
-#ifdef IS_APPIMAGE
 #include <QCoreApplication>
 #include <QStandardPaths>
-#endif
 
 // ----------------------------------------------------------------------------
 // KDE Includes
@@ -35,19 +33,20 @@
 // ----------------------------------------------------------------------------
 // Project Includes
 
-#include <libofx/libofx.h>
-#include "konlinebankingstatus.h"
-#include "konlinebankingsetupwizard.h"
+#include "importinterface.h"
+#include "kmymoneyutils.h"
 #include "kofxdirectconnectdlg.h"
+#include "konlinebankingsetupwizard.h"
+#include "konlinebankingstatus.h"
 #include "mymoneyaccount.h"
 #include "mymoneyexception.h"
 #include "mymoneystatement.h"
 #include "mymoneystatementreader.h"
+#include "mymoneyutils.h"
 #include "statementinterface.h"
-#include "importinterface.h"
-#include "viewinterface.h"
 #include "ui_importoption.h"
-#include "kmymoneyutils.h"
+#include "viewinterface.h"
+#include <libofx/libofx.h>
 
 //#define DEBUG_LIBOFX
 
@@ -126,15 +125,16 @@ OFXImporter::OFXImporter(QObject *parent, const QVariantList &args) :
     const auto rcFileName = QLatin1String("ofximporter.rc");
     setComponentName(componentName, i18n("OFX Importer"));
 
-#ifdef IS_APPIMAGE
-    const QString rcFilePath = QString("%1/../share/kxmlgui5/%2/%3").arg(QCoreApplication::applicationDirPath(), componentName, rcFileName);
-    setXMLFile(rcFilePath);
+    if (MyMoneyUtils::isRunningAsAppImage()) {
+        const QString rcFilePath = QString("%1/../share/kxmlgui5/%2/%3").arg(QCoreApplication::applicationDirPath(), componentName, rcFileName);
+        setXMLFile(rcFilePath);
 
-    const QString localRcFilePath = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).first() + QLatin1Char('/') + componentName + QLatin1Char('/') + rcFileName;
-    setLocalXMLFile(localRcFilePath);
-#else
-    setXMLFile(rcFileName);
-#endif
+        const QString localRcFilePath =
+            QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).first() + QLatin1Char('/') + componentName + QLatin1Char('/') + rcFileName;
+        setLocalXMLFile(localRcFilePath);
+    } else {
+        setXMLFile(rcFileName);
+    }
 
     createActions();
 
@@ -246,10 +246,21 @@ bool OFXImporter::import(const QString& filename)
 
     QByteArray filename_deep = QFile::encodeName(filename);
 
+#ifndef Q_OS_WIN
+
+    // setting the global variables in the windows version
+    // created on binary-factory.kde.org causes the following
+    // assignment statements to create an access violation exception
+    // which crashes the application. So we avoid setting
+    // them at all under Windows.
     ofx_STATUS_msg = true;
     ofx_INFO_msg  = true;
     ofx_WARNING_msg = true;
     ofx_ERROR_msg = true;
+
+    // Don't show the position that caused a message to be shown
+    // This has no setter (see libofx.h)
+    ofx_show_position = false;
 
 #ifdef DEBUG_LIBOFX
     ofx_PARSER_msg = true;
@@ -260,13 +271,10 @@ bool OFXImporter::import(const QString& filename)
     ofx_DEBUG4_msg = true;
     ofx_DEBUG5_msg = true;
 #endif
+#endif
 
     LibofxContextPtr ctx = libofx_get_new_context();
     Q_CHECK_PTR(ctx);
-
-    // Don't show the position that caused a message to be shown
-    // This has no setter (see libofx.h)
-    ofx_show_position = false;
 
     d->m_hashes.clear();
 
@@ -278,12 +286,12 @@ bool OFXImporter::import(const QString& filename)
     ofx_set_status_cb(ctx, ofxStatusCallback, this);
     qDebug("process data");
 
-#ifdef IS_APPIMAGE
+#ifdef Q_OS_LINUX
     // libofx needs to know where to pick up the DTD
     // files when running in APPIMAGE mode
-    const char* env = getenv("APPDIR");
-    if (env && *env) {
-        QByteArray dir = env;
+    const auto env = qgetenv("APPDIR");
+    if (!env.isEmpty()) {
+        QByteArray dir(env);
         dir.append("/usr/share/libofx/dtd/");
         qDebug() << "Set DTD dir to" << dir;
         libofx_set_dtd_dir(ctx, dir.data());

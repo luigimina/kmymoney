@@ -79,6 +79,33 @@ int main(int argc, char *argv[])
     }
 #endif
 
+    /*
+     * For AppImages we need to set the LD_LIBRARY_PATH to have
+     * $APPDIR/usr/lib/ as the first entry. We set this up here.
+     * For security reasons, we extract the directory from argv[0]
+     * and don't use APPDIR directly. It would otherwise allow to
+     * add a different library path for non AppImage versions.
+     */
+    if (qEnvironmentVariableIsSet("APPDIR")) {
+        QByteArray appFullPath(argv[0]);
+        auto lastDirSeparator = appFullPath.lastIndexOf('/');
+        auto appDir = appFullPath.left(lastDirSeparator + 1);
+        auto appName = QString::fromUtf8(appFullPath.mid(lastDirSeparator + 1, 6));
+        const auto appDirEnv(qEnvironmentVariable("APPDIR"));
+        if (appDirEnv.contains(QStringLiteral(".mount_%1").arg(appName))) {
+            appDir.append("usr/lib");
+            const auto libPath = qgetenv("LD_LIBRARY_PATH");
+            auto newLibPath = appDir;
+            if (!libPath.isEmpty()) {
+                newLibPath.append(':');
+                newLibPath.append(libPath);
+            }
+            qputenv("RUNNING_AS_APPIMAGE", "true");
+            qputenv("LD_LIBRARY_PATH", newLibPath);
+            qDebug() << "LD_LIBRARY_PATH set to" << newLibPath;
+        }
+    }
+
     /**
      * Create application first
      */
