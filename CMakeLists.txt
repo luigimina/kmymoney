@@ -15,7 +15,7 @@ project(KMyMoney VERSION "${RELEASE_SERVICE_VERSION}" LANGUAGES CXX)
 
 # Determine the GIT reference (if we're based on GIT)
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
-  execute_process(COMMAND git rev-parse --short HEAD
+  execute_process(COMMAND cat version_suffix #git rev-parse --short HEAD
           WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
           OUTPUT_VARIABLE VERSION_SUFFIX
           OUTPUT_STRIP_TRAILING_WHITESPACE)
