@@ -16,7 +16,8 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-vscode.cpptools",
-		"ms-vscode.cmake-tools"
+		"ms-vscode.cmake-tools",
+		"mhutchie.git-graph"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -33,6 +34,6 @@
 	},
 
 	"mounts": [
-		"source=/usr,target=/workspaces/usr,type=bind,consistency=cached"
+		"source=/home/luigi,target=/home/vscode,type=bind,consistency=cached"
 	  ]
 }
