@@ -31,9 +31,5 @@
 	"features": {
 		"git": "latest",
 		"desktop-lite": "latest"
-	},
-
-	"mounts": [
-		"source=/home/luigi,target=/home/vscode,type=bind,consistency=cached"
-	  ]
+	}
 }
