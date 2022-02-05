@@ -10,3 +10,4 @@ moc_*.cpp
 *.moc
 kmymoney/icons/icons.qrc
 kmymoney/templates/templates.qrc
+finanzepersonali
