@@ -18,3 +18,9 @@ RUN eatmydata apt-get install -y libsqlcipher-dev
 RUN eatmydata apt-get install -y libqt5sql5-*
 RUN eatmydata apt-get install -y oxygen-icon-theme
 RUN eatmydata apt-get install -y subversion
+# Set the locale
+RUN sed -i -e 's/# it_IT.UTF-8 UTF-8/it_IT.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+ENV LANG it_IT.UTF-8  
+ENV LANGUAGE it_IT:it  
+ENV LC_ALL it_IT.UTF-8 
