@@ -31,5 +31,9 @@
 	"features": {
 		"git": "latest",
 		"desktop-lite": "latest"
-	}
+	},
+
+	"mounts": [
+		"source=/home/luigi,target=/workspaces/homeluigi,type=bind,consistency=cached"
+	  ]
 }
