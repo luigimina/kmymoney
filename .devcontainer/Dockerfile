@@ -27,7 +27,7 @@ RUN apt-get install -y eatmydata
 RUN eatmydata apt-get upgrade -y
 RUN eatmydata apt-get install -y openssh-server gdb gdbserver rsync
 RUN eatmydata apt-get build-dep -y kmymoney
-RUN eatmydata apt-get install -y qt5-default qtwebengine5-dev
+RUN eatmydata apt-get install -y qtwebengine5-dev
 RUN eatmydata apt-get install -y libsqlcipher-dev
 RUN eatmydata apt-get install -y libqt5sql5-*
 RUN eatmydata apt-get install -y oxygen-icon-theme
