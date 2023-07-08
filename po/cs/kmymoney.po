@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-02 02:38+0000\n"
-"PO-Revision-Date: 2023-03-15 14:31+0100\n"
+"POT-Creation-Date: 2023-07-03 03:06+0000\n"
+"PO-Revision-Date: 2023-07-03 12:01+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1066,9 +1066,9 @@ msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, KBackupDlg)
 #: kmymoney/dialogs/kbackupdlg.ui:14 kmymoney/kmymoney.cpp:2428
-#: kmymoney/kmymoney.cpp:2483 kmymoney/kmymoney.cpp:2499
-#: kmymoney/kmymoney.cpp:2505 kmymoney/kmymoney.cpp:2519
-#: kmymoney/kmymoney.cpp:2521
+#: kmymoney/kmymoney.cpp:2490 kmymoney/kmymoney.cpp:2506
+#: kmymoney/kmymoney.cpp:2512 kmymoney/kmymoney.cpp:2526
+#: kmymoney/kmymoney.cpp:2528
 #, kde-format
 msgid "Backup"
 msgstr "Záloha"
@@ -2072,8 +2072,8 @@ msgstr "Ostatní"
 msgid "Next due date"
 msgstr "Následující datum splatnosti"
 
-#: kmymoney/dialogs/keditscheduledlg.cpp:489 kmymoney/kmymoney.cpp:2663
-#: kmymoney/kmymoney.cpp:2666
+#: kmymoney/dialogs/keditscheduledlg.cpp:489 kmymoney/kmymoney.cpp:2670
+#: kmymoney/kmymoney.cpp:2673
 #, kde-format
 msgid "Unable to add scheduled transaction: %1"
 msgstr "Nelze přidat naplánovanou transakci: %1"
@@ -3712,7 +3712,7 @@ msgstr ""
 #: kmymoney/dialogs/splitadjustdialog.cpp:58
 #, kde-format
 msgid "Change &total amount of transaction to %1."
-msgstr "Změnit &celkovou částku trasakce na %1."
+msgstr "Změnit &celkovou částku transakce na %1."
 
 #: kmymoney/dialogs/ksplittransactiondlg.cpp:314
 #: kmymoney/dialogs/splitadjustdialog.cpp:61
@@ -4572,7 +4572,7 @@ msgstr "Podrobnosti"
 #: kmymoney/plugins/qif/config/mymoneyqifprofileeditor.ui:300
 #, kde-format
 msgid "Date Format"
-msgstr "Formát datumů"
+msgstr "Formát data"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: kmymoney/dialogs/settings/ksettingsonlinequotes.ui:55
@@ -4891,7 +4891,7 @@ msgstr ""
 "Použijte tlačítka <i>doleva</i> a <i>doprava</i>, pokud si přejete přidat "
 "nebo odebrat některé třídicí kritérium. Tlačítka <i>nahoru</i> a <i>dolů</i> "
 "použijte na změnu pořadí třídicích kritérií. Dvojitým kliknutím na třídicí "
-"kriterium změníte pořadí třídění mezi <i>vzestupným</i> a <i>sestupným</i>."
+"kritérium změníte pořadí třídění mezi <i>vzestupným</i> a <i>sestupným</i>."
 
 #. i18n: ectx: attribute (title), widget (QWidget, TabPage1)
 #: kmymoney/dialogs/settings/ksettingsregister.ui:187
@@ -4913,7 +4913,7 @@ msgstr "Zvýšit číslo dokladu automaticky"
 #: kmymoney/settings/kmymoney.kcfg:76
 #, kde-format
 msgid "Keep changes when selecting a different transaction/split"
-msgstr "Při výběru jiné transkce ponechat změny"
+msgstr "Při výběru jiné transakce ponechat změny"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_EnterMovesBetweenFields)
 #: kmymoney/dialogs/settings/ksettingsregister.ui:210
@@ -6262,43 +6262,49 @@ msgstr ""
 msgid "&Replace"
 msgstr "&Přepsat"
 
-#: kmymoney/kmymoney.cpp:2434
+#: kmymoney/kmymoney.cpp:2436
+#, kde-format
+msgctxt "@info Error during backup"
+msgid "Unable to create backup directory '%1'."
+msgstr "Nelze vytvořit zálohovací adresář '%1'."
+
+#: kmymoney/kmymoney.cpp:2441
 #, kde-format
 msgid "Writing %1"
 msgstr "Zapisuji %1"
 
-#: kmymoney/kmymoney.cpp:2451
+#: kmymoney/kmymoney.cpp:2458
 #, kde-format
 msgid "Unmounting %1"
 msgstr "Odpojuji %1"
 
-#: kmymoney/kmymoney.cpp:2483
+#: kmymoney/kmymoney.cpp:2490
 #, kde-format
 msgid "Error mounting device"
 msgstr "Chyba při připojování zařízení"
 
-#: kmymoney/kmymoney.cpp:2498 kmymoney/kmymoney.cpp:2517
+#: kmymoney/kmymoney.cpp:2505 kmymoney/kmymoney.cpp:2524
 #, kde-format
 msgctxt "Backup done"
 msgid "Done"
 msgstr "Hotovo"
 
-#: kmymoney/kmymoney.cpp:2499 kmymoney/kmymoney.cpp:2519
+#: kmymoney/kmymoney.cpp:2506 kmymoney/kmymoney.cpp:2526
 #, kde-format
 msgid "File successfully backed up"
 msgstr "Soubor byl úspěšně zazálohován"
 
-#: kmymoney/kmymoney.cpp:2505
+#: kmymoney/kmymoney.cpp:2512
 #, kde-format
 msgid "Error copying file to device"
 msgstr "Chyba při kopírování souboru na zařízení"
 
-#: kmymoney/kmymoney.cpp:2521
+#: kmymoney/kmymoney.cpp:2528
 #, kde-format
 msgid "Error unmounting device"
 msgstr "Chyba při odpojování zařízení"
 
-#: kmymoney/kmymoney.cpp:2592
+#: kmymoney/kmymoney.cpp:2599
 #, kde-format
 msgid ""
 "This account is a liability and if the opening balance represents money "
@@ -6315,39 +6321,39 @@ msgstr ""
 "Prosím, klikněte na Ne pro zachování částky '%2,\n"
 "Prosím, klikněte na Zrušit, pokud si nepřejete účet vytvořit."
 
-#: kmymoney/kmymoney.cpp:2612
+#: kmymoney/kmymoney.cpp:2619
 #: kmymoney/wizards/newloanwizard/interestcategorywizardpage.cpp:98
 #, kde-format
 msgid "Unable to add account: %1"
 msgstr "Nelze přidat účet: %1"
 
-#: kmymoney/kmymoney.cpp:2680
+#: kmymoney/kmymoney.cpp:2687
 #, kde-format
 msgid "<p><b>%1</b> cannot be moved to institution <b>%2</b>. Reason: %3</p>"
 msgstr ""
 "<p><b>%1</b> nemůže být převeden pod instituci <b>%2</b>. Důvod: %3</p>"
 
-#: kmymoney/kmymoney.cpp:2693
+#: kmymoney/kmymoney.cpp:2700
 #, kde-format
 msgid "<p><b>%1</b> cannot be moved to <b>%2</b>. Reason: %3</p>"
 msgstr "<p><b>%1</b> nemůže být přesunut do <b>%2</b>. Důvod: %3</p>"
 
-#: kmymoney/kmymoney.cpp:2782
+#: kmymoney/kmymoney.cpp:2789
 #, kde-format
 msgid "Untitled"
 msgstr "Nepojmenovaný"
 
-#: kmymoney/kmymoney.cpp:2847
+#: kmymoney/kmymoney.cpp:2854
 #, kde-format
 msgid "Running consistency check..."
 msgstr ""
 
-#: kmymoney/kmymoney.cpp:2854
+#: kmymoney/kmymoney.cpp:2861
 #, kde-format
 msgid "Consistency check failed: %1"
 msgstr ""
 
-#: kmymoney/kmymoney.cpp:2864
+#: kmymoney/kmymoney.cpp:2871
 #, kde-format
 msgid ""
 "The consistency check has found no issues in your data. Details are "
@@ -6356,7 +6362,7 @@ msgstr ""
 "Při kontrole konsistence byly nalezeny nesrovnalosti ve vašich datech, "
 "podrobnosti jsou vypsané níže."
 
-#: kmymoney/kmymoney.cpp:2866
+#: kmymoney/kmymoney.cpp:2873
 #, kde-format
 msgid ""
 "The consistency check has found some issues in your data. Details are "
@@ -6367,95 +6373,95 @@ msgstr ""
 "podrobnosti jsou vypsané níže. Tyto nesrovnalosti nelze opravit automaticky "
 "a je potřeba je opravit ručně."
 
-#: kmymoney/kmymoney.cpp:2869
+#: kmymoney/kmymoney.cpp:2876
 #, kde-format
 msgid "Consistency check result"
 msgstr "Výsledky kontroly konsistentnosti"
 
-#: kmymoney/kmymoney.cpp:2979
+#: kmymoney/kmymoney.cpp:2986
 #, kde-format
 msgid "Checking for overdue scheduled transactions..."
 msgstr "Kontroluji naplánované transakce po splatnosti..."
 
-#: kmymoney/kmymoney.cpp:3169
+#: kmymoney/kmymoney.cpp:3176
 #, kde-format
 msgid ""
 "You must first select a KMyMoney file before you can import a statement."
 msgstr ""
 
-#: kmymoney/kmymoney.cpp:3174
+#: kmymoney/kmymoney.cpp:3181
 #, kde-format
 msgid "Importing a statement via Web Connect"
 msgstr ""
 
-#: kmymoney/kmymoney.cpp:3183
+#: kmymoney/kmymoney.cpp:3190
 #, kde-format
 msgid ""
 "Unable to import %1 using %2 plugin.  The plugin returned the following "
 "error: %3"
 msgstr "Nelze importovat %1 modulem %2. Modul ohlásil chybu: %3"
 
-#: kmymoney/kmymoney.cpp:3183 kmymoney/plugins/ofx/import/ofximporter.cpp:1004
+#: kmymoney/kmymoney.cpp:3190 kmymoney/plugins/ofx/import/ofximporter.cpp:1004
 #, kde-format
 msgid "Importing error"
 msgstr "Chyba při importu"
 
-#: kmymoney/kmymoney.cpp:3210
+#: kmymoney/kmymoney.cpp:3217
 #, kde-format
 msgid "All messages have been enabled."
 msgstr "Všechna hlášení byla povolena."
 
-#: kmymoney/kmymoney.cpp:3210
+#: kmymoney/kmymoney.cpp:3217
 #, kde-format
 msgid "All messages"
 msgstr "Všechna hlášení"
 
-#: kmymoney/kmymoney.cpp:3231
+#: kmymoney/kmymoney.cpp:3238
 #, kde-format
 msgid "Auto saving..."
 msgstr "Automatické ukládání..."
 
-#: kmymoney/kmymoney.cpp:3339
+#: kmymoney/kmymoney.cpp:3346
 #, kde-format
 msgid "Creating new document..."
 msgstr "Vytvářím nový dokument...."
 
-#: kmymoney/kmymoney.cpp:3397
+#: kmymoney/kmymoney.cpp:3404
 #, kde-format
 msgid "Couldn't create a new file."
 msgstr ""
 
-#: kmymoney/kmymoney.cpp:3408
+#: kmymoney/kmymoney.cpp:3415
 #, kde-format
 msgid "Open a file."
 msgstr "Otevřít soubor..."
 
-#: kmymoney/kmymoney.cpp:3422
+#: kmymoney/kmymoney.cpp:3429
 #, kde-format
 msgid "Couldn't find any plugin for opening storage."
 msgstr ""
 
-#: kmymoney/kmymoney.cpp:3426
+#: kmymoney/kmymoney.cpp:3433
 #, kde-format
 msgid "All files (*)"
 msgstr "Všechny soubory (*)"
 
-#: kmymoney/kmymoney.cpp:3439
+#: kmymoney/kmymoney.cpp:3446
 #, kde-format
 msgid "Loading file..."
 msgstr "Načítám soubor..."
 
-#: kmymoney/kmymoney.cpp:3445
+#: kmymoney/kmymoney.cpp:3452
 #, kde-format
 msgid "<p>File <b>%1</b> is already opened in another instance of KMyMoney</p>"
 msgstr "<p>Soubor <b>%1</b> je již otevřen v jiné instanci KMyMoney</p>"
 
-#: kmymoney/kmymoney.cpp:3445
+#: kmymoney/kmymoney.cpp:3452
 #, kde-format
 msgid "Duplicate open"
 msgstr "Duplikovat otevřené"
 
-#: kmymoney/kmymoney.cpp:3450
+#: kmymoney/kmymoney.cpp:3457
 #, kde-format
 msgid ""
 "<p><b>%1</b> is either an invalid filename or the file does not exist. You "
@@ -6464,49 +6470,49 @@ msgstr ""
 "<p>Název souboru <b>%1</b> je buď  špatné, nebo soubor neexistuje. Otevřete "
 "nebo vytvořte jiný soubor.</p>"
 
-#: kmymoney/kmymoney.cpp:3450
+#: kmymoney/kmymoney.cpp:3457
 #, kde-format
 msgid "File not found"
 msgstr "Soubor nebyl nalezen"
 
-#: kmymoney/kmymoney.cpp:3478
+#: kmymoney/kmymoney.cpp:3485
 #, kde-format
 msgid "Cannot open file as requested."
 msgstr "Požadovaný soubor nelze otevřít."
 
-#: kmymoney/kmymoney.cpp:3484
+#: kmymoney/kmymoney.cpp:3491
 #, kde-format
 msgid ""
 "Could not read your data source. Please check the KMyMoney settings that the "
 "necessary plugin is enabled."
 msgstr ""
 
-#: kmymoney/kmymoney.cpp:3494
+#: kmymoney/kmymoney.cpp:3501
 #, kde-format
 msgid "Saving file..."
 msgstr "Ukládám soubor..."
 
-#: kmymoney/kmymoney.cpp:3506
+#: kmymoney/kmymoney.cpp:3513
 #, kde-format
 msgid "Failed to save your data."
 msgstr "Uložení dat selhalo."
 
-#: kmymoney/kmymoney.cpp:3512
+#: kmymoney/kmymoney.cpp:3519
 #, kde-format
 msgid "Couldn't find suitable plugin to save your data."
 msgstr "Nelze najít vhodný modul pro uložení vašich dat."
 
-#: kmymoney/kmymoney.cpp:3518
+#: kmymoney/kmymoney.cpp:3525
 #, kde-format
 msgid "Saving file as...."
 msgstr "Ukládám soubor jako...."
 
-#: kmymoney/kmymoney.cpp:3534
+#: kmymoney/kmymoney.cpp:3541
 #, kde-format
 msgid "Couldn't find any plugin for saving data."
 msgstr "Nelze najít jakýkoliv modul pro uložení dat."
 
-#: kmymoney/kmymoney.cpp:3563
+#: kmymoney/kmymoney.cpp:3570
 #, kde-format
 msgid "Failed to save your storage."
 msgstr ""
@@ -7394,7 +7400,7 @@ msgstr "* Problém s účtem \"%1\""
 #: kmymoney/mymoney/mymoneyfile.cpp:1926
 #, kde-format
 msgid "  * Loop detected between this account and account '%1'."
-msgstr "  * Detekovaná uzavřená smyčka mezi timto účtem a účtem '%1'."
+msgstr "  * Detekovaná uzavřená smyčka mezi tímto účtem a účtem '%1'."
 
 #: kmymoney/mymoney/mymoneyfile.cpp:1927
 #, kde-format
@@ -7593,7 +7599,7 @@ msgstr "  * akcie nastavené na hodnotu podle transakce v plánu '%1'."
 #: kmymoney/mymoney/mymoneyfile.cpp:2327
 #, kde-format
 msgid "  * value set to shares in split in schedule '%1'."
-msgstr "  * hodnota nastavená podle akcií v trasakci v plánu '%1'."
+msgstr "  * hodnota nastavená podle akcií v transakci v plánu '%1'."
 
 #: kmymoney/mymoney/mymoneyfile.cpp:2333
 #, kde-format
@@ -9564,7 +9570,7 @@ msgstr "Ka&tegorie"
 #: kmymoney/plugins/qif/export/kexportdlgdecl.ui:264
 #, kde-format
 msgid "Date Range"
-msgstr "Rozsah datumů"
+msgstr "Rozsah dat"
 
 #. i18n: ectx: property (text), widget (QLabel, lblStartDate)
 #: kmymoney/plugins/csv/export/csvexportdlg.ui:214
@@ -10279,7 +10285,7 @@ msgstr ""
 #, kde-format
 msgctxt "date format to use"
 msgid "Date format"
-msgstr "Formát datumu"
+msgstr "Formát data"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, m_dateFormat)
 #: kmymoney/plugins/csv/import/formatswizardpage.ui:207
@@ -13700,12 +13706,12 @@ msgstr "Neznámý typ QIF %1"
 #: kmymoney/plugins/qif/import/mymoneyqifreader.cpp:362
 #, kde-format
 msgid "Date format selection"
-msgstr "Výběr formátu datumů"
+msgstr "Výběr formátu data"
 
 #: kmymoney/plugins/qif/import/mymoneyqifreader.cpp:362
 #, kde-format
 msgid "Pick the date format that suits your input file"
-msgstr "Zvolte formát datumů, který odpovídá vašemu vstupnímu souboru"
+msgstr "Zvolte formát data, který odpovídá vašemu vstupnímu souboru"
 
 #: kmymoney/plugins/qif/import/mymoneyqifreader.cpp:377
 #, kde-format
@@ -13839,7 +13845,7 @@ msgstr ""
 #: kmymoney/plugins/qif/import/mymoneyqifreader.cpp:1313
 #, kde-format
 msgid "Invalid date format"
-msgstr "Neplatný format datumů"
+msgstr "Neplatný format data"
 
 #: kmymoney/plugins/qif/import/mymoneyqifreader.cpp:1439
 #, kde-format
@@ -14231,7 +14237,7 @@ msgstr ""
 #: kmymoney/plugins/sql/mymoneystoragesql_p.h:2065
 #, kde-format
 msgid "Error in create database %1; do you have create permissions?"
-msgstr "Chyba při vytváření databáže %1, máte na vytváření oprávnění?"
+msgstr "Chyba při vytváření databáze %1, máte na vytváření oprávnění?"
 
 #: kmymoney/plugins/sql/sqlstorage.cpp:80
 #, kde-format
@@ -15351,7 +15357,7 @@ msgstr "Týden"
 #: kmymoney/plugins/views/reports/core/listtable.cpp:637
 #, kde-format
 msgid "Last Price"
-msgstr "POslední cena"
+msgstr "Poslední cena"
 
 #: kmymoney/plugins/views/reports/core/listtable.cpp:639
 #, kde-format
@@ -16295,7 +16301,7 @@ msgstr "Výkonnost investic podle účtů"
 #: kmymoney/plugins/views/reports/kreportsview_p.h:1087
 #, kde-format
 msgid "Investment Performance by Type"
-msgstr "Výkonost investic podle druhu"
+msgstr "Výkonnost investic podle druhu"
 
 #: kmymoney/plugins/views/reports/kreportsview_p.h:1097
 #, kde-format
@@ -16987,7 +16993,7 @@ msgstr "Zobrazit svislé linky mřížky"
 #: kmymoney/plugins/views/reports/reporttabrange.ui:26
 #, kde-format
 msgid "Date range"
-msgstr "Rozsah datumů"
+msgstr "Rozsah dat"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: kmymoney/plugins/views/reports/reporttabrange.ui:52
@@ -19073,7 +19079,7 @@ msgstr "Celková pasiva"
 #: kmymoney/views/khomeview_p.h:1686
 #, kde-format
 msgid "Cash Flow Summary"
-msgstr "Přehled cash  flow"
+msgstr "Přehled cash flow"
 
 #: kmymoney/views/khomeview_p.h:1693
 #, kde-format
@@ -20606,7 +20612,7 @@ msgstr ""
 #: kmymoney/widgets/kmymoneyperiodcombo.cpp:32
 #, kde-format
 msgid "All dates"
-msgstr "Všechny datumy"
+msgstr "Všechna data"
 
 #: kmymoney/widgets/kmymoneyperiodcombo.cpp:33
 #, kde-format

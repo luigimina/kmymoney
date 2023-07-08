@@ -11,6 +11,7 @@
     <comment xml:lang="eu">KMyMoney fitxategia</comment>
     <comment xml:lang="fi">KMyMoney-tiedosto</comment>
     <comment xml:lang="fr">Fichier pour KMyMoney</comment>
+    <comment xml:lang="gl">Ficheiro de KMyMoney.</comment>
     <comment xml:lang="ia">File de KMyMoney</comment>
     <comment xml:lang="it">File di KMyMoney</comment>
     <comment xml:lang="ka">KMyMoney-ის ფაილი</comment>
@@ -24,6 +25,7 @@
     <comment xml:lang="sk">Súbor KMyMoney</comment>
     <comment xml:lang="sl">Datoteka KMyMoney</comment>
     <comment xml:lang="sv">KMyMoney-fil</comment>
+    <comment xml:lang="tr">K Param Dosyası</comment>
     <comment xml:lang="uk">файл KMyMoney</comment>
     <comment xml:lang="zh_CN">KMyMoney 文件</comment>
     <glob pattern="*.kmy"/>
