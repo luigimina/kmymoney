@@ -24,6 +24,8 @@ apps:
         - network
         - network-bind
         - cups
+        - udisks2
+        - browser-support
         command-chain:
         - snap/command-chain/desktop-launch
 assumes:
@@ -162,6 +164,9 @@ parts:
         - libpython3.10
         - libqt5keychain1
         - libqt5webengine5
+        - qml-module-qtquick2
+        stage-snaps:
+        - kcalc
         source: https://invent.kde.org/office/kmymoney.git
         source-branch: 5.1
         cmake-parameters:
@@ -183,7 +188,7 @@ parts:
         - "-usr/bin/X11"
         - "-usr/lib/gcc/$CRAFT_ARCH_TRIPLET/6.0.0"
         - "-usr/lib/aspell/*"
-        - "-usr/share/lintain"
+        - "-usr/share/lintian"
         build-environment: &id005
         - *id001
         - *id002
