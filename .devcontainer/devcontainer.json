@@ -4,20 +4,23 @@
 	"name": "C++",
 	"build": {
 		"dockerfile": "Dockerfile"
-	  },
-	// Features to add to the dev container. More info: https://containers.dev/features.
+	},
 	"features": {
 		"ghcr.io/devcontainers/features/desktop-lite:1": {},
 		"ghcr.io/devcontainers/features/git:1": {}
 	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [6080, 5901],
+	 "forwardPorts": [6080, 5901],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "gcc -v",
 
 	// Configure tool-specific properties.
-	"customizations": {		// Configure properties specific to VS Code.
+	 "customizations": {		// Configure properties specific to VS Code.
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
@@ -32,5 +35,5 @@
 	// "remoteUser": "root"
 	"mounts": [
 		"source=/home/luigi,target=/workspaces/homeluigi,type=bind,consistency=cached"
-	  ]
+		]	
 }
