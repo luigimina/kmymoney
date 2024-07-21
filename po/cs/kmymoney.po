@@ -1,24 +1,24 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2023 Vít Pelčák <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2023, 2024 Vít Pelčák <vit@pelcak.org>
 # Petr Bravenec <spravce@solartec.cz>, 2010.
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
-# Vit Pelcak <vit@pelcak.org>, 2015, 2018, 2019, 2020, 2021, 2023.
+# SPDX-FileCopyrightText: 2015, 2018, 2019, 2020, 2021, 2023, 2024 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-21 02:26+0000\n"
-"PO-Revision-Date: 2023-07-03 12:01+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
+"POT-Creation-Date: 2024-05-04 03:41+0000\n"
+"PO-Revision-Date: 2024-06-25 10:53+0200\n"
+"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.08.2\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1552,74 +1552,74 @@ msgstr ""
 msgid "Update price history"
 msgstr "Aktualizovat historii cen"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:152
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:665
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:138
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:651
 #, kde-format
 msgid "Cannot set %1 as base currency: %2"
 msgstr "Nelze nastavit %1 jako základní měnu. %2"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:152
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:665
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:138
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:651
 #, kde-format
 msgid "Set base currency"
 msgstr "Nastavit základní měnu"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:173
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:177
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:159
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:163
 #, kde-format
 msgid "Cannot update currency. %1"
 msgstr "Měnu nelze aktualizovat. %1"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:173
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:177
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:159
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:163
 #, kde-format
 msgid "Update currency"
 msgstr "Aktualizovat měnu"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:210
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:196
 #, kde-format
 msgid "Cannot create new currency. %1"
 msgstr "Nelze vytvořit novou měnu. %1"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:210
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:506
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:196
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:492
 #, kde-format
 msgid "New currency"
 msgstr "Nová měna"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:212
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:198
 #, kde-format
 msgid "Cannot modify currency. %1"
 msgstr ""
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:212
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:198
 #, kde-format
 msgid "Edit currency"
 msgstr ""
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:507
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:493
 #, kde-format
 msgid "Rename currency"
 msgstr "Přejmenovat měnu"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:508
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:650
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:494
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:636
 #, kde-format
 msgid "Delete currency"
 msgstr "Odstranit měnu"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:509
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:495
 #, kde-format
 msgid "Select as base currency"
 msgstr "Zvolit jako základní měnu"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:519
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:505
 #, kde-format
 msgctxt "Menu header"
 msgid "Currency options"
 msgstr "Volby měn"
 
-#: kmymoney/dialogs/kcurrencyeditdlg.cpp:650
+#: kmymoney/dialogs/kcurrencyeditdlg.cpp:636
 #, kde-format
 msgid "Cannot delete currency %1. %2"
 msgstr "Nelze smazat měnu %1. %2"
@@ -2705,7 +2705,7 @@ msgstr "Celkem"
 msgid "Closed"
 msgstr "Uzavřeno"
 
-#: kmymoney/dialogs/kmymoneypricedlg.cpp:338
+#: kmymoney/dialogs/kmymoneypricedlg.cpp:324
 #, kde-format
 msgid "Do you really want to delete the selected price entry?"
 msgid_plural "Do you really want to delete the selected price entries?"
@@ -2713,32 +2713,32 @@ msgstr[0] "Opravdu si přejete smazat zvolený záznam s cenou?"
 msgstr[1] "Opravdu si přejete smazat zvolené záznamy s cenou?"
 msgstr[2] "Opravdu si přejete smazat zvolené záznamy s cenou?"
 
-#: kmymoney/dialogs/kmymoneypricedlg.cpp:338
+#: kmymoney/dialogs/kmymoneypricedlg.cpp:324
 #, kde-format
 msgid "Delete price information"
 msgstr "Smazat informaci o ceně"
 
-#: kmymoney/dialogs/kmymoneypricedlg.cpp:381
+#: kmymoney/dialogs/kmymoneypricedlg.cpp:367
 #, kde-format
 msgid "New price..."
 msgstr "Nová cena..."
 
-#: kmymoney/dialogs/kmymoneypricedlg.cpp:382
+#: kmymoney/dialogs/kmymoneypricedlg.cpp:368
 #, kde-format
 msgid "Edit price..."
 msgstr "Změnit cenu..."
 
-#: kmymoney/dialogs/kmymoneypricedlg.cpp:383
+#: kmymoney/dialogs/kmymoneypricedlg.cpp:369
 #, kde-format
 msgid "Online Price Update..."
 msgstr "Aktualizovat cenu online..."
 
-#: kmymoney/dialogs/kmymoneypricedlg.cpp:384
+#: kmymoney/dialogs/kmymoneypricedlg.cpp:370
 #, kde-format
 msgid "Delete price..."
 msgstr "Smazat cenu..."
 
-#: kmymoney/dialogs/kmymoneypricedlg.cpp:394
+#: kmymoney/dialogs/kmymoneypricedlg.cpp:380
 #, kde-format
 msgctxt "Menu header"
 msgid "Price options"
@@ -4509,7 +4509,7 @@ msgstr "Symbol"
 #, kde-format
 msgctxt "@item:inlistbox Stock"
 msgid "Identification number"
-msgstr ""
+msgstr "Číslo identifikátoru"
 
 #: kmymoney/dialogs/settings/ksettingsonlinequotes.cpp:91
 #, kde-format
@@ -17150,7 +17150,7 @@ msgstr "Organizovat dle:"
 #: kmymoney/plugins/views/reports/reporttabrowcolquery.ui:62
 #, kde-format
 msgid "<p>Choose how to group the transactions in this report</p>"
-msgstr "<p>Zvolte způsob sdružování pro tuto sestavu</p>"
+msgstr "<p>Zvolte způsob sdružování transakcí pro toto hlášení</p>"
 
 #. i18n: ectx: property (toolTip), widget (QGroupBox, buttonGroupBox1)
 #: kmymoney/plugins/views/reports/reporttabrowcolquery.ui:138

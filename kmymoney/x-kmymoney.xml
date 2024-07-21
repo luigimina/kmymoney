@@ -2,6 +2,7 @@
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-kmymoney">
     <comment>KMyMoney File</comment>
+    <comment xml:lang="ar">ملف أموالك</comment>
     <comment xml:lang="ca">Fitxer del KMyMoney</comment>
     <comment xml:lang="ca@valencia">Fitxer de KMyMoney</comment>
     <comment xml:lang="cs">Soubor KMyMoney</comment>
@@ -29,6 +30,7 @@
     <comment xml:lang="tr">K Param Dosyası</comment>
     <comment xml:lang="uk">файл KMyMoney</comment>
     <comment xml:lang="zh_CN">KMyMoney 文件</comment>
+    <comment xml:lang="zh_TW">KMyMoney 檔案</comment>
     <glob pattern="*.kmy"/>
     <glob pattern="*.kmt"/>
   </mime-type>
