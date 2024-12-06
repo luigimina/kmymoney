@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/cpp:1-ubuntu-22.04
+FROM mcr.microsoft.com/devcontainers/cpp:1-ubuntu-24.04
 
 ARG REINSTALL_CMAKE_VERSION_FROM_SOURCE="3.22.2"
 
@@ -14,7 +14,8 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
 # RUN su vscode -c "${VCPKG_ROOT}/vcpkg install <your-port-name-here>"
 
 # [Optional] Uncomment this section to install additional packages.
-RUN sed -i -- 's/#[ ]*deb-src/deb-src/g' /etc/apt/sources.list
+# RUN sed -i -- 's/#[ ]*deb-src/deb-src/g' /etc/apt/sources.list
+RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources
 RUN apt-get update
 RUN apt-get install -y eatmydata
 RUN eatmydata apt-get upgrade -y
