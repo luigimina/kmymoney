@@ -1,16 +1,16 @@
 # Translation of kmymoney.po to Catalan
-# Copyright (C) 2006-2024 This_file_is_part_of_KDE
+# Copyright (C) 2006-2025 This_file_is_part_of_KDE
 # This file is put in the public domain.
 #
 # SPDX-FileCopyrightText: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Antoni Bella Pérez <antonibella5@yahoo.com>
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 # Orestes Mas Casals <orestes@tsc.upc.edu>, 2006, 2010, 2011.
+# Josep M. Ferrer <txemaq@gmail.com>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: kmymoney\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 03:41+0000\n"
-"PO-Revision-Date: 2024-11-18 09:44+0100\n"
+"PO-Revision-Date: 2025-01-22 19:27+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -1492,7 +1492,7 @@ msgstr "Usuari"
 #: kmymoney/dialogs/kcurrencycalculator.ui:17
 #, kde-format
 msgid "Exchange Rate/Price Editor"
-msgstr "Editor del tipus/preu de canvi"
+msgstr "Editor de tipus de canvi/preu"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #. i18n: ectx: property (text), widget (QLabel, amountLabel)
@@ -1590,13 +1590,13 @@ msgstr "a"
 #: kmymoney/dialogs/kcurrencycalculator.ui:227
 #, kde-format
 msgid "To a&mount"
-msgstr "A i&mport"
+msgstr "Per i&mport"
 
 #. i18n: ectx: property (text), widget (QRadioButton, m_rateButton)
 #: kmymoney/dialogs/kcurrencycalculator.ui:237
 #, kde-format
 msgid "Exchange &rate / Price"
-msgstr "Tipus/p&reu de canvi"
+msgstr "Tipus de canvi/p&reu"
 
 #. i18n: ectx: property (text), widget (QLabel, m_conversionExample)
 #: kmymoney/dialogs/kcurrencycalculator.ui:301
@@ -2308,7 +2308,7 @@ msgstr "Aquesta planificació acabarà en algun moment"
 #: kmymoney/dialogs/keditscheduledlg.ui:297
 #, kde-format
 msgid "Number of transactions remaining:"
-msgstr "Nombre d'operacions que manquen:"
+msgstr "Nombre d'operacions restants:"
 
 #. i18n: ectx: property (text), widget (QLabel, m_endLabel2)
 #: kmymoney/dialogs/keditscheduledlg.ui:317
@@ -6040,22 +6040,22 @@ msgstr "Edita un compte..."
 #: kmymoney/kmymoney.cpp:1417
 #, kde-format
 msgid "Delete account..."
-msgstr "Suprimeix un compte..."
+msgstr "Suprimeix el compte..."
 
 #: kmymoney/kmymoney.cpp:1418
 #, kde-format
 msgid "Close account"
-msgstr "Tanca un compte"
+msgstr "Tanca el compte"
 
 #: kmymoney/kmymoney.cpp:1419
 #, kde-format
 msgid "Reopen account"
-msgstr "Torna a obrir un compte"
+msgstr "Torna a obrir el compte"
 
 #: kmymoney/kmymoney.cpp:1420
 #, kde-format
 msgid "Transaction report"
-msgstr "Informe d'operació"
+msgstr "Informe d'operacions"
 
 #: kmymoney/kmymoney.cpp:1421
 #, kde-format
@@ -6075,7 +6075,7 @@ msgstr "Desvincula el compte..."
 #: kmymoney/kmymoney.cpp:1424
 #, kde-format
 msgid "Update account..."
-msgstr "Actualitza un compte..."
+msgstr "Actualitza el compte..."
 
 #: kmymoney/kmymoney.cpp:1425
 #, kde-format
@@ -6160,7 +6160,7 @@ msgstr "Edita"
 #, kde-format
 msgctxt "Enter transaction"
 msgid "Enter"
-msgstr "Retorn"
+msgstr "Introdueix"
 
 #: kmymoney/kmymoney.cpp:1456
 #, kde-format
@@ -6880,7 +6880,7 @@ msgstr "Mou l'operació a..."
 #: kmymoney/kmymoneyui.rc:209
 #, kde-format
 msgid "Select account"
-msgstr "Escolliu un compte"
+msgstr "Seleccioneu un compte"
 
 #. i18n: ectx: Menu (onlinejob_context_menu)
 #: kmymoney/kmymoneyui.rc:228
@@ -11082,7 +11082,7 @@ msgstr ""
 #: kmymoney/plugins/csv/import/rowswizardpage.ui:20
 #, kde-format
 msgid "Rows Wizard Page"
-msgstr "Pàgina de l'assistent de columnes"
+msgstr "Pàgina de l'assistent de files"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: kmymoney/plugins/csv/import/rowswizardpage.ui:42
@@ -12743,7 +12743,7 @@ msgstr "Ha fallat"
 #: kmymoney/plugins/ofx/import/dialogs/kofxdirectconnectdlgdecl.ui:14
 #, kde-format
 msgid "OFX Direct Connect"
-msgstr "Connexió OFX directa"
+msgstr "Connexió directa OFX"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1)
 #: kmymoney/plugins/ofx/import/dialogs/kofxdirectconnectdlgdecl.ui:23
@@ -13173,7 +13173,7 @@ msgstr "El nom del beneficiari està basat en el contingut de l'etiqueta OFX"
 #: kmymoney/plugins/ofx/import/importoption.ui:91
 #, kde-format
 msgid "Timezone offset"
-msgstr "Desplaçament de la zona horària"
+msgstr "Decalatge de la zona horària"
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel21_1_2)
 #. i18n: ectx: property (text), widget (QLabel, textLabel3)
@@ -16354,7 +16354,7 @@ msgstr "Mensual"
 #, kde-format
 msgctxt "All accounts"
 msgid "All"
-msgstr "Tots"
+msgstr "Totes"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, m_comboRows)
 #: kmymoney/plugins/views/reports/kreportconfigurationfilterdlg.cpp:438
@@ -18603,15 +18603,15 @@ msgstr "Ordre dels elements en la pàgina principal"
 #: kmymoney/settings/kmymoney.kcfg:160
 #, kde-format
 msgid "Zoom factor used for home view HTML page"
-msgstr "Factor de zoom usat per a la vista inicial de la pàgina HTML"
+msgstr "Factor de zoom usat a la vista principal de la pàgina HTML"
 
 #. i18n: ectx: label, entry (RememberZoomFactor), group (Homepage Options)
 #: kmymoney/settings/kmymoney.kcfg:164
 #, kde-format
 msgid "Remember (manually adjusted) zoom factor in home view on program end."
 msgstr ""
-"Recorda el factor de zoom (ajustat manualment) a la vista inicial en sortir "
-"del programa."
+"Recorda el factor de zoom (ajustat manualment) a la vista principal en "
+"sortir del programa."
 
 #. i18n: ectx: label, entry (ShowLimitInfo), group (Homepage Options)
 #: kmymoney/settings/kmymoney.kcfg:168
@@ -25150,7 +25150,7 @@ msgstr "Escolliu la divisa"
 #: kmymoney/wizards/newuserwizard/knewuserwizard.cpp:60
 #, kde-format
 msgid "Select Accounts"
-msgstr "Escolliu els comptes"
+msgstr "Seleccioneu els comptes"
 
 #. i18n: ectx: property (text), widget (QLabel, qLabel1)
 #: kmymoney/wizards/newuserwizard/kpasswordpage.ui:23

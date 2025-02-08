@@ -1,7 +1,7 @@
 # translation of kmymoney2 to Galician
 # This file is put in the public domain.
 #
-# SPDX-FileCopyrightText: 2023, 2024 Adrián Chaves (Gallaecio)
+# SPDX-FileCopyrightText: 2023, 2024, 2025 Adrián Chaves (Gallaecio)
 # mvillarino <mvillarino@users.sourceforge.net>, 2006, 2007, 2008, 2009.
 # Mvillarino <mvillarino@users.sourceforge.net>, 2007, 2008.
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 03:41+0000\n"
-"PO-Revision-Date: 2024-08-25 15:52+0200\n"
+"PO-Revision-Date: 2025-01-26 21:12+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1113,8 +1113,8 @@ msgid ""
 msgstr ""
 "Use este diálogo para facer unha salvagarda dos seus datos.\n"
 "\n"
-"Insira un disco e asegúrese de que o dispositivo estea listo. Entón escolla "
-"o punto de montaxe mediante o botón Escoller ou introducindo a ruta na caixa "
+"Insira un disco e asegúrese de que a unidade estea lista. Entón escolla o "
+"punto de montaxe mediante o botón Escoller ou introducindo a ruta na caixa "
 "dispoñíbel a tal efecto.\n"
 "\n"
 "Prema Aceptar para realizar a copia."
@@ -1228,9 +1228,9 @@ msgid ""
 msgstr ""
 "Escolla o tipo de importación a realizar. Ten unha explicación\n"
 "do tipo ao fondo da pantalla, que se actualiza cando\n"
-"escolle un eliminar na caixa de selección.\n"
+"escolle un elemento na caixa de selección.\n"
 "\n"
-"Cando teña escollido o tipo que desexe prema o botón «Aceptar»."
+"Unha vez escollido prema «Aceptar»."
 
 #. i18n: ectx: property (text), widget (QLabel, promptLabel)
 #: kmymoney/dialogs/kchooseimportexportdlg.cpp:76
@@ -1258,9 +1258,9 @@ msgid ""
 msgstr ""
 "Escolla o tipo de exportación a realizar. Ten unha explicación\n"
 "do tipo ao fondo da pantalla, que se actualiza cando\n"
-"escolle un eliminar na caixa de selección.\n"
+"escolle un elemento na caixa de selección.\n"
 "\n"
-"Cando teño escollido o tipo que desexe prema o botón «Aceptar»."
+"Una vez escollido, prema «Aceptar»."
 
 #: kmymoney/dialogs/kchooseimportexportdlg.cpp:83
 #, kde-format
@@ -1310,6 +1310,7 @@ msgstr ""
 "follas de cálculo máis populares dispoñíbeis en Linux\n"
 "e outros sistemas operativos."
 
+# skip-rule: trasno-item
 #. i18n: ectx: property (text), widget (QLabel, topLabel)
 #: kmymoney/dialogs/kchooseimportexportdlg.ui:56
 #, kde-format
@@ -1664,7 +1665,7 @@ msgstr "Renomear a divisa"
 #: kmymoney/dialogs/kcurrencyeditdlg.cpp:636
 #, kde-format
 msgid "Delete currency"
-msgstr "Borrar a divisa"
+msgstr "Eliminar a divisa"
 
 #: kmymoney/dialogs/kcurrencyeditdlg.cpp:495
 #, kde-format
@@ -1916,7 +1917,7 @@ msgid ""
 "and 1.5 -&gt; 2.0</p></body></html>"
 msgstr ""
 "<html><head/><body><p><span style=\" font-weight:600;\">RoundNever</span></"
-"p><p>Non arredondar, só recortar e amosar unha advertencia a modo de "
+"p><p>Non arredondar, só recortar e amosar unha advertencia amodo de "
 "lembranza. Polo demais é idéntico a «RoundTrunc».</p><p><span style=\" font-"
 "weight:600;\">RoundFloor</span></p><p>Arredondar ao maior valor enteiro non "
 "superior ao valor. P. ex. 0.5 → 0.0 e -0.5 → -1.0</p><p><span style=\" font-"
@@ -2847,7 +2848,7 @@ msgstr "Editor de prezos"
 #: kmymoney/dialogs/kmymoneypricedlg.ui:32
 #, kde-format
 msgid "Remove this price item from the file"
-msgstr "Eliminar este prezo do ficheiro"
+msgstr "Eliminar este elemento de prezo do ficheiro."
 
 #. i18n: ectx: property (text), widget (QTreeWidget, m_priceList)
 #: kmymoney/dialogs/kmymoneypricedlg.ui:45
@@ -3007,7 +3008,7 @@ msgstr "Duplicar"
 #: kmymoney/views/kinvestmentview.ui:179
 #, kde-format
 msgid "Delete..."
-msgstr "Borrar…"
+msgstr "Eliminar…"
 
 #: kmymoney/dialogs/kmymoneysplittable.cpp:628
 #, kde-format
@@ -3934,9 +3935,9 @@ msgid ""
 "a different tag before the selected tags can be deleted. Please select a tag "
 "from the list below."
 msgstr ""
-"As operacións asociadas das etiquetas escollidas deben ser asignadas a outro "
-"beneficiario antes de poder borrar os escollidos. Por favor, escolla un "
-"beneficiario na lista de embaixo."
+"As operacións asociadas das etiquetas escollidas deben ser asignadas a outra "
+"beneficiaria antes de poder eliminar os escollidos. Escolla unha "
+"beneficiaria na lista de embaixo."
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel2)
 #: kmymoney/dialogs/ktagreassigndlg.ui:61
@@ -4692,7 +4693,7 @@ msgid ""
 "mailinglist at <a href=\"mailto:kmymoney@kde.org\">kmymoney@kde.org</a> to "
 "find what settings work for other users in your country.</i>"
 msgstr ""
-"<i>Introduza expresións regulares coas que procesar o datos descargados do "
+"<i>Introduza expresións regulares coas que procesar o datos devoltos polo "
 "URL antes introducido. O símbolo, prezo e data deben atoparse nos datos de "
 "cotización para poder usalos. Tamén pode mirar na lista de usuarios de "
 "KMyMoney en <a href=\"mailto:kmymoney@kde.org\">kmymoney@kde.org</a> para "
@@ -4795,7 +4796,7 @@ msgid ""
 "</ul>\n"
 "</p>"
 msgstr ""
-"<p>Para procesar dun xeito máis sinxelo os datos descargados da fonte de "
+"<p>Para procesar dun xeito máis sinxelo os datos devoltos pola fonte de "
 "Internet, KMyMoney xeralmente suprime as partes non usadas antes de que "
 "procesalos con expresións regulares. Se depende destes campos para atopar os "
 "campos, use esta opción para non retirar as etiquetas.</p>\n"
@@ -4809,6 +4810,7 @@ msgstr ""
 "</ul>\n"
 "</p>"
 
+# skip-rule: trasno-remove_reverse
 #. i18n: ectx: property (text), widget (QCheckBox, m_skipStripping)
 #: kmymoney/dialogs/settings/ksettingsonlinequotes.ui:158
 #, kde-format
@@ -5760,7 +5762,7 @@ msgstr "Kevin Tambascio"
 #: kmymoney/kcreditswindow.cpp:61
 #, kde-format
 msgid "Initial investment support"
-msgstr "Soporte inicial de investimentos"
+msgstr "Funcionalidade inicial de investimentos."
 
 #: kmymoney/kcreditswindow.cpp:62
 #, kde-format
@@ -6054,7 +6056,7 @@ msgstr "Editar a categoría…"
 #: kmymoney/kmymoney.cpp:1432
 #, kde-format
 msgid "Delete category..."
-msgstr "Borrar a categoría…"
+msgstr "Eliminar a categoría…"
 
 #: kmymoney/kmymoney.cpp:1436
 #, kde-format
@@ -6231,7 +6233,7 @@ msgstr "Editar o investimento…"
 #: kmymoney/kmymoney.cpp:1477
 #, kde-format
 msgid "Delete investment..."
-msgstr "Borrar o investimento…"
+msgstr "Eliminar o investimento…"
 
 #: kmymoney/kmymoney.cpp:1478
 #, kde-format
@@ -6256,7 +6258,7 @@ msgstr "Editar o asento planificado"
 #: kmymoney/kmymoney.cpp:1483
 #, kde-format
 msgid "Delete scheduled transaction"
-msgstr "Borrar o asento planificado"
+msgstr "Eliminar o asento planificado"
 
 #: kmymoney/kmymoney.cpp:1484
 #, kde-format
@@ -6286,7 +6288,7 @@ msgstr "Renomear o beneficiario"
 #: kmymoney/kmymoney.cpp:1490
 #, kde-format
 msgid "Delete payee"
-msgstr "Borrar o beneficiario"
+msgstr "Eliminar o beneficiario"
 
 #: kmymoney/kmymoney.cpp:1491
 #, kde-format
@@ -6336,7 +6338,7 @@ msgstr "Editar a transferencia"
 #: kmymoney/kmymoney.cpp:1505
 #, kde-format
 msgid "Show log"
-msgstr "Amosar o historial"
+msgstr "Amosar o rexistro"
 
 #: kmymoney/kmymoney.cpp:1664
 #, kde-format
@@ -6443,7 +6445,8 @@ msgstr "Montando %1"
 #, kde-format
 msgid "Backup file for today exists on that device. Replace?"
 msgstr ""
-"Xa existe unha salvagarda de hoxe nese dispositivo. Desexa substituíla?"
+"Xa existe un ficheiro de salvagarda de hoxe nese dispositivo. Quere "
+"substituílo?"
 
 #: kmymoney/kmymoney.cpp:2428
 #, kde-format
@@ -6914,7 +6917,7 @@ msgstr "Prognóstico do valor neto"
 #: kmymoney/kmymoneyutils.cpp:125
 #, kde-format
 msgid "Forecast (history)"
-msgstr "Prognóstico (histórico)"
+msgstr "Prognóstico (historial)"
 
 #: kmymoney/kmymoneyutils.cpp:126
 #, kde-format
@@ -7023,7 +7026,7 @@ msgid ""
 "still want to continue?</p>"
 msgstr ""
 "<p>Perderanse todos os tipos de cambio para a divisa <b>%1</b>.</p><p>Quere "
-"continuar de todos xeitos?</p>"
+"continuar de todos os xeitos?</p>"
 
 #: kmymoney/kmymoneyutils.cpp:571
 #, kde-format
@@ -7037,12 +7040,12 @@ msgid ""
 "to continue?</p>"
 msgstr ""
 "<p>Perderanse todas as cotizacións de prezos para %1 <b>%2</b>.</p> <p>Quere "
-"continuar de todos xeitos?</p>"
+"continuar de todos os xeitos?</p>"
 
 #: kmymoney/kmymoneyutils.cpp:576
 #, kde-format
 msgid "Delete security"
-msgstr "Borrar o valor"
+msgstr "Eliminar o valor"
 
 #: kmymoney/kmymoneyutils.cpp:584
 #, kde-format
@@ -10382,7 +10385,7 @@ msgstr "Importar CSV"
 #: kmymoney/plugins/csv/import/csvwizard.cpp:950
 #, kde-format
 msgid "Make QIF File"
-msgstr "Crear un perfil QIF"
+msgstr "Crear un ficheiro QIF"
 
 #: kmymoney/plugins/csv/import/csvwizard.cpp:987
 #, kde-format
@@ -10654,7 +10657,7 @@ msgstr "Prema este botón para renomear o seu perfil."
 #: kmymoney/plugins/qif/config/mymoneyqifprofileeditor.ui:624
 #, kde-format
 msgid "Rename"
-msgstr "Cambiar o nome"
+msgstr "Renomear"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, m_profiles)
 #: kmymoney/plugins/csv/import/introwizardpage.ui:241
@@ -11449,6 +11452,7 @@ msgstr ""
 "A fonte dos prezos non é coñecida por KMyMoney. Escolla unha das opcións de "
 "embaixo."
 
+# skip-rule: trasno-download_reverse
 #. i18n: ectx: property (text), widget (QRadioButton, buttonNoSource)
 #: kmymoney/plugins/gnc/import/kgncpricesourcedlg.ui:62
 #, kde-format
@@ -11556,7 +11560,7 @@ msgstr "Estanse a cargar os prezos…"
 #: kmymoney/plugins/gnc/import/mymoneygncreader.cpp:1493
 #, kde-format
 msgid "Imported History"
-msgstr "Historia importada"
+msgstr "Historial importado"
 
 #: kmymoney/plugins/gnc/import/mymoneygncreader.cpp:1514
 #: kmymoney/plugins/xml/mymoneystoragexml.cpp:252
@@ -12368,6 +12372,7 @@ msgstr ""
 "Tras un reloxo a primeira barra do campo tremelucente cambia (cada medio "
 "byte transmítese no que duran 2 reloxos)."
 
+# skip-rule: trasno-remove_reverse
 #. i18n: ectx: property (text), widget (QPushButton, dequeueButton)
 #: kmymoney/plugins/kbanking/views/kbjobview.cpp:66
 #: kmymoney/plugins/kbanking/views/kbjobview.ui:32
@@ -12375,6 +12380,7 @@ msgstr ""
 msgid "Dequeue"
 msgstr "Retirar da fila"
 
+# skip-rule: trasno-remove_reverse
 #: kmymoney/plugins/kbanking/views/kbjobview.cpp:68
 #, kde-format
 msgid "Dequeue selected job"
@@ -13166,7 +13172,7 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Marque isto se os asentos de investimento, unha vez "
 "importados, teñen asignado o tipo de compra ou venda incorrecto, "
-"posiblemente porque a súa entidade non aplica os signos negativo e positivo "
+"posibelmente porque a súa entidade non aplica os signos negativo e positivo "
 "correctos aos valores de importe e cantidade das participacións.</p></body></"
 "html>"
 
@@ -14017,7 +14023,7 @@ msgstr ""
 "Se escolle <b>Extracto bancario</b> activará a busca automática de "
 "coincidencias da categoría, que no caso de <b>Outra aplicación</b> estará "
 "desactivada. Use esta última alternativa se importa ficheiros desde outros "
-"aplicativos de xestión das finanzas persoais,"
+"programas de xestión das finanzas persoais,"
 
 #. i18n: ectx: property (text), item, widget (KComboBox, m_typeComboBox)
 #: kmymoney/plugins/qif/import/kimportdlgdecl.ui:106
@@ -14416,8 +14422,8 @@ msgstr "Imposicións en man"
 #, kde-format
 msgid "One outstanding charges of"
 msgid_plural "Total of %1 outstanding charges amounting to"
-msgstr[0] "Un cargo salientable de"
-msgstr[1] "Un total de %1 cargos salientable por un importe de"
+msgstr[0] "Un cargo salientábel de"
+msgstr[1] "Un total de %1 cargos salientábeis por un importe de"
 
 #: kmymoney/plugins/reconciliationreport/reconciliationreport.cpp:305
 #, kde-format
@@ -14443,7 +14449,7 @@ msgid ""
 "In order to use a database, you need to install some additional software. "
 "Click Help for more information"
 msgstr ""
-"Para usar unha base de datos hai que instalar software adicional. Prema "
+"Para usar unha base de datos hai que instalar programas adicionais. Prema "
 "Axuda para máis información."
 
 #: kmymoney/plugins/sql/kgeneratesqldlg.cpp:170
@@ -14492,7 +14498,7 @@ msgid ""
 "Please report any problems to the developer mailing list at kmymoney-"
 "devel@kde.org"
 msgstr ""
-"O base de datos tipo %1 non ten sido probada abondo nun contexto con "
+"A base de datos tipo %1 non ten sido probada abondo nun contexto con "
 "KMyMoney.\n"
 "Asegúrese de dispor de salvagardas bos dos seus datos.\n"
 "Informe de calquera problema na lista de correo dos desenvolvedores en "
@@ -14573,7 +14579,7 @@ msgid ""
 "known response time problems. Please be patient; we are working on them.\n"
 "As always, please make sure you have adequate backups of your data."
 msgstr ""
-"Este software aínda está en fase experimental e aínda ten algúns problemas "
+"Este programa aínda está en fase experimental e ten algúns problemas "
 "coñecidos cos tempos de resposta. Estamos a traballar neles.\n"
 "Como sempre, asegúrese de que ten unha salvagarda dos seus datos."
 
@@ -14629,8 +14635,8 @@ msgid ""
 "supported.\n"
 "Please save your database under a new name."
 msgstr ""
-"Sobrescribir unha base de datos existente cunha base de datos cifrada non é "
-"posíbel aínda.\n"
+"Aínda non se permite sobrescribir unha base de datos existente cunha base de "
+"datos cifrada.\n"
 "Garde a base de datos con outro nome."
 
 #: kmymoney/plugins/sql/mymoneystoragesql.cpp:192
@@ -14918,7 +14924,7 @@ msgstr "Renomear o orzamento"
 #: kmymoney/plugins/views/budget/kbudgetview.cpp:304
 #, kde-format
 msgid "Delete budget"
-msgstr "Borrar o orzamento"
+msgstr "Eliminar o orzamento"
 
 #: kmymoney/plugins/views/budget/kbudgetview.cpp:305
 #, kde-format
@@ -14986,8 +14992,9 @@ msgstr "Renomear o orzamento escollido."
 #: kmymoney/plugins/views/budget/kbudgetview.ui:63
 #, kde-format
 msgid "Use this to start renaming the selected budget."
-msgstr "Use isto para cambiar o nome do orzamento escollido."
+msgstr "Use isto para renomear o orzamento seleccionado."
 
+# skip-rule: trasno-rename_reverse
 #. i18n: ectx: property (text), widget (QPushButton, m_renameButton)
 #: kmymoney/plugins/views/budget/kbudgetview.ui:66
 #: kmymoney/views/kpayeesview.ui:63 kmymoney/views/ktagsview.ui:71
@@ -14999,20 +15006,20 @@ msgstr "Renomear"
 #: kmymoney/plugins/views/budget/kbudgetview.ui:73
 #, kde-format
 msgid "Delete the current selected budget"
-msgstr "Borrar o orzamento escollido"
+msgstr "Eliminar o orzamento escollido"
 
 #. i18n: ectx: property (whatsThis), widget (QPushButton, m_deleteButton)
 #: kmymoney/plugins/views/budget/kbudgetview.ui:76
 #, kde-format
 msgid "Use this to delete the selected budget."
-msgstr "Use isto para borrar o orzamento escollido."
+msgstr "Use isto para eliminar o orzamento escollido."
 
 #. i18n: ectx: property (text), widget (QPushButton, m_deleteButton)
 #: kmymoney/plugins/views/budget/kbudgetview.ui:79
 #: kmymoney/views/kpayeesview.ui:76 kmymoney/views/ktagsview.ui:84
 #, kde-format
 msgid "Del"
-msgstr "Borrar"
+msgstr "Supr"
 
 #. i18n: ectx: property (text), widget (QTreeWidget, m_budgetList)
 #: kmymoney/plugins/views/budget/kbudgetview.ui:101
@@ -15033,6 +15040,7 @@ msgstr "Acepta os datos introducidos e garda o orzamento."
 msgid "Use this to store the modified data."
 msgstr "Use isto para almacenar os datos modificados."
 
+# skip-rule: trasno-update_reverse
 #. i18n: ectx: property (text), widget (QPushButton, m_updateButton)
 #: kmymoney/plugins/views/budget/kbudgetview.ui:142
 #, kde-format
@@ -15254,7 +15262,7 @@ msgstr "Número de ciclos a usar no prognóstico:"
 #: kmymoney/plugins/views/forecast/kforecastview.ui:272
 #, kde-format
 msgid "History Forecast Method"
-msgstr "Método de prognóstico"
+msgstr "Método de prognóstico de historial"
 
 #. i18n: ectx: property (text), widget (QRadioButton, radioButton11)
 #: kmymoney/plugins/views/forecast/forecastviewsettings.ui:168
@@ -16102,11 +16110,12 @@ msgstr "Semana de %1"
 msgid "No Institution"
 msgstr "Sen entidade"
 
+# skip-rule: trasno-empty
 #: kmymoney/plugins/views/reports/core/querytable.cpp:748
 #: kmymoney/plugins/views/reports/core/querytable.cpp:1880
 #, kde-format
 msgid "[Empty Payee]"
-msgstr "[Sen beneficiario]"
+msgstr "[Sen beneficiaria]"
 
 #: kmymoney/plugins/views/reports/core/querytable.cpp:792
 #: kmymoney/plugins/views/reports/core/querytable.cpp:1912
@@ -16500,7 +16509,7 @@ msgstr "<b>%1</b> é un informe predeterminado, polo que non pode eliminarse."
 #: kmymoney/plugins/views/reports/kreportsview_p.h:554
 #, kde-format
 msgid "Delete Report?"
-msgstr "Borrar o informe?"
+msgstr "Eliminar o informe?"
 
 #: kmymoney/plugins/views/reports/kreportsview.cpp:604
 #, kde-format
@@ -16568,7 +16577,7 @@ msgid ""
 "<qt>Are you sure you want to delete report <b>%1</b>?  There is no way to "
 "recover it.</qt>"
 msgstr ""
-"<qt>Seguro que quere borrar o informe <b>%1</b>? Non haberá maneira de "
+"<qt>Seguro que quere eliminar o informe <b>%1</b>? Non haberá maneira de "
 "recuperalo.</qt>"
 
 #: kmymoney/plugins/views/reports/kreportsview_p.h:627
@@ -16782,7 +16791,7 @@ msgstr "Media móbil do investimento"
 #: kmymoney/plugins/views/reports/kreportsview_p.h:1207
 #, kde-format
 msgid "Investment Moving Average vs Actual"
-msgstr "Media móbil do investimento fronte a valor actualizado"
+msgstr "Media móbil do investimento fronte á real"
 
 #: kmymoney/plugins/views/reports/kreportsview_p.h:1222
 #, kde-format
@@ -16934,7 +16943,7 @@ msgstr "Copiar"
 #: kmymoney/plugins/views/reports/reportcontrol.ui:102
 #, kde-format
 msgid "Export this report as an HTML or CSV file"
-msgstr "Exportar este informe en formato HTML ou CSV"
+msgstr "Exportar este informe como un ficheiro HTML ou CSV."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, buttonDelete)
 #: kmymoney/plugins/views/reports/reportcontrol.ui:118
@@ -17011,7 +17020,7 @@ msgstr "Configuración dos informes"
 #: kmymoney/plugins/views/reports/reportsviewsettings.ui:26
 #, kde-format
 msgid "Maximum number of legend items to display"
-msgstr "Número máximo de lendas que amosar"
+msgstr "Número máximo de elementos de lenda que amosar"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_MaximumLegendItems)
 #: kmymoney/plugins/views/reports/reportsviewsettings.ui:35
@@ -17232,7 +17241,7 @@ msgstr ""
 #: kmymoney/plugins/views/reports/reporttabchart.ui:149
 #, kde-format
 msgid "Logarithmic vertical axis"
-msgstr "Eixo vertical logarítmico"
+msgstr "Eixe vertical logarítmico"
 
 #. i18n: ectx: property (text), widget (QCheckBox, m_negExpenses)
 #: kmymoney/plugins/views/reports/reporttabchart.ui:156
@@ -17861,7 +17870,7 @@ msgid ""
 "misconfigured Python environment. Please refer to the manual on how to fix "
 "it."
 msgstr ""
-"O complemento de Woob non puido inicializarse completamente, probablemente "
+"O complemento de Woob non puido inicializarse completamente, probabelmente "
 "por faltar ou estar mal configurado o contorno de Python. Consulte o manual "
 "para corrixilo."
 
@@ -17872,7 +17881,7 @@ msgid ""
 "misconfigured Woob Python module. Please refer to the manual on how to fix "
 "it."
 msgstr ""
-"O complemento de Woob non puido inicializarse completamente, probablemente "
+"O complemento de Woob non puido inicializarse completamente, probabelmente "
 "por faltar ou estar mal configurado o módulo de Woob de Python. Consulte o "
 "manual para corrixilo."
 
@@ -17915,12 +17924,12 @@ msgid ""
 ">Once confident with the result, feel free to delete the old file and rename "
 "the encrypted one to the old name.</p>"
 msgstr ""
-"<p>Activou o soporte de cifrado con GPG. Isto significa que os ficheiros "
-"novos gardaranse cifrados.</p><p>Os ficheiros existentes non se cifrarán "
-"automaticamente. Para cifrar os ficheiros xa existentes, use <b>Ficheiro → "
-"Gardar como…</b> e garde o ficheiro cun nome diferente.<br/>Cando confíe no "
-"resultado, elimine o ficheiro vello e cambie o nome do ficheiro cifrado ao "
-"que tiña antes.</p>"
+"<p>Activou a funcionalidade de cifrado con GPG. Isto significa que os "
+"ficheiros novos gardaranse cifrados.</p><p>Os ficheiros existentes non se "
+"cifrarán automaticamente. Para cifrar os ficheiros xa existentes, use "
+"<b>Ficheiro → Gardar como…</b> e garde o ficheiro cun nome diferente.<br/"
+">Cando confíe no resultado, elimine o ficheiro vello e renomee o ficheiro "
+"cifrado ao que tiña antes.</p>"
 
 #: kmymoney/plugins/xml/kcm_xmlstorage.cpp:168
 #: kmymoney/plugins/xml/ksettingsgpg.cpp:206
@@ -18234,8 +18243,8 @@ msgid ""
 "This combo box lists all the secret keys you have in your keyring. Select "
 "the one you want to use for encryption when saving to a file."
 msgstr ""
-"Esta lista despregábel enumera todas as chaves secretas que ten no seu "
-"chaveiro. Escolla a que queira usar para gardar nun ficheiro."
+"Esta lista despregábel lista as chaves secretas do seu chaveiro. Seleccione "
+"a que queira usar para cifrar ao gardar un ficheiro."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #. i18n: ectx: property (title), widget (KEditListWidget, kcfg_GpgRecipientList)
@@ -18359,7 +18368,7 @@ msgstr ""
 #: kmymoney/settings/kmymoney.kcfg:37
 #, kde-format
 msgid "Number of backup files to keep"
-msgstr "Número de salvagardas que manter"
+msgstr "Número de ficheiros de salvagarda que manter"
 
 #. i18n: ectx: label, entry (AutoSavePeriod), group (General Options)
 #: kmymoney/settings/kmymoney.kcfg:43
@@ -18504,13 +18513,14 @@ msgstr "Orde dos elementos na páxina de inicio"
 msgid "Zoom factor used for home view HTML page"
 msgstr "Factor de ampliación usado para a páxina HTML de inicio"
 
+# skip-rule: trasno-close_reverse
 #. i18n: ectx: label, entry (RememberZoomFactor), group (Homepage Options)
 #: kmymoney/settings/kmymoney.kcfg:164
 #, kde-format
 msgid "Remember (manually adjusted) zoom factor in home view on program end."
 msgstr ""
-"Lembrar (axuste manual) o factor de ampliación na vista inicial ao saír do "
-"programa."
+"Lembrar (axuste manual) o factor de ampliación na vista inicial ao pecharse "
+"o programa."
 
 #. i18n: ectx: label, entry (ShowLimitInfo), group (Homepage Options)
 #: kmymoney/settings/kmymoney.kcfg:168
@@ -19093,7 +19103,7 @@ msgstr ""
 #: kmymoney/views/kcategoriesview.cpp:396
 #, kde-format
 msgid "<qt>Do you really want to delete category <b>%1</b>?</qt>"
-msgstr "<qt>Seguro que quere borrar a categoría <b>%1</b>?</qt>"
+msgstr "<qt>Seguro que quere eliminar a categoría <b>%1</b>?</qt>"
 
 #: kmymoney/views/kcategoriesview.cpp:403
 #, kde-format
@@ -19107,14 +19117,14 @@ msgid ""
 "only the category itself? If you only delete the category itself, all its "
 "sub-categories will be made sub-categories of <b>%2</b>.</qt>"
 msgstr ""
-"<qt>Quere borrar a categoría <b>%1</b> con todas as súas subcategorías ou só "
-"a categoría en si? Se só borra a categoría, todas as súas fillas han ser "
-"adoptadas por <b>%2</b>.</qt>"
+"<qt>Quere eliminar a categoría <b>%1</b> con todas as súas subcategorías ou "
+"só a categoría en si? Se só elimina a categoría, todas as súas fillas han "
+"ser adoptadas por <b>%2</b>.</qt>"
 
 #: kmymoney/views/kcategoriesview.cpp:418
 #, kde-format
 msgid "Delete all"
-msgstr "Borrar todas"
+msgstr "Eliminar todo"
 
 #: kmymoney/views/kcategoriesview.cpp:419
 #, kde-format
@@ -19134,7 +19144,8 @@ msgstr ""
 #, kde-format
 msgid ""
 "<qt>Unable to delete a sub-category of category <b>%1</b>. Reason: %2</qt>"
-msgstr "<qt>Non se pode borrar unha subcategoría de <b>%1</b>. Motivo: %2</qt>"
+msgstr ""
+"<qt>Non se pode eliminar unha subcategoría de <b>%1</b>. Motivo: %2</qt>"
 
 #: kmymoney/views/kcategoriesview.cpp:480
 #, kde-format
@@ -19260,9 +19271,8 @@ msgid ""
 "p>"
 msgstr ""
 "<p>Escolla o que queira facer: descartar os cambios, gardar os cambios ou "
-"continuar editando o asento.</p><p>Tamén pode Tamén pode escoller unha "
-"opción para gardar o asento automaticamente cando, p.ex. escolla outro "
-"asento.</p>"
+"continuar editando o asento.</p><p>Tamén pode escoller unha opción para "
+"gardar o asento automaticamente cando, p.ex. escolla outro asento.</p>"
 
 #: kmymoney/views/kgloballedgerview.cpp:1351
 #: kmymoney/views/kgloballedgerview.cpp:1354
@@ -19278,8 +19288,8 @@ msgid ""
 "selecting another transaction.</p>"
 msgstr ""
 "<p>Escolla o que queira facer: descartar ou gardar os cambios.</p><p>Tamén "
-"pode Tamén pode escoller unha opción para gardar o asento automaticamente "
-"cando, p.ex. escolla outro asento.</p>"
+"pode escoller unha opción para gardar o asento automaticamente cando, p.ex. "
+"escolla outro asento.</p>"
 
 #: kmymoney/views/kgloballedgerview.cpp:1466
 #, kde-format
@@ -19300,7 +19310,7 @@ msgstr[1] "Seguro que quere eliminar os %1 asentos escollidos?"
 #: kmymoney/views/kgloballedgerview.cpp:1476
 #, kde-format
 msgid "Delete transaction"
-msgstr "Borrar o asento"
+msgstr "Eliminar o asento"
 
 #: kmymoney/views/kgloballedgerview.cpp:1528
 #, kde-format
@@ -19723,7 +19733,7 @@ msgstr "<p>Seguro que quere eliminar o investimento <b>%1</b>?</p>"
 #: kmymoney/views/kinvestmentview.cpp:282
 #, kde-format
 msgid "Delete investment"
-msgstr "Borrar o investimento"
+msgstr "Eliminar o investimento"
 
 #: kmymoney/views/kinvestmentview.cpp:292
 #, kde-format
@@ -19764,11 +19774,12 @@ msgstr ""
 msgid "Change the security information of the selected entry."
 msgstr "Cambiar a información do valor escollido."
 
+# skip-rule: trasno-item
 #. i18n: ectx: property (whatsThis), widget (QPushButton, m_deleteSecurityButton)
 #: kmymoney/views/kinvestmentview.ui:176
 #, kde-format
 msgid "Remove this security item from the file"
-msgstr "Eliminar este valor bolsista do ficheiro"
+msgstr "Eliminar este valor bolsista do ficheiro."
 
 #: kmymoney/views/kmymoneyview.cpp:146
 #, kde-format
@@ -19894,7 +19905,7 @@ msgstr "Eliminar o beneficiario"
 #: kmymoney/views/kpayeesview.cpp:720
 #, kde-format
 msgid "<p>Do you really want to merge the selected payees?"
-msgstr "<p>Seguro que quere eliminar todos os beneficiarios escollidos?"
+msgstr "<p>Seguro que quere fusionar as beneficiarias escollidas?"
 
 #: kmymoney/views/kpayeesview.cpp:721 kmymoney/views/kpayeesview_p.h:628
 #, kde-format
@@ -19936,7 +19947,7 @@ msgstr "Renomear o beneficiario escollido"
 #: kmymoney/views/kpayeesview.ui:60
 #, kde-format
 msgid "Use this to start renaming the selected payee."
-msgstr "Use isto para cambiar o nome do beneficiario escollido."
+msgstr "Use isto para renomear a beneficiaria seleccionada."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, m_deleteButton)
 #: kmymoney/views/kpayeesview.ui:70
@@ -20370,7 +20381,7 @@ msgstr "Seguro que quere retirar todas as etiquetas escollidas?"
 #: kmymoney/views/ktagsview.cpp:626
 #, kde-format
 msgid "Remove Tag"
-msgstr "Borrar a etiqueta"
+msgstr "Retirar a etiqueta"
 
 #: kmymoney/views/ktagsview.cpp:663
 #, kde-format
@@ -20421,7 +20432,7 @@ msgstr "Renomear a etiqueta escollida"
 #: kmymoney/views/ktagsview.ui:68
 #, kde-format
 msgid "Use this to start renaming the selected tag."
-msgstr "Use isto para cambiar o nome da etiqueta escollida."
+msgstr "Use isto para renomear a etiqueta seleccionada."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, m_deleteButton)
 #: kmymoney/views/ktagsview.ui:78
@@ -20583,7 +20594,7 @@ msgstr ""
 #: kmymoney/views/kwelcomepage.cpp:203
 #, kde-format
 msgid "The KMyMoney Development Team"
-msgstr "A equipa de desenvolvemento de KMyMoney"
+msgstr "O equipo desenvolvedor de KMyMoney"
 
 #: kmymoney/views/kwelcomepage.cpp:225
 #, kde-format
@@ -20686,7 +20697,7 @@ msgstr ""
 #: kmymoney/views/kwelcomepage.cpp:246
 #, kde-format
 msgid "- Support price download by ISIN"
-msgstr "- Descarga de prezos de ISIN."
+msgstr "- Permitir a descarga de prezos mediante ISIN."
 
 #: kmymoney/views/ledgerdelegate.cpp:189 kmymoney/widgets/register.cpp:1729
 #, kde-format
@@ -22177,6 +22188,7 @@ msgstr "Efectivo"
 msgid "Investment"
 msgstr "Investimento"
 
+# skip-rule: trasno-provide
 #: kmymoney/wizards/newaccountwizard/kaccounttypepage.cpp:185
 #, kde-format
 msgid ""
@@ -24456,7 +24468,7 @@ msgid ""
 "schedules for your loan payments."
 msgstr ""
 "\n"
-"Nos seguintes pasos, KMyMoney axudarao a configurar as categorías e "
+"Nos seguintes pasos, KMyMoney asísteo na configuración das categorías e "
 "transaccións planificadas para os pagamentos do seu empréstito."
 
 #. i18n: ectx: property (text), widget (QLabel, TextLabel16_2)
@@ -25053,7 +25065,7 @@ msgid ""
 "to be created. Select the groups that are relevant to you. You can always "
 "create additional accounts manually later."
 msgstr ""
-"Escolla grupos de contas que se correspondan co xeito co que vaia a usar "
+"Escolla grupos de contas que se correspondan co xeito co que vaia usar "
 "KMyMoney. Cada grupo que escolla fará que se creen varias contas e "
 "categorías. Escolla os grupos que sexan relevantes para vostede. Sempre "
 "poderá crear contas adicionais despois."
@@ -25184,8 +25196,7 @@ msgstr ""
 #, kde-format
 msgid "<p>...that the KMyMoney development team wishes you a nice day?\n"
 msgstr ""
-"<p>…que a equipa de desenvolvemento de KMyMoney lle desexa que teña un bo "
-"día?\n"
+"<p>…que o equipo desenvolvedor de KMyMoney lle desexa que teña un bo día?\n"
 
 #. i18n: ectx: @info:tipoftheday
 #: tips:59
@@ -25241,7 +25252,7 @@ msgid ""
 "The date can be modified via <i>Configure/General/Filter</i>.\n"
 msgstr ""
 "<p>…que pode agochar os asentos anteriores a unha certa data?\n"
-"A data pode escollela mediante <i>Configurar/Xeral/Filtro</i>.\n"
+"A data pode modificala mediante <i>Configurar/Xeral/Filtro</i>.\n"
 
 #. i18n: ectx: @info:tipoftheday
 #: tips:97
@@ -25289,7 +25300,7 @@ msgid ""
 "To verify, how the data looks like you are about to send away, you can open\n"
 "this file in KMyMoney and see how the developers see your data.\n"
 msgstr ""
-"<p> … que pode apoiar activamente á equipa de desenvolvemento de\n"
+"<p> … que pode apoiar activamente ao equipo desenvolvedor de\n"
 "KMyMoney nos casos que dependan dos seus datos? Pode gardalos\n"
 "dun xeito anónimo para esta fin.<p>\n"
 "Simplemente abra o seu ficheiro e escolla\n"
