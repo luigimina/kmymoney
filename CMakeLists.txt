@@ -41,7 +41,7 @@ endif()
 project(KMyMoney VERSION "${RELEASE_SERVICE_VERSION}" LANGUAGES CXX)
 
 # Minimum versions required for extern packages
-set(KMM_ALKIMIA_MIN_VERSION 8.2.1)
+set(KMM_ALKIMIA_MIN_VERSION 8.2.0)
 set(KMM_KCHART_MIN_VERSION 2.6.0)
 # LibOFX uses two different version numbers. find_package looks for the
 # library's so version whereas pkg_check_modules retrieves the package
