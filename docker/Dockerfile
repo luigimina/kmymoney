@@ -1,14 +1,14 @@
-FROM ubuntu:focal
+FROM ubuntu:noble
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN echo "tzdata tzdata/Areas select Europe" | debconf-set-selections
-RUN echo "tzdata tzdata/Zones/Europe select Madrid" | debconf-set-selections
+RUN echo "tzdata tzdata/Zones/Europe select Rome" | debconf-set-selections
 RUN apt update \
     && apt install -y apt-utils gnupg wget \
     && wget -qO - http://archive.neon.kde.org/public.key | apt-key add - \
-    && echo "deb http://archive.neon.kde.org/user focal main" >> /etc/apt/sources.list \
-    && echo "deb-src http://archive.neon.kde.org/user focal main" >> /etc/apt/sources.list \
+    && echo "deb http://archive.neon.kde.org/user noble main" >> /etc/apt/sources.list \
+    && echo "deb-src http://archive.neon.kde.org/user noble main" >> /etc/apt/sources.list \
     && sed -i -- 's/#[ ]*deb-src/deb-src/g' /etc/apt/sources.list \
     && apt update \
     && apt install -y eatmydata \
