@@ -36,3 +36,10 @@ RUN eatmydata apt install -y libqt5sql5-*
 RUN eatmydata apt install -y subversion python3-dev ninja-build 
 RUN eatmydata apt install -y breeze-icon-theme fonts-noto-color-emoji
 RUN eatmydata apt install -y libkf5crash-dev
+RUN eatmydata apt install -y oxygen-icon-theme
+# Set the locale
+RUN sed -i -e 's/# it_IT.UTF-8 UTF-8/it_IT.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+ENV LANG it_IT.UTF-8  
+ENV LANGUAGE it_IT:it  
+ENV LC_ALL it_IT.UTF-8
