@@ -162,10 +162,13 @@ public:
 
         q->connect(m_view, &QTextBrowser::anchorClicked, q, &KHomeView::slotOpenUrl);
 
-        q->connect(MyMoneyFile::instance(), &MyMoneyFile::dataChanged, q, &KHomeView::refresh);
+        q->connect(MyMoneyFile::instance(), &MyMoneyFile::dataChanged, q, &KHomeView::delayedRefresh);
 
         m_resizeRefreshTimer.setSingleShot(true);
         q->connect(&m_resizeRefreshTimer, &QTimer::timeout, q, &KHomeView::refresh);
+
+        m_refreshDelayTimer.setSingleShot(true);
+        q->connect(&m_refreshDelayTimer, &QTimer::timeout, q, &KHomeView::refresh);
 
         m_needsRefresh = false;
     }
@@ -497,13 +500,15 @@ public:
                         break;
 
                     case 3: // payment accounts
+                    {
+                        const auto sectionHeader = i18nc("@title Home page section", "Payment Accounts");
                         // Check if preferred accounts are shown separately
                         if (settings.contains("2")) {
-                            showAccounts(static_cast<paymentTypeE>(Payment | Preferred), i18n("Payment Accounts"));
+                            showAccounts(Payment, sectionHeader);
                         } else {
-                            showAccounts(Payment, i18nc("@title Home page section", "Payment Accounts"));
+                            showAccounts(static_cast<paymentTypeE>(Payment | Preferred), sectionHeader);
                         }
-                        break;
+                    } break;
                     case 4: // favorite reports
                         showFavoriteReports();
                         break;
@@ -1992,6 +1997,7 @@ public:
     int m_adjustedIconSize;
     double m_devRatio;
     QTimer m_resizeRefreshTimer;
+    QTimer m_refreshDelayTimer;
     QSize m_startSize;
     bool m_endSkipWithTimerRunning;
 };
